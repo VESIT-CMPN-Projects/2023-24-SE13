@@ -1,0 +1,8 @@
+body{
+    
+}
+
+#map {
+    height: 80vh; /* Adjust the height as needed */
+    width: 80vh; /* Make the map take up the entire width of the screen */
+}
