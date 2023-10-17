@@ -432,11 +432,24 @@ function updateMapWithData() {
   // Assuming data is GeoJSON format
   // Clear existing GeoJSON data
   geojsonLayer.clearLayers();
+  const mapLayers = [];
+  map.eachLayer(layer => {
+      mapLayers.push(layer);
+  });
   
+  // Iterate through the list of layers
+  mapLayers.forEach(layer => {
+     if(layer.options.name == "heatlayer"){
+      map.removeLayer(layer);
+     }
+     console.log(`Layer Name: ${layer.options.name}`);
+  });
 
+  
+ // geojsonLayer.addData(getjsonData);
 
   // Add the new data to the GeoJSON layer
-  // geojsonLayer.addData(getjsonData);
+ 
 //   function generateGradient(colorsCount) {
 //     const gradient = {};
 //     const startColor = hexToRGB('#0000FF'); // Blue
@@ -514,7 +527,7 @@ if(selector=="aqi"){
 ]);
 }
 
- console.log(heatData);
+//  console.log(heatData);
   
   
 const gradient = {
@@ -532,11 +545,12 @@ const gradient = {
 };
 
 // Create a Heatmap layer
-var heatLayer = L.heatLayer(heatData, {
+var heatLayer1 = L.heatLayer(heatData, {
+    name:"heatlayer",
     radius: 50, // Adjust the radius of the heatmap points
     blur: 80,
-    opacity:0.0001,
-    max:0.3,
+    opacity:0.001,
+    max:0.1,
     gradient:  {
       0.0: 'red',
       0.1: 'orange',
@@ -560,7 +574,7 @@ var heatLayer = L.heatLayer(heatData, {
   scaleRadius: true,
 })
 
-heatLayer.addTo(map);
+heatLayer1.addTo(map);
 
 
 
