@@ -1,0 +1,26 @@
+body{
+    background-image: url(https://images.unsplash.com/photo-1496450681664-3df85efbd29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdlYXRoZXJ8ZW58MHx8MHx8fDA%3D&w=1000&q=80);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#head1,#head2,#head3{
+    color: black;
+    text-transform: uppercase;
+    display: block;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.heading-with-icon {
+    display: flex; /* Use a flex container */
+    align-items: center; /* Vertically center the content */
+  }
+.icons{
+    width: 2pc;
+    margin-left: 20pc;
+}
+.box1,.box2,.box3{
+    background-color: rgba(254, 171, 135, 0.308);
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+}

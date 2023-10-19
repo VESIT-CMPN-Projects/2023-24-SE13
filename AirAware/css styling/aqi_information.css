@@ -1,0 +1,92 @@
+li{
+    list-style-type: none;
+}
+img{
+    width: 60%;
+   margin: auto;
+}
+#image{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+body {
+    background-color: rgb(254, 254, 247);
+}
+
+.btn btn-outline-success{
+    background-color: white;
+    color: white;
+
+}
+.logo-brand-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    padding: 0.3%;
+}
+.container-fluid{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    /* gap: 8%; */
+}
+.navbar-things{
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* flex-direction: row; */
+    /* gap: 8%; */
+}
+.navbar-nav{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 4%;
+}
+.navbar-collapse{
+    flex-grow: 0;
+}
+.navbar-brand {
+    margin-left: 50%;
+    font-size: 2rem;
+    color: white !important;
+}
+.nav-item{
+    color: white !important;
+}
+
+.navbar-brand:hover {
+    color: grey;
+}
+.map-container {
+    position: absolute 
+}
+
+/* .button-container {
+    position: relative;
+    top: 0px;
+} */
+
+#button1{
+    width: 20%;
+}
+
+.input{
+    margin-top: 5px;
+}
+#button{
+margin-left: 0px;
+}
+.nav-link:link{
+    color: white;
+}
+.nav-link:visited{
+    color:white;
+}
