@@ -1,14 +1,32 @@
 var cityin = document.getElementById("cityin");
+var pdis = document.getElementById("pdis");
+var hdis = document.getElementById("hdis");
+var pm25dis = document.getElementById("pm25dis");
+var pm10dis = document.getElementById("pm10dis");
+var tdis = document.getElementById("tdis");
+var titledis = document.getElementById("search-name");
 var search = document.getElementById("search-button");
+
 search.addEventListener("click", () => {
   event.preventDefault();
   // searchit();
-  fetchDataForCity(cityin.value);
+  fetchDataForCity(cityin.value,1);
 
-  console.log("search button clicked");
+  console.log("search button clicked "+cityin.value );
+  
 });
 
+function updatedis(data,city){
+  
 
+  pdis.innerText = "Pressure : "+data.data.iaqi.p.v + " mbar";
+  hdis.innerText = "Humidity : "+data.data.iaqi.h.v + " %";
+  pm25dis.innerText = "PM 2.5 : "+data.data.iaqi.pm25.v + " ug/m^3";
+  pm10dis.innerText = "PM 10 : "+data.data.forecast.daily.pm10[2].avg + " ug/m^3";
+  tdis.innerText = "Temperature : "+data.data.iaqi.t.v + " celsius";
+  titledis.innerText = city;
+
+}
 
 
 var selector ="t";
@@ -191,12 +209,12 @@ const collectionRef = collection(db, "data");
 
 function fetchDataloop(){
   for(let i=0; i<cities.length ; i++ ){
-  fetchDataForCity(cities[i]);
+  fetchDataForCity(cities[i],0);
   
   }
   updateMapWithData();
 }
-function fetchDataForCity(city) {
+function fetchDataForCity(city , task) {
   return fetch( `https://api.waqi.info/feed/${city}/?token=26cae8703d2177a6f0be5b5557ca009d2f56ace0` ) // Replace with your API endpoint
       .then(function(response) {
           return response.json();
@@ -204,42 +222,15 @@ function fetchDataForCity(city) {
       .then(function(data) {
         
         updateJsonWithData(data,city); //calling function to update json data
-          console.log(data);
+        
+          if(task==1){
+        updatedis(data,city);
+           console.log(data);
+      }  
+      updatefiredata(data,city)
+      .then({}
 
-          
-          var firedata = {
-            "type": "Feature",
-            "geometry": {
-            "type": "Point",
-            "coordinates": [data.data.city.geo[1],data.data.city.geo[0]]//data.location.lon, data.location.lat
-              },
-            "properties": {
-            "id":i,
-            "name": `${city}`, //data.location.name,
-            "aqi":data.data.aqi ,
-            "t": data.data.iaqi.t.v,
-            "h": data.data.iaqi.h.v,
-            }
-          };
-           const customDocId = city; // Replace with your desired custom ID
-
-          const customDocRef = doc(collectionRef, customDocId);
-          
-          
-          setDoc(customDocRef, firedata)
-            .then(() => {
-              console.log("Custom document added with ID: " + customDocId);
-            })
-            .catch((error) => {
-              console.error("Error adding custom document: ", error);
-            });
-          
-            const newData = {
-            "properties.t": 0, // Update the "t" field
-            "properties.h": 2, // Update the "h" field
-            "properties.aqi": 3, // Update the "aqi" field
-          };
-
+      )
           return data; // Return the data from the API
       })
       .catch(function(error) {
@@ -247,6 +238,40 @@ function fetchDataForCity(city) {
       });
 }
 
+function updatefiredata(data,city){
+  var firedata = {
+    "type": "Feature",
+    "geometry": {
+    "type": "Point",
+    "coordinates": [data.data.city.geo[1],data.data.city.geo[0]]//data.location.lon, data.location.lat
+      },
+    "properties": {
+    "id":i,
+    "name": `${city}`, //data.location.name,
+    "aqi":data.data.aqi ,
+    "t": data.data.iaqi.t.v,
+    "h": data.data.iaqi.h.v,
+    }
+  };
+   const customDocId = city; // Replace with your desired custom ID
+
+  const customDocRef = doc(collectionRef, customDocId);
+  
+  
+  setDoc(customDocRef, firedata)
+    .then(() => {
+      console.log("Custom document added with ID: " + customDocId);
+    })
+    .catch((error) => {
+      console.error("Error adding custom document: ", error);
+    });
+  
+    const newData = {
+    "properties.t": 0, // Update the "t" field
+    "properties.h": 2, // Update the "h" field
+    "properties.aqi": 3, // Update the "aqi" field
+  };
+}
 
 var i=0; //counter for id of cities;
 

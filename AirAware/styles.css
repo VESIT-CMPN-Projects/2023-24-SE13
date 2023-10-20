@@ -85,13 +85,10 @@ body {
       
 }
 .map-and-table{
-      /* display: flex;
-      flex-direction: row; */
+      display: flex;
+      flex-direction:column;
       padding: 1%;
       gap: 10%;
-
-
-      /* justify-content: space-around; */
 }
 .left-panel-most-polluted-list-of-cities{
       display: flex;
@@ -157,4 +154,19 @@ margin-left: 0px;
 .mapattributes{
 background-color: white;
 width: 10px;
+}
+
+
+li{
+      list-style: none;
+}
+#right-panel{
+      background-color: #df0a0a53;
+      width: 450px;
+      height: 480px;
+      margin-left: 64%;
+      border-radius: 3pc;
+}
+#right-panel-info{
+      font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

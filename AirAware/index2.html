@@ -32,36 +32,38 @@
 
 
         const db = getFirestore(app);
-        const collectionRef = collection(db, "your_collection_name");
+
+        const collectionRef = collection(db, "data");
 
         var city ="mumbai";
         var i=1;
 
         fetch( `https://api.waqi.info/feed/${city}/?token=26cae8703d2177a6f0be5b5557ca009d2f56ace0` ) // Replace with your API endpoint
-      .then(function(response) {
-          return response.json();
-      })
-      .then(function(data) {
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
         
-        var data = {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [data.data.city.geo[1],data.data.city.geo[0]]//data.location.lon, data.location.lat
-    },
-    "properties": {
-      "id":i,
-      "name": `${city}`, //data.location.name,
-      "aqi":data.data.aqi ,
-      "t": data.data.iaqi.t.v,
-      "h": data.data.iaqi.h.v,
-    }
+          var data = {
+              "type": "Feature",
+              "geometry": {
+              "type": "Point",
+              "coordinates": [data.data.city.geo[1],data.data.city.geo[0]]//data.location.lon, data.location.lat
+                },
+              "properties": {
+              "id":i,
+              "name": `${city}`, //data.location.name,
+              "aqi":data.data.aqi ,
+              "t": data.data.iaqi.t.v,
+              "h": data.data.iaqi.h.v,
+              }
   };
 
 
   const customDocId = city; // Replace with your desired custom ID
 
 const customDocRef = doc(collectionRef, customDocId);
+
 
 setDoc(customDocRef, data)
   .then(() => {
@@ -85,6 +87,8 @@ updateDoc(customDocRef, newData)
     console.error("Error updating document: ", error);
   });
 
+
+
   deleteDoc(customDocRef)
   .then(() => {
     console.log("Document with ID " + customDocId + " deleted successfully.");
@@ -92,6 +96,8 @@ updateDoc(customDocRef, newData)
   .catch((error) => {
     console.error("Error updating document: ", error);
   });
+  
+  
   // Retrieve documents from the collection using getDocs
   getDocs(collectionRef)
     .then((querySnapshot) => {
