@@ -22,7 +22,7 @@ body {
 .logo-brand-div{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .navbar {
     display: flex;
@@ -44,18 +44,40 @@ body {
     /* flex-direction: row; */
     /* gap: 8%; */
 }
+/* .navbar-nav .nav-link.active{
+    
+
+} */
 .navbar-nav{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: white;
+    gap: 3%;
+}
+.navbar-expand-lg .navbar-collapse{
+    flex-basis: 100%;
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 4%;
+}
+/* .navbar-nav{
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
-    gap: 4%;
+    gap: 5%;
 }
 .navbar-collapse{
     flex-grow: 0;
-}
+} */
+/* .navbar-collapse{
+    flex-grow: 0;
+} */
 .navbar-brand {
     margin-left: 50%;
-    font-size: 2rem;
+    font-size: 3rem;
     color: white !important;
 }
 .nav-item{
@@ -66,10 +88,11 @@ body {
     color: grey;
 }
 .map-container {
-    position: absolute 
+    position: absolute ;
 }
 
-/* .button-container {
+/* map and table allignment 
+.button-container {
     position: relative;
     top: 0px;
 } */

@@ -13,9 +13,9 @@
             </script>
       <title>AIR AWARE</title>
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
-   
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+
       <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 
@@ -25,22 +25,27 @@
             <div class="container-fluid">
                   <div>
                         <form class="d-flex" role="search" style="display: flex;gap: 3%;">
-                              <input class="form-control me-2" type="search" id="cityin" placeholder="Search Location Here" aria-label="Search">
-                              <button class="btn btn-outline-success" type="submit" id="search-button">Search</button> 
+
                               
+                              <input class="form-control me-2" type="search" id="cityin"
+                                    placeholder="Search Location Here" aria-label="Search">
+                              <button class="btn btn-outline-success" type="submit" id="search-button">Search</button>
+
                               <button id="submit2" class="btn btn-outline-success" type="submit">reload/fire</button>
+
                         </form>
                   </div>
-                  <div>
-                        <a class="navbar-brand" href="#">AirAware </a>
+                  <div style="display: flex;flex-direction: row;gap: 0%;">
+                        <button style="background-color: transparent;border: none;"><img style="width: 50%;background-color: transparent;" class="airaware-image-logo" src="ImagesOfSite/Air Aware.png"></button>
+                        <a class="navbar-brand" style="font-size: 3rem;" href="#">AirAware </a>
                   </div>
-                        
+
                   <div>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                               data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
                               aria-label="Toggle navigation">
                               <span class="navbar-toggler-icon"><img style="width: 100%;"
-                                          src="/ImagesOfSite/navbar_logo_icon.png"></span>
+                                          src="ImagesOfSite/navbar_logo_icon.png"></span>
                         </button>
                   </div>
 
@@ -67,26 +72,27 @@
                                           <ul class="dropdown-menu">
                                                 <li><a class="dropdown-item" href="aqi_information.html">AQI
                                                             Info</a></li>
-                                                <li><a class="dropdown-item"
-                                                            href="weather_info.html">Measures to be taken</a></li>
+                                                <li><a class="dropdown-item" href="weather_info.html">Measures to be
+                                                            taken</a></li>
                                                 <li><a class="dropdown-item" href="humidity.html"></a>
                                                 </li>
-                                                      <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" href="#">Weather forecast</a></li>
-                                                <li><a class="dropdown-item" href="#">News</a></li>
-                                          </ul>
+                                                <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Weather forecast</a></li>
+                                    <li><a class="dropdown-item" href="#">News</a></li>
+                                    </ul>
                                     </li>
                               </div>
                         </div>
                   </div>
 
-            </div> 
+            </div>
       </nav>
-      
+
       <div class="output">
             <!-- <h1 id="otext">your output:</h1> -->
       </div>
+
       <div class="map-and-table ">
             <div class="map-container">
                   <div id="map"></div>
@@ -97,22 +103,36 @@
                   </div>
             </div>
             <div id="right-panel">
-                  <div class="container" ><p><h1 id="search-name">AIR QUALITY INFORMATION</h1></p>    
-                        <li>
-                        <ul id="aqidis">AQI s: </ul>
-                        <ul id="pm25dis">PM 2.5: </ul>
-                        <ul id="pm10dis">PM 10:</ul>
-                        <ul id="tdis">Temperature: </ul>
-                        <ul id="pdis">Pressure: </ul>
-                        <ul id="hdis">Humidity: </ul>
-                  </li>
+
+                  <div class="container" style="padding: 5%;">
+                        <h1 id="search-name">AIR QUALITY INFORMATION</h1>
+                        <ul style="font-size: 2rem;font-family: sans-serif;">
+                              <li  id="aqidis">AQI s:     </li>
+                              <li id="pm25dis">PM 2.5:    </li>
+                              <li id="pm10dis">PM 10:     </li>
+                              <li id="tdis">Temperature:  </li>
+                              <li id="pdis">Pressure:     </li>
+                              <li id="hdis">Humidity:     </li>
+                        </ul>
+                  </div>
+
             </div>
       </div>
+      <!-- <div class="map-and-table">
+            <div class="map-container">
+                  <div id="map"></div>
+                  <div class="button-container" id="customControl">
+                        <button type="button" class="btn btn-outline-success " id="button1">Temperature</button>
+                        <button type="button" class="btn btn-outline-success " id="button2">Humidity</button>
+                        <button type="button" class="btn btn-outline-success " id="button3">AQI</button>
+                  </div>
+                  <div id="right-panel">
+            </div>
+            
+      </div> -->
+            
 
-</div>
-
-             
-        <!-- <div class="container" id="left-panel">
+            <!-- <div class="container" id="left-panel">
             <div class="left-panel-most-polluted-list-of-cities">
                   <table class="table-most-polluted-cities">
                         <thead>
@@ -207,9 +227,9 @@
 
                   </table>
             </div>
-            </div>
-         </div> -->
-            
+            </div>-->
+      
+
 
 
       <script type="module" src="script_ll.js"></script>
@@ -219,23 +239,23 @@
             import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-analytics.js";
             // TODO: Add SDKs for Firebase products that you want to use
             // https://firebase.google.com/docs/web/setup#available-libraries
-          
+
             // Your web app's Firebase configuration
             // For Firebase JS SDK v7.20.0 and later, measurementId is optional
             const firebaseConfig = {
-              apiKey: "AIzaSyD1AC3ptMI60oGbYBeseroCTdnEDex7AQg",
-              authDomain: "airaware-f22c0.firebaseapp.com",
-              projectId: "airaware-f22c0",
-              storageBucket: "airaware-f22c0.appspot.com",
-              messagingSenderId: "580535713947",
-              appId: "1:580535713947:web:010ec1671df4d20a1c863e",
-              measurementId: "G-RQ1WWWJWKP"
+                  apiKey: "AIzaSyD1AC3ptMI60oGbYBeseroCTdnEDex7AQg",
+                  authDomain: "airaware-f22c0.firebaseapp.com",
+                  projectId: "airaware-f22c0",
+                  storageBucket: "airaware-f22c0.appspot.com",
+                  messagingSenderId: "580535713947",
+                  appId: "1:580535713947:web:010ec1671df4d20a1c863e",
+                  measurementId: "G-RQ1WWWJWKP"
             };
-          
+
             // Initialize Firebase
             const app = initializeApp(firebaseConfig);
             const analytics = getAnalytics(app);
-          </script>
+      </script>
 
 
 </body>
