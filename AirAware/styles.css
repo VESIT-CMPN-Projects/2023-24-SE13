@@ -170,3 +170,33 @@ li{
 #right-panel-info{
       font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+
+
+.info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+    }
+    
+    .legend {
+      line-height: 18px;
+      color: #555;
+    }
+    
+    .legend-item {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+    }
+    

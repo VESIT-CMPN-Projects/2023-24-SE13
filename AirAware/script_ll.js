@@ -4,16 +4,28 @@ var hdis = document.getElementById("hdis");
 var pm25dis = document.getElementById("pm25dis");
 var pm10dis = document.getElementById("pm10dis");
 var tdis = document.getElementById("tdis");
+var aqidis = document.getElementById("aqidis");
 var titledis = document.getElementById("search-name");
 var search = document.getElementById("search-button");
+var submit = document.getElementById("submit2");
 
 search.addEventListener("click", () => {
   event.preventDefault();
   // searchit();
+  var inputValue = cityin.value;
+  if (inputValue.length > 0) {
+    var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    cityin.value = capitalizedText;
+  }
   fetchDataForCity(cityin.value,1);
 
+  cityin.value = '';
   console.log("search button clicked "+cityin.value );
   
+});
+submit.addEventListener("click", () => {
+  event.preventDefault();
+  // console.log("button reload clicked");
 });
 
 function updatedis(data,city){
@@ -24,19 +36,21 @@ function updatedis(data,city){
   pm25dis.innerText = "PM 2.5 : "+data.data.iaqi.pm25.v + " ug/m^3";
   pm10dis.innerText = "PM 10 : "+data.data.forecast.daily.pm10[2].avg + " ug/m^3";
   tdis.innerText = "Temperature : "+data.data.iaqi.t.v + " celsius";
+  aqidis.innerText = "AQI : "+data.data.aqi ;
   titledis.innerText = city;
 
+  
+submit.addEventListener("click", () => {
+  updatefiredata(data,city);
+  console.log("button reload clicked");
+});
 }
 
 
 var selector ="t";
 
 
-var submit = document.getElementById("submit2");
-submit.addEventListener("click", () => {
-  
-  console.log("button reload clicked");
-});
+
 
 
 document.getElementById('button1').addEventListener('click', function () {
@@ -204,7 +218,7 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-const collectionRef = collection(db, "data");
+const collectionRef = collection(db, "data2");
 
 
 function fetchDataloop(){
@@ -227,10 +241,8 @@ function fetchDataForCity(city , task) {
         updatedis(data,city);
            console.log(data);
       }  
-      updatefiredata(data,city)
-      .then({}
-
-      )
+      // updatefiredata(data,city)
+      // .then({}      )
           return data; // Return the data from the API
       })
       .catch(function(error) {
@@ -352,6 +364,22 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
+// Create a custom legend control
+var legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function (map) {
+  var div = L.DomUtil.create('div', 'info legend');
+  div.innerHTML = '<h4>Color Codes</h4>' +
+    '<div class="legend-item"><div class="legend-color" style="background: indigo"></div> High </div>' +
+    '<div class="legend-item"><div class="legend-color" style="background: blue"></div> Medium </div>' +
+    '<div class="legend-item"><div class="legend-color" style="background: lightgreen"></div> Low </div>';
+
+  return div;
+};
+
+legend.addTo(map);
+
+
 
 
 map.setMaxZoom(8); // Set the maximum zoom level
@@ -394,7 +422,7 @@ function updateMapWithData() {
      if(layer.options.name == "heatlayer"){
       map.removeLayer(layer);
      }
-     console.log(`Layer Name: ${layer.options.name}`);
+    //  console.log(`Layer Name: ${layer.options.name}`);
   });
 
   
@@ -402,55 +430,57 @@ function updateMapWithData() {
 
   // Add the new data to the GeoJSON layer
  
-//   function generateGradient(colorsCount) {
-//     const gradient = {};
-//     const startColor = hexToRGB('#0000FF'); // Blue
-//     const middleColor = hexToRGB('#00FF00'); // Lime
-//     const endColor = hexToRGB('#FF0000');   // Red
+  // function generateGradient(colorsCount) {
+  //   const gradient = {};
+  //   const startColor = hexToRGB('#FF0000'); // Blue //lightgreen
+  //   const middleColor = hexToRGB('#ADD8E6'); // Lime//blue
+  //   const endColor = hexToRGB('#8B008B');   // Red
   
-//     for (let i = 0; i < colorsCount; i++) {
-//       const ratio = i / (colorsCount - 1);
-//       let color;
-//       if (ratio < 0.5) {
-//         // Interpolate between blue and lime
-//         color = interpolateColors(startColor, middleColor, ratio * 2);
-//       } else {
-//         // Interpolate between lime and red
-//         color = interpolateColors(middleColor, endColor, (ratio - 0.5) * 2);
-//       }
-//       gradient[ratio.toFixed(2)] = rgbToHex(color.r, color.g, color.b);
-//     }
+  //   for (let i = 0; i < colorsCount; i++) {
+  //     const ratio = i / (colorsCount - 1);
+  //     let color;
+  //     if (ratio < 0.5) {
+  //       // Interpolate between blue and lime
+  //       color = interpolateColors(startColor, middleColor, ratio * 2);
+  //     } else {
+  //       // Interpolate between lime and red
+  //       color = interpolateColors(middleColor, endColor, (ratio - 0.5) * 2);
+  //     }
+  //     gradient[ratio.toFixed(2)] = rgbToHex(color.r, color.g, color.b);
+  //   }
   
-//     return gradient;
-//   }
+  //   return gradient;
+  // }
   
-//   function hexToRGB(hex) {
-//     const bigint = parseInt(hex.slice(1), 16);
-//     const r = (bigint >> 16) & 255;
-//     const g = (bigint >> 8) & 255;
-//     const b = bigint & 255;
-//     return { r, g, b };
-//   }
+  // function hexToRGB(hex) {
+  //   const bigint = parseInt(hex.slice(1), 16);
+  //   const r = (bigint >> 16) & 255;
+  //   const g = (bigint >> 8) & 255;
+  //   const b = bigint & 255;
+  //   return { r, g, b };
+  // }
   
-//   function rgbToHex(r, g, b) {
-//     return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
-//   }
+  // function rgbToHex(r, g, b) {
+  //   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1)}`;
+  // }
   
-//   function interpolateColors(color1, color2, ratio) {
-//     const r = Math.round(color1.r + (color2.r - color1.r) * ratio);
-//     const g = Math.round(color1.g + (color2.g - color1.g) * ratio);
-//     const b = Math.round(color1.b + (color2.b - color1.b) * ratio);
-//     return { r, g, b };
-//   }
+  // function interpolateColors(color1, color2, ratio) {
+  //   const r = Math.round(color1.r + (color2.r - color1.r) * ratio);
+  //   const g = Math.round(color1.g + (color2.g - color1.g) * ratio);
+  //   const b = Math.round(color1.b + (color2.b - color1.b) * ratio);
+  //   return { r, g, b };
+  // }
   
-//   // Define the number of colors (50)
-//   const colorsCount = 5;
+  // // Define the number of colors (50)
+  // const colorsCount = 5;
   
-//   // Generate the gradient
-//   const gradient = generateGradient(colorsCount);
+  // // Generate the gradient
+  // const gradient2 = generateGradient(colorsCount);
   
-//   // Output the gradient in the specified format
-//   console.log(gradient);
+  // // Output the gradient in the specified format
+  // console.log(gradient2);
+
+
 var heatData = getjsonData.map(feature => [
   feature.geometry.coordinates[1], // Latitude
   feature.geometry.coordinates[0], // Longitude
@@ -471,7 +501,7 @@ if(selector=="aqi"){
     feature.properties.h // Intensity value from properties
 ]);
 }else if(selector=="t"){
-  console.log("t updating");
+  // console.log("t updating");
    heatData = getjsonData.map(feature => [
     feature.geometry.coordinates[1], // Latitude
     feature.geometry.coordinates[0], // Longitude
@@ -503,7 +533,18 @@ var heatLayer1 = L.heatLayer(heatData, {
     blur: 80,
     opacity:0.001,
     max:0.1,
-    gradient:  {
+  //   scale: {
+  //     // 0: 'blue',       // Color for values equal to 0
+  //     50: 'green',     // Color for values between 0 and 10
+  //     100: 'lightgreen',    // Color for values between 10 and 20
+  //     200: 'grey',
+  //     300: 'yellow',
+  //     400: 'orange',
+  //     500: 'red'        // Color for values between 20 and 30
+  // },
+    gradient:
+    
+     {
       0.0: 'red',
       0.1: 'orange',
       0.2: 'yellow',
@@ -514,21 +555,13 @@ var heatLayer1 = L.heatLayer(heatData, {
       0.7: 'indigo',
       0.8: 'violet',
       0.9: 'purple',
-      // 1: 'darkpurple',
-    },
-  //    {
-  //      0.1: 'blue',
-  //     0.6: 'lime',
-  //     1: 'red'
-  // },
+  },
   
   maxZoom: 17,
   scaleRadius: true,
 })
 
 heatLayer1.addTo(map);
-
-
 
 
   // You may want to customize the marker icon and popup content
