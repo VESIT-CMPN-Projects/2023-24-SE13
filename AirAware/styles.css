@@ -1,5 +1,9 @@
 body {
-      background-color: rgb(254, 254, 247);
+      /* background-image: url("ImagesOfSite/cloud-image.jpg");
+      background-repeat: no-repeat;
+      background-size:cover; */
+      /* -webkit-filter: blur(100px); */
+      background-color: rgba(81, 121, 181, 0.4);
 }
 
 .btn btn-outline-success{
@@ -26,10 +30,12 @@ body {
       justify-content: space-between;
 }
 .navbar {
+      background: linear-gradient(rgba(16, 17, 105, 0),rgb(13, 10, 80));
       display: flex;
       justify-content: space-around;
       font-size: 1.5rem;
       padding: 0.3%;
+      align-items: center;
 }
 .navbar>.container-fluid{
       display: flex;
@@ -55,25 +61,24 @@ body {
       flex-grow: 0;
 }
 .navbar-brand {
-      margin-left: 4%;
+      margin-left: 0%;
+      font-family: 'Raleway', sans-serif;
       align-self: center;
       font-size: 2rem;
-      color: white;
+      color: rgb(255, 255, 255);
 }
 .navbar-brand:hover {
-      color: grey;
+      color: rgb(127, 179, 246);
 }
 .button-container {
       position: absolute;
-      margin-top: 10%;
+      margin-top: 2%;
 }
 #button1{
       width: 20%;
 }
 .left-panel-most-polluted-list-of-cities{
       display: flex;
-
-
       flex-direction: column;  
       font-family: 'Open Sans', sans-serif;
       margin-top: 0%;
@@ -113,11 +118,14 @@ margin-left: 0px;
       font-size: 1rem;
       border-radius: 3px;
       padding: 0px;
-      color: black;
-      background-color: white;
+      color: rgb(0, 0, 0);
+      /* background-color: white; */
       /* border-radius: 10%; */
       background-attachment: scroll;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#button1::after{
+      color: rgb(0, 0, 0);
 }
 .button-map{
       display: flex;
@@ -125,18 +133,20 @@ margin-left: 0px;
       margin-bottom: 5%;
       margin-top: 0pc;
 }
-.nav-link:link{
-      color: white;
+.nav-link{
+      color: rgb(255, 255, 255);
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.9rem;
 }
-.nav-link:visited{
-      color:white;
+.nav-link:hover{
+      color: rgb(55, 142, 255);
 }
 .mapattributes{
       background-color: white;
       width: 10px;
 }
 #right-panel{
-      background-color: #df0a0a53;
+      background-color: #0c08524c;
       /* width: fit-content; */
       /* height: fit-div; */
       /* width: 450px;
@@ -157,13 +167,11 @@ margin-left: 0px;
 .map-and-table{
       display: flex;
       flex-direction: row;
-      position: static;
+      position: relative;
       margin-top: 1.5%;
       padding: 1%;
-      gap: 4%;
+      gap: 2.5%;
 }
-
-
 
 .info {
       padding: 6px 8px;
@@ -191,4 +199,16 @@ margin-left: 0px;
       margin-right: 5px;
       border: 1px solid #ccc;
     }
-    
+
+
+/*morning 21oct edit */
+.aqi-table-items{
+      font-family: 'Raleway', sans-serif;
+      color: white;
+      background: linear-gradient(rgb(13, 10, 59),rgba(5, 11, 43, 0.654));
+      /* background-image: url("ImagesOfSite/cloud-image.jpg");
+      background-clip: padding-box;
+      background-repeat:no-repeat;
+      background-size:cover; */
+      border-radius: 3%;
+}

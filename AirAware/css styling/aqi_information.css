@@ -7,8 +7,8 @@ img{
 }
 #image{
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 body {
     background-color: rgb(254, 254, 247);
@@ -45,7 +45,7 @@ body {
     /* gap: 8%; */
 }
 /* .navbar-nav .nav-link.active{
-    
+   
 
 } */
 .navbar-nav{
@@ -91,7 +91,7 @@ body {
     position: absolute ;
 }
 
-/* map and table allignment 
+/* map and table allignment
 .button-container {
     position: relative;
     top: 0px;
@@ -113,3 +113,5 @@ margin-left: 0px;
 .nav-link:visited{
     color:white;
 }
+
+
