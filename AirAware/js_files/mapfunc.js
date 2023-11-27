@@ -16,12 +16,26 @@ document.getElementById('button3').addEventListener('click', function () {
 //   selector="aqi";
   updateMapWithData("aqi");
 });
-
 var heatData = jsondataarray.map(feature => [
+      feature.geometry.coordinates[1], // Latitude
+      feature.geometry.coordinates[0], // Longitude
+      feature.properties.h // Intensity value from properties
+    ]);
+var heatData_h = jsondataarray.map(feature => [
+    feature.geometry.coordinates[1], // Latitude
+    feature.geometry.coordinates[0], // Longitude
+    feature.properties.h // Intensity value from properties
+  ]);
+var heatData_t = jsondataarray.map(feature => [
     feature.geometry.coordinates[1], // Latitude
     feature.geometry.coordinates[0], // Longitude
     feature.properties.t // Intensity value from properties
   ]);
+var heatData_aqi = jsondataarray.map(feature => [
+    feature.geometry.coordinates[1], // Latitude
+    feature.geometry.coordinates[0], // Longitude
+    feature.properties.aqi // Intensity value from properties
+  ]);  
   
 function updateheat(selector){
 
@@ -44,18 +58,16 @@ function updateheat(selector){
      heatData = jsondataarray.map(feature => [
       feature.geometry.coordinates[1], // Latitude
       feature.geometry.coordinates[0], // Longitude
-      feature.properties.t // Intensity value from properties
+      feature.properties.aqi // Intensity value from properties
   ]);
-  }}
+  }
+ 
+}
 
-var heatLayer1;
+
 function updateheatL1(){
-  heatLayer1 = L.heatLayer(heatData, {
-    name:"heatlayer",
-    radius: 50, // Adjust the radius of the heatmap points
-    blur: 80,
-    opacity:0.001,
-    max:0.1,
+ // updateheat(selector);
+}
   //   scale: {
   //     // 0: 'blue',       // Color for values equal to 0
   //     50: 'green',     // Color for values between 0 and 10
@@ -65,41 +77,22 @@ function updateheatL1(){
   //     400: 'orange',
   //     500: 'red'        // Color for values between 20 and 30
   // },
-    gradient:
-    
-     {
-      0.0: 'red',
-      0.1: 'orange',
-      0.2: 'yellow',
-      0.3: 'green',
-      0.4: 'lightgreen',
-      0.5: 'lightblue',
-      0.6: 'blue',
-      0.7: 'indigo',
-      0.8: 'violet',
-      0.9: 'purple',
-  },
-  
-  maxZoom: 17,
-  scaleRadius: true,
-})
-}
+  // const gradient = {
+  //   0.0: 'red',
+  //   0.1: 'orange',
+  //   0.2: 'yellow',
+  //   0.3: 'green',
+  //   0.4: 'lightgreen',
+  //   0.5: 'lightblue',
+  //   0.6: 'blue',
+  //   0.7: 'indigo',
+  //   0.8: 'violet',
+  //   0.9: 'purple',
+  //   1.0: 'darkpurple',
+  // };
+  // Assuming jsondataarray is your initial dataset
 
-//   const gradient = {
-//     0.0: 'red',
-//     0.1: 'orange',
-//     0.2: 'yellow',
-//     0.3: 'green',
-//     0.4: 'lightgreen',
-//     0.5: 'lightblue',
-//     0.6: 'blue',
-//     0.7: 'indigo',
-//     0.8: 'violet',
-//     0.9: 'purple',
-//     1.0: 'darkpurple',
-//   };
-  
-  
+// Mapping different data attributes to heatData arrays
 
 
 
@@ -117,4 +110,4 @@ legend.onAdd = function (map) {
   return div;
 };
 
-export {heatData,legend, updateheat, heatLayer1, updateheatL1};
+export {heatData,legend, updateheat, updateheatL1};
