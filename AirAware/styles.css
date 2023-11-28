@@ -29,21 +29,13 @@
       border-right: solid black;
       border-width: 0.2rem;     
 }
-
-
-
-
-
-
-
-
-
 body {
       /* background-image: url("ImagesOfSite/cloud-image.jpg");
       background-repeat: no-repeat;
       background-size:cover; */
       /* -webkit-filter: blur(100px); */
       background-color: rgba(81, 121, 181, 0.4);
+      margin-bottom: 0px;
 }
 /* 
 .btn btn-outline-success {
@@ -257,4 +249,31 @@ body {
       background-repeat:no-repeat;
       background-size:cover; */
       border-radius: 1rem;
+}
+.footer-webname{
+      font-family: 'Mulish', sans-serif;
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      padding-left: 15px;
+      font-size: 20px !important;
+}
+.footer{
+      display: flex;
+      padding-bottom: 0px;
+      margin-bottom: 0px;
+      position: relative;
+      top:90px
+}
+.contact-about{
+      position: relative;
+      left: 50pc;
+      top: 24px;
+}
+.contact-about a{
+      padding-left: 20px;
+      color: black;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.contact-about a:hover{
+      color: black;
 }
