@@ -1,9 +1,12 @@
 import cities from './citylist.js';
-import {jsondataarray, updateJsonWithData} from './jsondatafunc.js';
+import {jsondataarray, updateJsonWithData, updateGovData} from './jsondatafunc.js';
 //import { heatLayer1,legend, updateheat, updateheatL1} from './mapfunc.js';
 import {updatedis} from './display.js';
+import apidata from './apidata.js';
 
 function fetchDataForCity(city , task) {
+
+ 
   return fetch( `https://api.waqi.info/feed/${city}/?token=26cae8703d2177a6f0be5b5557ca009d2f56ace0` ) // Replace with your API endpoint
       .then(function(response) {
           return response.json();
@@ -21,9 +24,20 @@ function fetchDataForCity(city , task) {
           return data; // Return the data from the API
       })
       .catch(function(error) {
-           console.error('Error fetching data:', error);
+          // console.error('Error fetching data:', error);
       });
 }
+
+apidata()
+  .then(function (response){
+    return response;
+  })
+  .then(function (data){
+    console.log("data received",data);
+    updateGovData(data);
+  })
+
+ 
 
 document.getElementById('button1').addEventListener('click', function () {
   //   selector="t";
@@ -76,7 +90,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-
+//const rectangle = L.rectangle(bounds, { color: 'red', weight: 0, fillOpacity: 0.1, blur:0.5 }).addTo(map);
 //legend.addTo(map);
 
 var geojsonLayer = L.geoJSON().addTo(map);
@@ -127,7 +141,7 @@ var heatData_aqi = jsondataarray.map(feature => [
   feature.geometry.coordinates[0], // Longitude
   feature.properties.aqi // Intensity value from properties
 ]);  
-console.log(heatData_aqi);
+//console.log(heatData_aqi);
 for (var i=0; i<heatData_aqi.length; i++){
   if(heatData_aqi[i][2]>=500){
     heatData_aqi[i][2]=500;
@@ -135,7 +149,7 @@ for (var i=0; i<heatData_aqi.length; i++){
 }
 heatData_aqi.push([0,0,0]);
 heatData_aqi.push([0,0,500]);
-console.log(heatData_aqi);
+//console.log(heatData_aqi);
 //updateheat(selector);
 var heatLayer1;
 heatLayer1 = L.heatLayer(heatData_t, {
