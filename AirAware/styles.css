@@ -1,3 +1,43 @@
+.navbar {
+      padding: 2%;
+}
+.navbar-brand-div{
+      display: flex;
+      align-items: center;
+      gap: 5%;
+      
+}
+.brand-logo{
+      text-decoration: none;
+      display: flex;
+      /* border-radius: 100%;
+      background-color: rgb(151, 151, 151); */
+      align-items: center;
+      color: rgb(43, 43, 110);
+}
+.brand-logo:hover{
+      color: rgb(99, 99, 119);
+}
+.navbar-brand{
+      color: rgb(4, 4, 41);
+      text-decoration: none;
+}
+.navbar-brand:hover{
+      color: grey;
+}
+.nav-item{
+      border-right: solid black;
+      border-width: 0.2rem;     
+}
+
+
+
+
+
+
+
+
+
 body {
       /* background-image: url("ImagesOfSite/cloud-image.jpg");
       background-repeat: no-repeat;
@@ -5,16 +45,17 @@ body {
       /* -webkit-filter: blur(100px); */
       background-color: rgba(81, 121, 181, 0.4);
 }
-
-.btn btn-outline-success{
+/* 
+.btn btn-outline-success {
       background-color: white;
       color: white;
+} */
 
-}
-.airaware-image-logo{
+.airaware-image-logo {
       background-color: none;
 }
-#customControl{
+
+#customControl {
       position: absolute;
       top: 10px;
       left: 10pc;
@@ -22,44 +63,43 @@ body {
       padding: 10px;
       border: none;
       border-radius: 5px;
-
 }
-.logo-brand-div{
+
+.logo-brand-div {
       display: flex;
       align-items: center;
       justify-content: space-between;
 }
+
 .navbar {
-      background: linear-gradient(rgba(16, 17, 105, 0),rgb(13, 10, 80));
       display: flex;
       justify-content: space-around;
       font-size: 1.5rem;
       padding: 0.3%;
       align-items: center;
 }
-.navbar>.container-fluid{
+
+.navbar>.container-fluid {
       display: flex;
       justify-content: space-around;
       align-items: center;
       flex-direction: row;
-      /* gap: 8%; */
 }
-.navbar-things{
+
+.navbar-things {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      /* flex-direction: row; */
-      /* gap: 8%; */
 }
-.navbar-nav{
+
+.navbar-nav {
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
       gap: 5%;
 }
-.navbar-collapse{
-      flex-grow: 0;
-}
+
+
 .navbar-brand {
       margin-left: 0%;
       font-family: 'Raleway', sans-serif;
@@ -67,54 +107,54 @@ body {
       font-size: 2rem;
       color: rgb(255, 255, 255);
 }
+
 .navbar-brand:hover {
       color: rgb(127, 179, 246);
 }
+
 .button-container {
       position: absolute;
       margin-top: 2%;
 }
-#button1{
+
+#button1 {
       width: 20%;
 }
-.left-panel-most-polluted-list-of-cities{
-      display: flex;
-      flex-direction: column;  
-      font-family: 'Open Sans', sans-serif;
-      margin-top: 0%;
-      background: linear-gradient(rgb(231, 129, 129),rgb(241, 221, 199));
-      border-radius: 20px;
-      padding: 3%;
-      height: 10%;
-      width: 40vw;
-      box-shadow: 0 0 10px 10px #afafaf;
-  }
- 
-  .red-level{
-      background-color:#f85858 ;
+
+
+
+.red-level {
+      background-color: #f85858;
       border-radius: 15%;
-  }
-  .orange-level{
+}
+
+.orange-level {
       background-color: #f89058;
       border-radius: 15%;
-  }
-  .most-polluted-city{
+}
+
+.most-polluted-city {
       font-family: 'Lexend', sans-serif;
       font-size: 2.5rem;
-  }
-  .city-fonts{
-      font-size: 1.5rem;
-  }
+}
 
-.input{
+.city-fonts {
+      font-size: 1.5rem;
+}
+
+.input {
       margin-top: 5px;
 }
-#button{
-margin-left: 0px;
+
+#button {
+      margin-left: 0px;
 }
-#button1,#button2,#button3{
-      width:10vw;
-      height:30px;  
+
+#button1,
+#button2,
+#button3 {
+      width: 10vw;
+      height: 30px;
       font-size: 1rem;
       border-radius: 3px;
       padding: 0px;
@@ -124,28 +164,34 @@ margin-left: 0px;
       background-attachment: scroll;
       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-#button1::after{
+
+#button1::after {
       color: rgb(0, 0, 0);
 }
-.button-map{
+
+.button-map {
       display: flex;
       justify-content: center;
       margin-bottom: 5%;
       margin-top: 0pc;
 }
-.nav-link{
+
+.nav-link {
       color: rgb(255, 255, 255);
       font-family: 'Raleway', sans-serif;
-      font-size: 1.9rem;
+      font-size: 1.5rem;
 }
-.nav-link:hover{
+
+.nav-link:hover {
       color: rgb(55, 142, 255);
 }
-.mapattributes{
+
+.mapattributes {
       background-color: white;
       width: 10px;
 }
-#right-panel{
+
+#right-panel {
       background-color: #0c08524c;
       /* width: fit-content; */
       /* height: fit-div; */
@@ -154,17 +200,17 @@ margin-left: 0px;
       /* margin-left: 64%; */
       border-radius: 20px;
 }
+
 #map {
       height: 80vh;
-      /* Adjust the height as needed */
       width: 70vw;
-      /* Make the map take up the entire width of the screen */
       /* display: flex; */
       border-radius: 20px;
       /* margin-bottom: 5%; */
-      
+
 }
-.map-and-table{
+
+.map-and-table {
       display: flex;
       flex-direction: row;
       position: relative;
@@ -180,35 +226,35 @@ margin-left: 0px;
       background: rgba(255, 255, 255, 0.8);
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
       border-radius: 5px;
-    }
-    
-    .legend {
+}     
+
+.legend {
       line-height: 18px;
       color: #555;
-    }
-    
-    .legend-item {
+}
+
+.legend-item {
       margin-bottom: 5px;
       font-weight: bold;
-    }
-    
-    .legend-color {
+}
+
+.legend-color {
       width: 20px;
       height: 20px;
       display: inline-block;
       margin-right: 5px;
       border: 1px solid #ccc;
-    }
+}
 
 
 /*morning 21oct edit */
-.aqi-table-items{
+.aqi-table-items {
       font-family: 'Raleway', sans-serif;
       color: white;
-      background: linear-gradient(rgb(13, 10, 59),rgba(5, 11, 43, 0.654));
+      background: linear-gradient(rgb(13, 10, 59), rgba(5, 11, 43, 0.744));
       /* background-image: url("ImagesOfSite/cloud-image.jpg");
       background-clip: padding-box;
       background-repeat:no-repeat;
       background-size:cover; */
-      border-radius: 3%;
+      border-radius: 1rem;
 }
