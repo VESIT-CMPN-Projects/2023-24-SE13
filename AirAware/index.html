@@ -32,11 +32,10 @@
 </head>
 
 <body>
-
-      <nav style="margin-bottom: 1%;background-color: rgb(216, 216, 216);padding: 1.5%;"
+      <nav style="margin-bottom: 1%;background-color: rgba(175, 203, 242, 0.29);padding: 0%;"
             class="navbar navbar-light navbar-expand-lg">
             <div class="container-fluid" >
-                  <form class="d-flex" role="search" style="display: flex;gap: 3%;">
+                  <!-- <form class="d-flex" role="search" style="display: flex;gap: 3%;">
 
 
                         <input class="form-control me-2" type="search" id="cityin" placeholder="Search Location Here"
@@ -45,12 +44,12 @@
 
                         <button id="submit2" class="btn btn-outline-primary" type="submit" style="border-radius: 50px;">Reload/fire</button>
 
-                  </form>
-                  <div class="navbar-brand-div">
-                        <div style="display: flex;flex-direction: row;text-align: center;gap: 7%;">
-                              <img src="ImagesOfSite/Air Aware.png" type="button" style="width: 30%;">
+                  </form> -->
+                  <div class="navbar-brand-div" >
+                        <div style="display: flex;flex-direction: row;text-align: center;gap: 2%;position: relative;left:400px">
+                              <img src="ImagesOfSite/Air Aware.png" type="button" style="width: 30%; padding-right:0px ;">
                               <a class="navbar-brand" style="font-size: 2rem;font-family: 'Mulish', sans-serif;"
-                                    href="index.html">Air Aware</a>
+                                    href="index.html">AirAware</a>
                         </div>
 
                   </div>
@@ -65,22 +64,22 @@
                   <div class="collapse navbar-collapse" id="navbarNav"
                         style="flex-grow: 0;align-items: center;display: flex;flex-wrap: wrap;">
                         <ul class="navbar-nav"
-                              style="display: flex;flex-direction: row;margin-top: 3%;margin-bottom: 3%;gap: 0px;">
-                              <li class="nav-item" style="padding: 0 3% 0 3%;">
-                                    <a style="color: rgb(4, 4, 41);font-size: 1.4rem;font-family: 'Montserrat', sans-serif;"
+                              style="display: flex;flex-direction: row;margin-top: 3%;margin-bottom: 3%;gap: 0px;position: relative;left: 100px;">
+                              <li class="nav-item" style="padding: 0 3px 0 3px;">
+                                    <a style="color: rgb(4, 4, 41);font-size: 1.2rem;font-family: 'Montserrat', sans-serif;"
                                           class="nav-link active" aria-current="page" href="index.html">Home</a>
                               </li>
-                              <li class="nav-item" style="padding: 0 3% 0 3%;">
-                                    <a style="color: rgb(4, 4, 41);font-size: 1.4rem;font-family: 'Montserrat', sans-serif;"
+                              <li class="nav-item" style="padding: 0 3px 0 3px;">
+                                    <a style="color: rgb(4, 4, 41);font-size: 1.2rem;font-family: 'Montserrat', sans-serif;"
                                           class="nav-link" href="">About</a>
                               </li>
-                              <li class="nav-item" style="padding: 0 3%;border-right: solid black;border-width: 0.2rem;">
-                                    <a style="color: rgb(4, 4, 41);font-size: 1.4rem;font-family: 'Montserrat', sans-serif;"
+                              <li class="nav-item" style="padding: 0 3px 0 3px;border-right: solid black;border-width: 0.2rem;">
+                                    <a style="color: rgb(4, 4, 41);font-size: 1.2rem;font-family: 'Montserrat', sans-serif;"
                                           class="nav-link " href="">Contact</a>
                               </li>
-                              <li class="nav-item dropdown dropdown" style="border-width: 0px;padding: 0 2% 0 2%;">
+                              <li class="nav-item dropdown dropdown" style="border-width: 0px;padding: 0 3px 0 3px;">
                                     <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown"
-                                          aria-expanded="true" style="color: rgb(4, 4, 41);"> Information
+                                          aria-expanded="true" style="color: rgb(4, 4, 41);font-size: 1.2rem;font-family: 'Montserrat', sans-serif;">Information
                                     </a>
                                     <ul class="dropdown-menu">
                                           <li><a class="dropdown-item" href="aqi_information.html">AQI
@@ -102,14 +101,22 @@
 
             </div>
       </nav>
+      <div><h4 class="heading" style="position: relative;left: 20px;padding-bottom: 10px;" >Explore the Air Quality around you!</h4>
+      <form class="d-flex" role="search" style="display: flex;gap: 3%;">
 
 
+            <input class="form-control me-2" type="search" id="cityin" placeholder="Search Location Here"
+                  aria-label="Search" style="border-radius: 50px; width: 15pc;position: relative; left: 20px;">
+            <button class="btn btn-outline-primary" type="submit" style="border-radius: 50px;position: relative;right: 20px" id="search-button">Search</button>
+         <button id="submit2" class="btn btn-outline-primary" type="submit" style="border-radius: 50px;position: relative;right: 50px;">Reload/fire</button>
+
+      </form>
 
       <div class="output">
             <!-- <h1 id="otext">your output:</h1> -->
       </div>
-      <div class="map-and-table" style="display: flex;justify-content: space-around;gap: 2%;padding: 2%;">
-            <table class="table aqi-table-items" style="width: fit-content;padding: 2%;">
+      <div class="map-and-table" style="display: flex;justify-content: space-around;gap: 0%;padding: 0%;">
+            <table class="table aqi-table-items" style="width: fit-content;padding: 2%;position: relative;left: 0px;">
                   <thead style="font-size: 2.4rem;">
                         <tr>
                               <th scope="col">#</th>
@@ -155,17 +162,31 @@
                         </tr>
                   </tbody>
             </table>
-            <div class="map-container" style="display: flex;gap: 1%;">
+            <div class="map-container" style="position: relative;left: 2px;">
                   <div id="map"></div>
-                  <div class="button-container" id="customControl"
-                        style="display: flex;flex-direction: column;left: 1rem;position: inherit;">
-                        <button type="button" class="btn btn-light btn-outline-dark" id="button1">Temperature</button>
-                        <button type="button" class="btn btn-light btn-outline-dark" id="button2">Humidity</button>
-                        <button type="button" class="btn btn-light btn-outline-dark" id="button3">AQI</button>
+                  <div class="button-container" id="customControl" style="position: absolute; top: 10px; right: 10px; z-index: 1000;">
+                    <button type="button" class="btn btn-light btn-outline-dark" id="button1">Temperature</button>
+                    <button type="button" class="btn btn-light btn-outline-dark" id="button2">Humidity</button>
+                    <button type="button" class="btn btn-light btn-outline-dark" id="button3">AQI</button>
                   </div>
-            </div>
+                </div>
+                
 
       </div>
+      <footer>
+            <div class="footer" style="display: flex; position: relative; top: 50px; background-color: rgba(16, 16, 160, 0.338);">
+                  <div class="footer-brand">
+                        <img src="ImagesOfSite/Air Aware.png" type="button" style="width: 100px;">
+                        <a class="footer-webname" href="index.html" >AirAware</a>
+                  </div>
+                  <div class="contact-about" style="position: relative;top: 25px;left:50pc">
+                        <a href="faq.html" style="text-decoration: none;">FAQ</a>
+                        <a>Contact Us</a>
+                        <a>About Us</a>
+                  </div>
+            </div>
+                  
+      </footer>
       <!-- <div class="map-and-table">
             <div class="map-container">
                   <div id="map"></div>
