@@ -1,4 +1,4 @@
-li{
+/* li{
     list-style-type: none;
 }
 img{
@@ -24,78 +24,10 @@ body {
     align-items: center;
     justify-content: space-around;
 }
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.5rem;
-    padding: 0.3%;
-}
-.container-fluid{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
-    /* gap: 8%; */
-}
-.navbar-things{
-    display: flex;
-    /* justify-content: space-between; */
-    align-items: center;
-    /* flex-direction: row; */
-    /* gap: 8%; */
-}
-/* .navbar-nav .nav-link.active{
-   
 
-} */
-.navbar-nav{
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-    color: white;
-    gap: 3%;
-}
-.navbar-expand-lg .navbar-collapse{
-    flex-basis: 100%;
-    flex-grow: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 4%;
-}
-/* .navbar-nav{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 5%;
-}
-.navbar-collapse{
-    flex-grow: 0;
-} */
-/* .navbar-collapse{
-    flex-grow: 0;
-} */
-.navbar-brand {
-    margin-left: 50%;
-    font-size: 3rem;
-    color: white !important;
-}
-.nav-item{
-    color: white !important;
-}
-
-.navbar-brand:hover {
-    color: grey;
-}
 .map-container {
     position: absolute ;
 }
-
-/* map and table allignment
-.button-container {
-    position: relative;
-    top: 0px;
-} */
 
 #button1{
     width: 20%;
@@ -114,4 +46,4 @@ margin-left: 0px;
     color:white;
 }
 
-
+ */
