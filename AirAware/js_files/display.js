@@ -70,7 +70,7 @@ search.addEventListener("click", () => {
     }
    // console.log(cityin.value);
     fetchGovDataForCity(cityin.value);
-  
+   
     cityin.value = '';
     console.log("search button clicked "+cityin.value );
     
