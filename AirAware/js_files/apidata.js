@@ -1,5 +1,6 @@
 export default function apidata (){
       // Sample key
+ // const api="579b464db66ec23bdd0000011c4b6fb8f22e4da36019aceed9576683"; //2nd api    
   const api = "579b464db66ec23bdd00000139aeb6041bfa4c7263cda886ed404225";
   const criteria = { 'city': ["Greater Noida","Delhi"], 'pollutant_id': ["PM10", "PM2.5"] };
   //let data1,data2,data3,data4;
@@ -12,7 +13,7 @@ export default function apidata (){
     promises.push(
       getData(api, criteria, offset + i * 1000, limit)
         .then(data => {
-        //  console.log(data);
+         // console.log(data);
           return data;
         })
         .catch(error => {
@@ -70,7 +71,7 @@ function getData(api, filters, offset, limit) {
 
 
 function combineUniqueById(...arrays) {
-    const combinedData = {};
+   
    // console.log(arrays);
     
 // To store unique and repeated IDs
@@ -116,6 +117,8 @@ arrays.forEach(item => {
       longitude:parseFloat(item.longitude),
       last_update: item.last_update,
       aqi:0,
+      max:0,
+      maxele:"none",
       // Add other constant fields...
       pollutants: {} // Initialize pollutants object to store pollutant data
     };
@@ -132,7 +135,9 @@ arrays.forEach(item => {
     // Add other properties as needed
   };
   //console.log(station);
-  stationData[station].aqi=calculateAQI(stationData[station].pollutants);
+  stationData[station].aqi=calmax(stationData[station].pollutants);
+  stationData[station].max=calmax(stationData[station].pollutants);
+  stationData[station].maxele=maxele(stationData[station].pollutants ,stationData[station].max);
 });
 // Sort stations alphabetically based on state, city, and station
 const sortedStations = Object.values(stationData).sort((a, b) => {
@@ -154,7 +159,7 @@ const stationsWithIds = sortedStations.map((station, index) => {
   };
 });
 
-console.log("station with id: ",stationsWithIds);
+//console.log("station with id: ",stationsWithIds);
 
 const uniquecitys = new Set();
 const repeatedcitys = new Set();
@@ -183,144 +188,185 @@ stationsWithIds.forEach(item => {
     //return Object.values(combinedData);
   }
   
-  // Combine data from multiple arrays while ensuring uniqueness based on 'id'
-  function calculateAQI(pollutants){
-   // console.log("aqI",pollutants);
-  function calculateAQIPM10(pm10) {
-    if (isNaN(pm10)) {
-      return 0;
-    } else if (pm10 <= 50) {
-      return pm10;
-    } else if (pm10 > 50 && pm10 <= 100) {
-      return pm10;
-    } else if (pm10 > 100 && pm10 <= 250) {
-      return 100 + ((pm10 - 100) * 100) / 150;
-    } else if (pm10 > 250 && pm10 <= 350) {
-      return 200 + (pm10 - 250);
-    } else if (pm10 > 350 && pm10 <= 430) {
-      return 300 + ((pm10 - 350) * (100 / 80));
-    } else if (pm10 > 430) {
-      return 400 + ((pm10 - 430) * (100 / 80));
-    }
-  }
-  function calculateAQIPM25(pm25) {
-    if (isNaN(pm25)) {
-      return 0;
-    } else if (pm25 <= 30) {
-      return pm25 * (50 / 30);
-    } else if (pm25 > 30 && pm25 <= 60) {
-      return 50 + ((pm25 - 30) * (50 / 30));
-    } else if (pm25 > 60 && pm25 <= 90) {
-      return 100 + ((pm25 - 60) * (100 / 30));
-    } else if (pm25 > 90 && pm25 <= 120) {
-      return 200 + ((pm25 - 90) * (100 / 30));
-    } else if (pm25 > 120 && pm25 <= 250) {
-      return 300 + ((pm25 - 120) * (100 / 130));
-    } else if (pm25 > 250) {
-      return 400 + ((pm25 - 250) * (100 / 130));
-    }
-  }
-  function calculateAQISO2(so2) {
-    if (isNaN(so2)) {
-      return 0;
-    } else if (so2 <= 40) {
-      return so2 * (50 / 40);
-    } else if (so2 > 40 && so2 <= 80) {
-      return 50 + ((so2 - 40) * (50 / 40));
-    } else if (so2 > 80 && so2 <= 380) {
-      return 100 + ((so2 - 80) * (100 / 300));
-    } else if (so2 > 380 && so2 <= 800) {
-      return 200 + ((so2 - 380) * (100 / 420));
-    } else if (so2 > 800 && so2 <= 1600) {
-      return 300 + ((so2 - 800) * (100 / 800));
-    } else if (so2 > 1600) {
-      return 400 + ((so2 - 1600) * (100 / 800));
-    }
-  }
-  function calculateAQINO2(no2) {
-    if (isNaN(no2)) {
-      return 0;
-    } else if (no2 <= 40) {
-      return no2 * (50 / 40);
-    } else if (no2 > 40 && no2 <= 80) {
-      return 50 + ((no2 - 40) * (50 / 40));
-    } else if (no2 > 80 && no2 <= 180) {
-      return 100 + ((no2 - 80) * (100 / 100));
-    } else if (no2 > 180 && no2 <= 280) {
-      return 200 + ((no2 - 180) * (100 / 100));
-    } else if (no2 > 280 && no2 <= 400) {
-      return 300 + ((no2 - 280) * (100 / 120));
-    } else if (no2 > 400) {
-      return 400 + ((no2 - 400) * (100 / 120));
-    }
-  }
-  function calculateAQICO(co) {
-    if (isNaN(co)) {
-      return 0;
-    } else if (co <= 1) {
-      return co * (50 / 1);
-    } else if (co > 1 && co <= 2) {
-      return 50 + ((co - 1) * (50 / 1));
-    } else if (co > 2 && co <= 10) {
-      return 100 + ((co - 2) * (100 / 8));
-    } else if (co > 10 && co <= 17) {
-      return 200 + ((co - 10) * (100 / 7));
-    } else if (co > 17 && co <= 34) {
-      return 300 + ((co - 17) * (100 / 17));
-    } else if (co > 34) {
-      return 400 + ((co - 34) * (100 / 17));
-    }
-  }
-  function calculateAQIO3(o3) {
-    if (isNaN(o3)) {
-      return 0;
-    } else if (o3 <= 50) {
-      return o3 * (50 / 50);
-    } else if (o3 > 50 && o3 <= 100) {
-      return 50 + ((o3 - 50) * (50 / 50));
-    } else if (o3 > 100 && o3 <= 168) {
-      return 100 + ((o3 - 100) * (100 / 68));
-    } else if (o3 > 168 && o3 <= 208) {
-      return 200 + ((o3 - 168) * (100 / 40));
-    } else if (o3 > 208 && o3 <= 748) {
-      return 300 + ((o3 - 208) * (100 / 539));
-    } else if (o3 > 748) {
-      return 400 + ((o3 - 400) * (100 / 539));
-    }
-  }
-  function calculateAQINH3(nh3) {
-    if (isNaN(nh3)) {
-      return 0;
-    } else if (nh3 <= 200) {
-      return nh3 * (50 / 200);
-    } else if (nh3 > 200 && nh3 <= 400) {
-      return 50 + ((nh3 - 200) * (50 / 200));
-    } else if (nh3 > 400 && nh3 <= 800) {
-      return 100 + ((nh3 - 400) * (100 / 400));
-    } else if (nh3 > 800 && nh3 <= 1200) {
-      return 200 + ((nh3 - 800) * (100 / 400));
-    } else if (nh3 > 1200 && nh3 <= 1800) {
-      return 300 + ((nh3 - 1200) * (100 / 600));
-    } else if (nh3 > 1800) {
-      return 400 + ((nh3 - 1800) * (100 / 600));
-    }
-  }
+//   // Combine data from multiple arrays while ensuring uniqueness based on 'id'
+//   function calculateAQI(pollutants){
+//    // console.log("aqI",pollutants);
+//   function calculateAQIPM10(pm10) {
+//     if (isNaN(pm10)) {
+//       return 0;
+//     } else if (pm10 <= 50) {
+//       return pm10;
+//     } else if (pm10 > 50 && pm10 <= 100) {
+//       return pm10;
+//     } else if (pm10 > 100 && pm10 <= 250) {
+//       return 100 + ((pm10 - 100) * 100) / 150;
+//     } else if (pm10 > 250 && pm10 <= 350) {
+//       return 200 + (pm10 - 250);
+//     } else if (pm10 > 350 && pm10 <= 430) {
+//       return 300 + ((pm10 - 350) * (100 / 80));
+//     } else if (pm10 > 430) {
+//       return 400 + ((pm10 - 430) * (100 / 80));
+//     }
+//   }
+//   function calculateAQIPM25(pm25) {
+//     if (isNaN(pm25)) {
+//       return 0;
+//     } else if (pm25 <= 30) {
+//       return pm25 * (50 / 30);
+//     } else if (pm25 > 30 && pm25 <= 60) {
+//       return 50 + ((pm25 - 30) * (50 / 30));
+//     } else if (pm25 > 60 && pm25 <= 90) {
+//       return 100 + ((pm25 - 60) * (100 / 30));
+//     } else if (pm25 > 90 && pm25 <= 120) {
+//       return 200 + ((pm25 - 90) * (100 / 30));
+//     } else if (pm25 > 120 && pm25 <= 250) {
+//       return 300 + ((pm25 - 120) * (100 / 130));
+//     } else if (pm25 > 250) {
+//       return 400 + ((pm25 - 250) * (100 / 130));
+//     }
+//   }
+//   function calculateAQISO2(so2) {
+//     if (isNaN(so2)) {
+//       return 0;
+//     } else if (so2 <= 40) {
+//       return so2 * (50 / 40);
+//     } else if (so2 > 40 && so2 <= 80) {
+//       return 50 + ((so2 - 40) * (50 / 40));
+//     } else if (so2 > 80 && so2 <= 380) {
+//       return 100 + ((so2 - 80) * (100 / 300));
+//     } else if (so2 > 380 && so2 <= 800) {
+//       return 200 + ((so2 - 380) * (100 / 420));
+//     } else if (so2 > 800 && so2 <= 1600) {
+//       return 300 + ((so2 - 800) * (100 / 800));
+//     } else if (so2 > 1600) {
+//       return 400 + ((so2 - 1600) * (100 / 800));
+//     }
+//   }
+//   function calculateAQINO2(no2) {
+//     if (isNaN(no2)) {
+//       return 0;
+//     } else if (no2 <= 40) {
+//       return no2 * (50 / 40);
+//     } else if (no2 > 40 && no2 <= 80) {
+//       return 50 + ((no2 - 40) * (50 / 40));
+//     } else if (no2 > 80 && no2 <= 180) {
+//       return 100 + ((no2 - 80) * (100 / 100));
+//     } else if (no2 > 180 && no2 <= 280) {
+//       return 200 + ((no2 - 180) * (100 / 100));
+//     } else if (no2 > 280 && no2 <= 400) {
+//       return 300 + ((no2 - 280) * (100 / 120));
+//     } else if (no2 > 400) {
+//       return 400 + ((no2 - 400) * (100 / 120));
+//     }
+//   }
+//   function calculateAQICO(co) {
+//     if (isNaN(co)) {
+//       return 0;
+//     } else if (co <= 1) {
+//       return co * (50 / 1);
+//     } else if (co > 1 && co <= 2) {
+//       return 50 + ((co - 1) * (50 / 1));
+//     } else if (co > 2 && co <= 10) {
+//       return 100 + ((co - 2) * (100 / 8));
+//     } else if (co > 10 && co <= 17) {
+//       return 200 + ((co - 10) * (100 / 7));
+//     } else if (co > 17 && co <= 34) {
+//       return 300 + ((co - 17) * (100 / 17));
+//     } else if (co > 34) {
+//       return 400 + ((co - 34) * (100 / 17));
+//     }
+//   }
+//   function calculateAQIO3(o3) {
+//     if (isNaN(o3)) {
+//       return 0;
+//     } else if (o3 <= 50) {
+//       return o3 * (50 / 50);
+//     } else if (o3 > 50 && o3 <= 100) {
+//       return 50 + ((o3 - 50) * (50 / 50));
+//     } else if (o3 > 100 && o3 <= 168) {
+//       return 100 + ((o3 - 100) * (100 / 68));
+//     } else if (o3 > 168 && o3 <= 208) {
+//       return 200 + ((o3 - 168) * (100 / 40));
+//     } else if (o3 > 208 && o3 <= 748) {
+//       return 300 + ((o3 - 208) * (100 / 539));
+//     } else if (o3 > 748) {
+//       return 400 + ((o3 - 400) * (100 / 539));
+//     }
+//   }
+//   function calculateAQINH3(nh3) {
+//     if (isNaN(nh3)) {
+//       return 0;
+//     } else if (nh3 <= 200) {
+//       return nh3 * (50 / 200);
+//     } else if (nh3 > 200 && nh3 <= 400) {
+//       return 50 + ((nh3 - 200) * (50 / 200));
+//     } else if (nh3 > 400 && nh3 <= 800) {
+//       return 100 + ((nh3 - 400) * (100 / 400));
+//     } else if (nh3 > 800 && nh3 <= 1200) {
+//       return 200 + ((nh3 - 800) * (100 / 400));
+//     } else if (nh3 > 1200 && nh3 <= 1800) {
+//       return 300 + ((nh3 - 1200) * (100 / 600));
+//     } else if (nh3 > 1800) {
+//       return 400 + ((nh3 - 1800) * (100 / 600));
+//     }
+//   }
 
 
 
-  const AQICO = calculateAQICO(pollutants.CO?.pollutant_max/1000 || 0);
-  const AQINH3 = calculateAQINH3(pollutants.NH3?.pollutant_avg || 0);
-  const AQINO2 = calculateAQINO2(pollutants.NO2?.pollutant_avg || 0);
-  const AQIO3 = calculateAQIO3(pollutants.OZONE?.pollutant_max || 0);
-  const AQIPM10 = calculateAQIPM10(pollutants.PM10?.pollutant_avg || 0);
-  const AQIPM25 = calculateAQIPM25(pollutants["PM2.5"]?.pollutant_avg || 0);
-  const AQISO2 = calculateAQISO2(pollutants.SO2?.pollutant_avg || 0);
+//   const AQICO = calculateAQICO(pollutants.CO?.pollutant_max/1000 || 0);
+//   const AQINH3 = calculateAQINH3(pollutants.NH3?.pollutant_avg || 0);
+//   const AQINO2 = calculateAQINO2(pollutants.NO2?.pollutant_avg || 0);
+//   const AQIO3 = calculateAQIO3(pollutants.OZONE?.pollutant_max || 0);
+//   const AQIPM10 = calculateAQIPM10(pollutants.PM10?.pollutant_avg || 0);
+//   const AQIPM25 = calculateAQIPM25(pollutants["PM2.5"]?.pollutant_avg || 0);
+//   const AQISO2 = calculateAQISO2(pollutants.SO2?.pollutant_avg || 0);
 
-  //console.log(AQICO, AQINH3, AQINO2, AQIO3, AQIPM10, AQIPM25, AQISO2);
+//   //console.log(AQICO, AQINH3, AQINO2, AQIO3, AQIPM10, AQIPM25, AQISO2);
+//   if(!(AQIPM10||AQIPM25)){
+//     return -1;
+//   }
+//   return Math.max(AQICO, AQINH3, AQINO2, AQIO3, AQIPM10, AQIPM25, AQISO2);
+
+// }
+
+function calmax(pollutants){
+  const AQICO = pollutants.CO?.pollutant_max/1000 || 0;
+  const AQINH3 = pollutants.NH3?.pollutant_avg || 0;
+  const AQINO2 = pollutants.NO2?.pollutant_avg || 0;
+  const AQIO3 = pollutants.OZONE?.pollutant_max || 0;
+  const AQIPM10 = pollutants.PM10?.pollutant_avg || 0;
+  const AQIPM25 = pollutants["PM2.5"]?.pollutant_avg || 0;
+  const AQISO2 = pollutants.SO2?.pollutant_avg || 0;
   if(!(AQIPM10||AQIPM25)){
     return -1;
   }
   return Math.max(AQICO, AQINH3, AQINO2, AQIO3, AQIPM10, AQIPM25, AQISO2);
-
 }
 
+function maxele(pollutants, max){
+  const AQICO = pollutants.CO?.pollutant_max/1000 || 0;
+  const AQINH3 = pollutants.NH3?.pollutant_avg || 0;
+  const AQINO2 = pollutants.NO2?.pollutant_avg || 0;
+  const AQIO3 = pollutants.OZONE?.pollutant_max || 0;
+  const AQIPM10 = pollutants.PM10?.pollutant_avg || 0;
+  const AQIPM25 = pollutants["PM2.5"]?.pollutant_avg || 0;
+  const AQISO2 = pollutants.SO2?.pollutant_avg || 0;
+
+ 
+    if (max == AQICO ){
+      return "co";
+    }if (max == AQINH3 ){
+      return "nh3";
+    }if (max == AQINO2 ){
+      return "no2";
+    }if (max == AQIO3 ){
+      return "o3";
+    }if (max == AQIPM10 ){
+      return "pm10";
+    }if (max == AQIPM25 ){
+      return "pm25";
+    }if (max == AQISO2 ){
+      return "so2";
+    }
+
+}

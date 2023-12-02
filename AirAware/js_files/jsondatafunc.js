@@ -1,57 +1,25 @@
 import { updateMapWithData } from './script.js';
-var jsondataarray=[{
-  
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [19, 72]
-    },
-    "properties": {
-      "id":i,
-      "name": "mumbai",
-      "aqi":89,
-      "t":34,
-      "h":10,
-      }
-     }
-  
-];
-
-
-var i=0; //counter for id of cities;
-
-function updateJsonWithData(data,city) {
-  i++;
- 
-  jsondataarray.push( {
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [data.data.city.geo[1],data.data.city.geo[0]]//data.location.lon, data.location.lat
-    },
-    "properties": {
-      "id":i,
-      "name": `${city}`, //data.location.name,
-      "aqi":data.data.aqi ,
-      "t": data.data.iaqi.t.v,
-      "h": data.data.iaqi.h.v,
-    }
-  });
-  if(i%10==0){
-    updateMapWithData("t");
-  }
- 
- }
-
-
+import coordata from './data.js';
 
  var jsongovdataarray=[
 ];
+
  function updateGovData(data) {
-  
- 
+   
 data.forEach(element => {
-  
+  if(!(element.latitude && element.longitude)){
+try{
+    var lat= coordata.find(temp => temp.properties.station === element.station);
+    
+     element.latitude =lat.geometry.coordinates[0];
+    // var lon=coordata.find(temp => temp.properties.station === element.station);
+     element.longitude= lat.geometry.coordinates[1];
+}catch(error){
+  console.log(error);
+  console.log(element)
+  console.log(coordata.find(temp => temp.properties.station === element.station));
+}
+    }
   jsongovdataarray.push( {
     "type": "Feature",
     "geometry": {
@@ -60,7 +28,7 @@ data.forEach(element => {
     },
     "properties": {
       "id"      :element.id,
-      "station" : element.station, 
+      "station" :element.station, 
       "city"    :element.city,
       "state"   :element.state,
       "aqi"     :element.aqi ,
@@ -71,12 +39,28 @@ data.forEach(element => {
       "Co"      :element.pollutants.CO?.pollutant_max?? NaN,
       "Pm25"    :element.pollutants["PM2.5"]?.pollutant_avg?? NaN,
       "Pm10"    :element.pollutants.PM10?.pollutant_avg?? NaN,
+      "max"     :element.max,
+      "maxele"  :element.maxele,
     }
   });
-  if(i%100==0){
-    updateMapWithData("t");
-  }
-});
  
- }
- export {jsondataarray,jsongovdataarray, updateJsonWithData,updateGovData};
+});
+ updateMapWithData();
+}
+ 
+ export {jsongovdataarray,updateGovData};
+
+//NH3    Green: 
+//CO     Blue: 
+//SO2    Yellow:
+//Ozone  Orange:
+//NO2    Red: 
+//PM10   Purple:
+//PM2.5  Black: 
+// NH3
+// CO
+// SO2
+// Ozone
+// NO2
+// PM10
+// PM2.5
