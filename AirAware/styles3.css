@@ -1,3 +1,11 @@
+body {
+    /* background-image: url("ImagesOfSite/cloud-image.jpg");
+    background-repeat: no-repeat;
+    background-size:cover; */
+    /* -webkit-filter: blur(100px); */
+    background-color: rgba(81, 121, 181, 0.4);
+    margin-bottom: 0px;
+}
 .navbar {
     padding: 2%;
 }
@@ -26,19 +34,13 @@
     color: grey;
 }
 .nav-item{
-    border-right: solid black;
-    border-width: 0.2rem;    
-    background-color: rgba(255, 255, 255, 0.9);
-                    border-radius: 50px; 
+    background-color: rgb(30, 76, 141);
+    border-radius: 20px; 
+    border: solid black;
+    
+    border-width: 2px;
 }
-body {
-    /* background-image: url("ImagesOfSite/cloud-image.jpg");
-    background-repeat: no-repeat;
-    background-size:cover; */
-    /* -webkit-filter: blur(100px); */
-    background-color: rgba(81, 121, 181, 0.4);
-    margin-bottom: 0px;
-}
+
 /* 
 .btn btn-outline-success {
     background-color: white;
