@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Air Quality Index Information</title>
+      <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
+      <link rel="stylesheet" href="contact.css">
+      <link referrerpolicy="stylesheet" href="temperoray.css">
+
+      <link rel="icon" href="ImagesOfSite/Air Aware.png">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+            crossorigin="anonymous" />
+      <!-- <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Comfortaa:wght@300&family=Electrolize&family=Nunito+Sans:opsz,wght@6..12,300&family=Roboto&display=swap"
+            rel="stylesheet"> -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Comfortaa:wght@300&family=Electrolize&family=Kanit:wght@500&family=Lexend&family=Montserrat:wght@300&family=Mooli&family=Nunito+Sans:opsz,wght@6..12,300&family=Open+Sans:wght@500&family=Pacifico&family=Poppins&family=Raleway:wght@300&family=Roboto:ital,wght@0,300;0,400;1,300&family=Source+Code+Pro:wght@300&family=Titillium+Web&display=swap"
+            rel="stylesheet" />
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Merriweather&family=Montserrat:wght@400;500&family=Open+Sans&family=Playpen+Sans:wght@200&display=swap"
+            rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Merriweather&family=Montserrat:wght@400;500&family=Mulish:wght@700&family=Open+Sans&family=Playpen+Sans:wght@200&display=swap"
+            rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Merriweather&family=Montserrat:wght@400;500&family=Mulish:wght@700&family=Open+Sans&family=Playpen+Sans:wght@200&family=Poppins&display=swap"
+            rel="stylesheet" />
+
+      <link rel="stylesheet" type="text/css" href="css of portals/contact.css" />
+      <link rel="stylesheet" type="text/css" href="css of portals/temperoray.css" />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&family=Merriweather&family=Montserrat:wght@400;500&family=Mulish:wght@700&family=Open+Sans&family=Playpen+Sans:wght@200&family=Poppins:wght@200;300&family=Raleway&display=swap"
+            rel="stylesheet">
+
+
+      <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Sofia+Sans+Semi+Condensed:wght@300&family=Vollkorn:wght@500&display=swap');
+
+            :root {
+                  --main-color: #FE043C;
+                  --sec-color: #35cd8c;
+                  --color-dark: #1D2231;
+                  --text-grey: #8390A2;
+            }
+
+            * {
+                  padding: 0;
+                  margin: 0 0 0 0;
+                  box-sizing: border-box;
+                  text-decoration: none;
+                  list-style-type: none;
+                  font-family: 'Poppins', sans-serif;
+            }
+
+            .hero {
+                  background-color: var(--sec-color);
+                  position: relative;
+                  height: 50pc;
+                  width: 80pc;
+                  top: 6pc;
+                  display: flex;
+                  justify-content: center;
+            }
+
+            .hero img {
+                  display: block;
+                  margin: 0 auto;
+            }
+
+            .hero h1 {
+                  padding-top: 20px;
+                  font-size: 3rem;
+                  text-align: center;
+            }
+
+            .hero p {
+                  padding: 20px 250px 20px 250px;
+            }
+
+            .hero h2 {
+                  text-align: center;
+                  font-size: 2rem;
+            }
+
+            .pollutants-sec {
+                  position: relative;
+                  top: 10pc;
+                  padding: 10px 25px 10px 25px;
+                  border: 2px solid skyblue;
+                  border-radius: 20px;
+                  margin: 0px 10px 10px 10px;
+                  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+
+            .pollutants-sec h1 {
+                  text-align: center;
+            }
+
+            .pollutant-intro {
+                  padding: 20px 180px 20px 180px;
+            }
+
+            .pollutants {
+                  display: grid;
+                  grid-template-columns: 50% 50%;
+            }
+
+            .pollutant {
+                  border: 2px solid skyblue;
+                  padding: 20px 20px 20px 20px;
+                  border-radius: 20px;
+                  gap: 2%;
+                  margin-right: 20px;
+                  margin-bottom: 30px;
+            }
+
+            .pollutant:hover {
+                  background-color: skyblue;
+                  border: 2px solid rgb(0, 0, 0);
+            }
+
+            .hero2 {
+                  background-color: var(--sec-color);
+                  position: relative;
+                  height: 50pc;
+                  width: 80pc;
+                  top: 12pc;
+                  display: flex;
+                  justify-content: center;
+            }
+
+            .hero2 img {
+                  display: block;
+                  margin: 0 auto;
+                  position: relative;
+                  top: 20px;
+            }
+
+            .hero2 h1 {
+                  padding-top: 25px;
+                  font-size: 3rem;
+                  text-align: center;
+            }
+
+            .hero2 p {
+                  padding: 20px 250px 20px 250px;
+            }
+
+            .aqi-table-sec {
+                  position: relative;
+                  top: 15pc;
+            }
+
+            .aqi-table {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+            }
+
+            .aqi-table-sec h2 {
+                  text-align: center;
+                  font-size: 2rem;
+                  padding-bottom: 20px;
+            }
+      </style>
+</head>
+
+<body>
+      <nav style="margin-bottom: 1%;background-color: rgb(10, 46, 95);padding: 0%;"
+            class="navbar navbar-light navbar-expand-lg">
+            <div class="container-fluid"
+                  style="display: flex;padding: 0 2%;justify-content: space-evenly;gap: 0%;padding: 1.5%;">
+                  <div class="navbar-brand-div">
+                        <div>
+                              <div
+                                    style="display: flex;flex-direction: row;gap: 8%;position: relative;align-items: center;">
+                                    <img src="ImagesOfSite copy/Air Aware.png" class="airaware-logo" type="button"
+                                          style="width: 30%; padding-right:0px;">
+                                    <a class="navbar-brand-name" href="index.html">AirAware</a>
+                              </div>
+
+                              <!-- <div>
+                        <h2>Stay Ahead with AirAware: Cause Every Breath Counts</h2>
+                  </div> -->
+                        </div>
+
+                  </div>
+
+                  <div>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                              data-bs-target="#navbarNavDropdown" aria-controls="navbarNav" aria-expanded="false"
+                              aria-label="Toggle navigation">
+                              <span class="navbar-toggler-icon"></span>
+                        </button>
+                  </div>
+                  <div class="collapse navbar-collapse " id="navbarNavDropdown" style="flex-grow: 0;">
+                        <ul class="navbar-nav"
+                              style="display: flex;flex-direction: row;margin-top: 3%;margin-bottom: 3%;justify-content: center;max-width: 100%;gap: 4%;">
+                              <li class="nav-item " style="padding: 0 3%;">
+                                    <a style="font-size: 1.4rem;font-family: 'Montserrat', sans-serif;color: rgb(255, 255, 255);"
+                                          class="nav-link" href="/AirAware/index3.html">Home</a>
+                              </li>
+                              <li class="nav-item" style="padding: 0 3%">
+                                    <a style="font-size: 1.4rem;font-family: 'Montserrat', sans-serif;margin-right: 0px;color: rgb(255, 255, 255);"
+                                          class="nav-link" href="about_us.html">About</a>
+                              </li>
+                              <li class="nav-item" style="padding:0 3%;;">
+                                    <a style="font-size: 1.4rem;font-family: 'Montserrat', sans-serif;color: rgb(255, 255, 255);"
+                                          class="nav-link " href="contact.html">Contact</a>
+                              </li>
+                              <li class="nav-item dropdown dropdown"
+                                    style="padding:0 3%;border: solid black;border-width: 2px;">
+                                    <a class="nav-link dropdown-toggle nav-link-word" href="#" role="button"
+                                          data-bs-toggle="dropdown" aria-expanded="false"
+                                          style="font-size: 1.4rem;font-family: 'Montserrat', sans-serif;color: rgb(255, 255, 255);">
+                                          Information
+                                    </a>
+                                    <!-- style="display: flex;flex-direction: column;align-items: flex-start;width: 90%;" -->
+                                    <ul class="dropdown-menu "
+                                          style="font-size: 1.2rem;font-family: 'Montserrat', sans-serif;align-self: center;">
+                                          <li><a class="dropdown-item" href="aqi_information.html">Air Quality Index</a>
+                                          </li>
+                                          <li><a class="dropdown-item" href="measure_to_be_taken.html">Measures to be
+                                                      taken</a></li>
+                                          <li>
+                                                <hr style="border-width: 5px;" class="dropdown-divider">
+                                          </li>
+                                          <li><a class="dropdown-item" href="#">Weather Chart</a></li>
+
+                                    </ul>
+                              </li>
+                        </ul>
+                  </div>
+            </div>
+      </nav>
+      <main>
+            <section class="hero" >
+                  <div class="hero-inner" style="display: flex;flex-wrap: wrap;">
+                        <img src="ImagesOfSite/icons8-plant-100.png" width="200px">
+                        <h1>What is Air Quality Index <br><span>(AQI)?</span></h1>
+                        <p> The Air Quality Index, or AQI, is a standardised system used worldwide to assess the quality
+                              of the air we breathe. It provides a numerical value and
+                              color-coded scale to inform the public about air pollution levels and their
+                              potential health impacts.</p>
+                        <h2>How is it significant?</h2>
+                        <p>
+                              The Air Quality Index (AQI) is important because it tells us how clean or dirty the air
+                              is. It helps us understand if the air might make us sick, especially if we have breathing
+                              problems. By using the AQI, we can make smarter choices to stay safe when the air is not
+                              good. It also helps governments create rules to keep the air cleaner and lets everyone
+                              know how bad the pollution is in different places, making it easier for countries to work
+                              together to tackle air pollution.
+                        </p>
+                        <img src="ImagesOfSite/icons8-plant-100.png" width="100px">
+                  </div>
+            </section>
+            <section class="pollutants-sec">
+                  <h1>What are the pollutants considered in AQI?</h1>
+                  <p class="pollutant-intro">The AQI is calculated based on the concentrations of specific air
+                        pollutants
+                        known to have adverse health effects. These primary pollutants include:</p>
+                  <div class="pollutants">
+                        <div class="pollutant" id="1">
+                              <h3>Particulate Matter 2.5 (PM2.5)</h3>
+                              <p>PM2.5 refers to tiny airborne particles with a diameter of 2.5 micrometers or smaller.
+                                    These particles can be solid or liquid and are small enough to penetrate deep into
+                                    the respiratory system when inhaled.
+                              </p><br>
+                              <p><b>Sources:</b> vehicle engines, industrial activities, power plants, and wildfires.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span> Penetrate deep into the lungs and
+                                          enter the bloodstream.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Short-term exposure: lead to
+                                          respiratory issues, exacerbate asthma, cause lung inflammation, and increase
+                                          the risk of heart attacks and strokes.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Long-term exposure:lead to chronic
+                                          respiratory diseases, reduced lung function, cardiovascular problems, and
+                                          premature death.</li>
+                              </ul>
+                              </p>
+                        </div>
+                        <div class="pollutant" id="2">
+                              <h3>Particulate Matter 10 (PM10)</h3>
+                              <p>PM10 refers to inhalable particles with a diameter of 10 micrometers or smaller.
+                                    These particles can include dust, dirt, soot, smoke, and other solid and liquid
+                                    particles suspended in the air.
+                              </p><br>
+                              <p><b>Sources:</b>road dust, construction sites, industrial processes, wildfires and
+                                    volcanic eruptions.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span> Cause respiratory problems, aggravate
+                                          asthma, and lead to bronchitis and other lung diseases.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Short-term exposure can result in
+                                          irritation of the eyes, nose, and throat.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Long-term exposure to PM10 is
+                                          associated with chronic respiratory issues, cardiovascular diseases, and
+                                          premature death.</li>
+                              </ul>
+                              </p>
+
+
+
+                        </div>
+                        <div class="pollutant" id="3">
+                              <h3>Carbon Monoxide(CO)</h3>
+                              <p>Carbon Monoxide (CO) is a colorless, odorless, and tasteless gas produced by the
+                                    incomplete combustion of carbon-containing fuels.
+                                    It is primarily emitted from vehicle engines, industrial processes, power plants,
+                                    and residential sources like stoves and heaters.
+                              </p><br>
+                              <p><b>Sources:</b> Major sources include motor vehicles, particularly those with
+                                    inefficient combustion engines or inadequate emission control systems,metal
+                                    processing, chemical manufacturing, and fossil fuel combustion.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span>It binds with hemoglobin in the blood,
+                                          reducing its oxygen-carrying capacity, leading to tissue damage</li>
+                                    <li><span class="	fas fa-exclamation"></span> Acute exposure can cause symptoms like
+                                          headaches, dizziness, nausea, confusion, and in severe cases, can result in
+                                          unconsciousness and death.</li>
+                              </ul>
+                              </p>
+                        </div>
+                        <div class="pollutant" id="4">
+                              <h3>Sulfur Dioxide (SO2)</h3>
+                              <p>Sulfur Dioxide (SO2) is a colorless gas with a pungent odor, produced by the combustion
+                                    of sulfur-containing fuels, primarily coal and oil.
+                                    It's released during industrial processes, power generation from fossil fuels, and
+                                    natural events like volcanic eruptions.
+                              </p><br>
+                              <p><b>Sources:</b> Major sources include power plants that burn coal or oil, industrial
+                                    facilities eg: refineries, smelters, and chemical manufacturing, and ships using
+                                    high sulfur fuels.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span> SO2 can lead to acid rain when it
+                                          reacts with water vapor in the atmosphere, forming sulfuric acid and
+                                          contributing to the acidification of soils and bodies of water.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Acid rain damages vegetation, harms
+                                          aquatic life, and erodes buildings and statues made of limestone or marble.
+                                    </li>
+                              </ul>
+                              </p>
+                        </div>
+                        <div class="pollutant" id="5">
+                              <h3>Nitrogen Dioxide (NO2)</h3>
+                              <p>Nitrogen Dioxide (NO2) is a reddish-brown gas with a pungent odor, formed mainly from
+                                    combustion processes involving fossil fuels at high temperatures. It's a component
+                                    of nitrogen oxides (NOx), which are formed when nitrogen and oxygen react during
+                                    high-temperature combustion processes.
+                              </p><br>
+                              <p><b>Sources:</b> Major sources include vehicle exhaust, industrial facilities,power
+                                    plants, and residential heating systems that use fossil fuels.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span> Inhalation of NO2 can irritate the
+                                          respiratory system, leading to coughing, wheezing, and shortness of breath.
+                                    </li>
+                                    <li><span class="	fas fa-exclamation"></span> Prolonged exposure to elevated levels
+                                          of NO2 may exacerbate respiratory conditions like asthma and increase
+                                          susceptibility to respiratory infections.</li>
+                              </ul>
+                              </p>
+                        </div>
+                        <div class="pollutant" id="6">
+                              <h3>Lead (Pb)</h3>
+                              <p>Lead (Pb) is a heavy metal that occurs naturally in the Earth's crust. It's a soft,
+                                    malleable metal with various industrial applications.
+                              </p><br>
+                              <p><b>Sources:</b> leaded gasoline, old paint, industrial emissions, waste incineration,
+                                    battery recycling.
+                              </p><br>
+                              <b>Health impacts on humans and other living organisms:</b><br>
+                              <p>
+                              <ul>
+                                    <li><span class="	fas fa-exclamation"></span> Lead exposure is particularly harmful
+                                          to humans, especially children, as it can affect the nervous system, brain
+                                          development, and lead to cognitive and behavioral impairments.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Even low levels of lead exposure in
+                                          children can cause learning difficulties, developmental delays, and decreased
+                                          IQ.</li>
+                                    <li><span class="	fas fa-exclamation"></span> Adults exposed to high levels of lead
+                                          can experience hypertension, kidney damage, and reproductive issues.</li>
+                              </ul>
+                              </p>
+                        </div>
+                  </div>
+            </section>
+            <section class="hero2">
+                  <div class="hero-inner">
+                        <img src="ImagesOfSite/icons8-question-mark-100.png" width="200px">
+                        <h1>How AQI works?</h1>
+                        <p>The AQI provides a simple and easy-to-understand way to convey the level of air
+                              pollution to the public. It is calculated using a sub-index for each of the
+                              primary pollutants mentioned above, and then the maximum sub-index value is
+                              selected to represent the overall AQI value for a given location. The process
+                              involves the following steps:
+                        <p><span class="fas fa-arrow-right"></span><b> Sub-Indices</b> : The concentration of each
+                              primary pollutant is
+                              transformed into a sub-index, indicating the level of air quality
+                              associated with that pollutant. These sub-indices are calculated using
+                              specific equations.</p>
+                        <p><span class="fas fa-arrow-right"></span><b> Select the Maximum Sub-Index</b> : The highest
+                              sub-index value among all the
+                              primary pollutants is chosen as the overall AQI value for that location.</p>
+                        <p><span class="fas fa-arrow-right"></span><b> Color-Coding</b> : The AQI value is associated
+                              with a specific color code,
+                              ranging from "Good" (good) to "Hazardous" (maroon), to make it easier
+                              for the public to interpret.</p>
+                  </div>
+            </section>
+            <section class="aqi-table-sec">
+                  <h2> What are the categories in AQI?</h2>
+                  <div class="aqi-table">
+                        <img src="ImagesOfSite/AQI Chart.png" width="900pc">
+                  </div>
+            </section>
+      </main>
+      <footer>
+
+      </footer>
+      <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

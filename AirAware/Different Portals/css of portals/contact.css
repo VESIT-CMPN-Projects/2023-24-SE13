@@ -1,0 +1,325 @@
+.navbar {
+      padding: 2%;
+}
+
+.navbar-brand-div {
+      display: flex;
+      align-items: center;
+      gap: 5%;
+
+}
+.contact-us-query{
+      display: flex;
+      justify-content: space-evenly;
+      margin: 3% 4%;
+      gap: 2%;
+      font-family: 'Montserrat', sans-serif;
+}
+.user-details{
+      /* background-color: rgba(24, 45, 164, 0.552); */
+      background-color: rgba(30, 76, 141, 0.369);
+      box-shadow: 0 4px 8px 0 rgb(61, 61, 61), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding: 2%;
+      border-radius: 10px;
+      font-family: 'Montserrat', sans-serif;
+}
+.submit{
+      background-color: rgb(11, 11, 101);
+      border: none;
+      color: white;
+      border-radius: 5px;
+}
+.submit:hover{
+      background-color: white;
+      color: rgb(11, 11, 101);
+}
+
+.brand-logo {
+      text-decoration: none;
+      display: flex;
+      /* border-radius: 100%;
+    background-color: rgb(151, 151, 151); */
+      align-items: center;
+      color: rgb(43, 43, 110);
+}
+
+.brand-logo:hover {
+      color: rgb(99, 99, 119);
+}
+
+.airaware-logo:hover {
+      transition: 1.1s;
+      transform: scale(1.1);
+      /* box-shadow: 5px 5px 5px 5px rgb(162, 200, 213);
+      border-radius: 100%; */
+
+}
+
+.navbar-brand-name {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      font-size: 3rem;
+      font-family: 'Mulish', sans-serif;
+}
+
+.navbar-brand-name:hover {
+      color: rgb(163, 163, 163);
+}
+
+
+body {
+      /* background-image: url("ImagesOfSite/cloud-image.jpg");
+    background-repeat: no-repeat;
+    background-size:cover; */
+      /* -webkit-filter: blur(100px); */
+      background-color: rgba(81, 121, 181, 0.4);
+      margin-bottom: 0px;
+}
+
+/* 
+.btn btn-outline-success {
+    background-color: white;
+    color: white;
+} */
+
+.airaware-image-logo {
+      background-color: none;
+}
+
+#customControl {
+      position: absolute;
+      top: 10px;
+
+      z-index: 1000;
+
+      border: none;
+      border-radius: 5px;
+}
+
+.logo-brand-div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+}
+
+.navbar {
+      display: flex;
+      justify-content: space-around;
+      font-size: 1.5rem;
+      padding: 0.3%;
+      align-items: center;
+}
+
+.navbar>.container-fluid {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: row;
+}
+
+.navbar-things {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+}
+
+.navbar-nav {
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      gap: 5%;
+}
+
+
+.navbar-brand {
+      margin-left: 0%;
+      font-family: 'Raleway', sans-serif;
+      align-self: center;
+      font-size: 2rem;
+      color: rgb(255, 255, 255);
+}
+
+.navbar-brand:hover {
+      color: rgb(127, 179, 246);
+}
+
+.button-container {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 60vh;
+      margin-left: 5vw;
+}
+
+
+
+
+footer {
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0% 0 0 0;
+      padding: 3% 1%;
+      /* align-items: center; */
+      text-align: center;
+      flex-wrap: wrap;
+      background-color: rgb(25, 49, 82);
+      /* background-color: rgb(12, 6, 44); */
+      /* background-color: rgb(19, 19, 58); */
+}
+
+.footer-divs {
+      /* width: 18%; */
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      /* padding: 2%; */
+      /* border-right: solid black; */
+
+}
+
+h6 {
+      /* color: rgb(184, 184, 184); */
+      font-size: 1rem;
+}
+
+p {
+      font-size: 0.8rem;
+}
+
+
+
+#contact-div {
+      background-color: rgb(197, 197, 197);
+      margin-top: 5%;
+      margin-bottom: 150px;
+      height: 250px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-direction: row;
+      gap: 4rem;
+}
+
+.visiting {
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: column;
+}
+
+.email-icon {
+      height: 40px;
+}
+
+.email-icon:hover {
+      transition: 0.2s;
+      height: 50px;
+}
+
+.github-icon,
+.linkedin-icon {
+      height: 40px;
+      align-self: center;
+}
+
+.github-icon:hover,
+.linkedin-icon:hover {
+      transition: 0.25s;
+      height: 51px;
+}
+
+.contact-me-icons {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 10%;
+      margin-top: 4%;
+}
+
+@media screen and (max-width: 988px) {
+      .profile-pic {
+            width: 400px;
+      }
+
+      .about-div-2 {
+            display: flex;
+            flex-direction: column;
+      }
+
+      #contact-div {
+            display: flex;
+            flex-direction: column;
+            padding: 2%;
+      }
+}
+
+@media (max-width:452px) and (min-width: 0px) {
+      .button-tag-main-div {
+            flex-direction: column;
+      }
+
+      .navbar-nav {
+            display: flex;
+            flex-wrap: wrap;
+      }
+
+      .contact-me-icons {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 1%;
+      }
+}
+
+
+@media (max-width: 660px) and (min-width:0px) {
+      .navbar-brand-div {
+            width: 80%;
+      }
+
+      .container-fluid {
+            width: fit-content;
+      }
+
+      .navbar-brand {
+            font-size: 2.6rem;
+      }
+}
+
+@media (max-width: 1130px) and (min-width: 0px) {
+      .contact-boxes-for-team {
+            display: flex;
+            /* flex-direction: column; */
+            /* padding: 3% 20%; */
+      }
+
+      .each-contact-box {
+            text-align: center;
+            /* width: 60%; */
+            margin-top: 3%;
+            margin-left: 3%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+      }
+
+}
+
+@media (max-width: 1170px) and (min-width: 0px) {
+
+      .email-icon {
+            height: 35px;
+      }
+      
+      .email-icon:hover {
+            transition: 0.2s;
+            height: 45px;
+      }
+
+      .github-icon,
+      .linkedin-icon {
+            height: 35px;
+            align-self: center;
+      }
+      .github-icon:hover,.linkedin-icon:hover {
+      transition: 0.25s;
+      height: 45px;
+}
+}
