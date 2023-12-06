@@ -1,33 +1,37 @@
-// import { fetchDataForCity1 } from "./script";
-import { jsongovdataarray} from './jsondatafunc.js';
+import { jsongovdataarray } from './jsondatafunc.js';
 
+//  Get the modal element and close button
+const govDataModal = document.getElementById('govDataModal');
+const modalContent = document.getElementById('modalContent');
+const spanClose = document.querySelector('.modal-content .close');
 
-
-function fetchGovDataForCity(city){
-  var firstmatch= jsongovdataarray.find(element => element.properties.city=== city);
+function fetchGovDataForCity(city) {
+  var firstmatch = jsongovdataarray.find(element => element.properties.city === city);
   if (firstmatch) {
-    alert( 
-    //"id: "      ,firstmatch.properties.id,
-    "Station: " + firstmatch.properties.station + "\n" +
-    "City: " + firstmatch.properties.city + "\n" +
-    "State: " + firstmatch.properties.state + "\n" +
-    "AQI: " + firstmatch.properties.aqi + "\n" +
-    "SO2: " + firstmatch.properties.So2 + "\n" +
-    "NH3: " + firstmatch.properties.Nh3 + "\n" +
-    "Ozone: " + firstmatch.properties.Ozone + "\n" +
-    "NO2: " + firstmatch.properties.No2 + "\n" +
-    "CO: " + firstmatch.properties.Co + "\n" +
-    "PM2.5: " + firstmatch.properties.Pm25 + "\n" +
-    "PM10: " + firstmatch.properties.Pm10 + "\n" +
-    "lat: " + firstmatch.geometry.coordinates[0] + "\n" +
-    "long: " + firstmatch.geometry.coordinates[1]
-    );
-   // console.log("City ID:", firstmatch.properties.id);
-    //console.log("AQI:", firstmatch.properties.aqi);
-    // Access other properties as needed
+    const content = `
+    <h2>Station: ${firstmatch.properties.station}</h2>
+    <p>City: ${firstmatch.properties.city}</p>
+    <p>State: ${firstmatch.properties.state}</p>
+    <p>AQI: ${firstmatch.properties.aqi}</p>
+    <p>SO2: ${firstmatch.properties.So2}</p>
+    <p>NH3: ${firstmatch.properties.Nh3}</p>
+    <p>Ozone: ${firstmatch.properties.Ozone}</p>
+    <p>NO2: ${firstmatch.properties.No2}</p>
+    <p>CO: ${firstmatch.properties.Co}</p>
+    <p>PM2.5: ${firstmatch.properties.Pm25}</p>
+    <p>PM10: ${firstmatch.properties.Pm10}</p>
+    <p>Latitude: ${firstmatch.geometry.coordinates[0]}</p>
+    <p>Longitude: ${firstmatch.geometry.coordinates[1]}</p>
+    `;
+
+    modalContent.innerHTML = content;
+    govDataModal.style.display = 'block';
   }
 }
 
+// Close the modal when the close button is clicked
+spanClose.addEventListener('click', function() {
+  govDataModal.style.display = 'none';
+});
 
-
-export {fetchGovDataForCity};
+export { fetchGovDataForCity };

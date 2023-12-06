@@ -6,7 +6,43 @@ body {
       background-color: rgba(81, 121, 181, 0.4);
       margin-bottom: 0px;
 }
-
+/* Add this CSS for the modal */
+/* The Modal (background) */
+/* idr se copy kr */
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 0 0 0 52pc;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 40%;
+    }
+    /* Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    /* idr tak copy kr for styles3 */
 .navbar {
       padding: 2%;
 }
