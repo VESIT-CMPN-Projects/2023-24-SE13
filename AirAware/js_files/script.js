@@ -159,27 +159,31 @@ function  updateMapWithData (){
       popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
     });
   }
+    
     try{
     var marker = L.marker([feature.geometry.coordinates[0], // Latitude
     feature.geometry.coordinates[1],], { icon: customIcon(feature.properties.maxele, feature.properties.max) });
      marker.addTo(map);
-     let aqi =feature.properties.aqi;
-     if (aqi==-1){
-      aqi="Insufficient data";
-     } else{
-      aqi =aqi + " ug/m3";
-     }
-    marker.bindPopup(`<b>${feature.properties.station}</b>
-                    <br><b>City: ${feature.properties.city}</b>
-                    <br>Aqi: ${aqi}
-                    <br>PM 2.5: ${feature.properties.Pm25} ug/m3
-                    <br>PM 10: ${feature.properties.Pm10} ug/m3
-                    <br>NO2: ${feature.properties.No2} ug/m3
-                    <br>O3: ${feature.properties.Ozone} ug/m3
-                    <br>SO2: ${feature.properties.So2} ug/m3
-                    <br>CO: ${feature.properties.Co} mg/m3
-                    <br>NH3: ${feature.properties.Nh3} ug/m3
-                    `);
+    // let aqi =feature.properties.aqi;
+    //  if (aqi==-1){
+    //   aqi="Insufficient data";
+    //  } else{
+    //   aqi =aqi + " ug/m3";
+    //  }
+    marker.on('click', function() {
+     fetchGovDataForCity(feature.properties.station);
+  });
+    // marker.bindPopup(`<b>${feature.properties.station}</b>
+    //                 <br><b>City: ${feature.properties.city}</b>
+    //                 <br>Aqi: ${aqi}
+    //                 <br>PM 2.5: ${feature.properties.Pm25} ug/m3
+    //                 <br>PM 10: ${feature.properties.Pm10} ug/m3
+    //                 <br>NO2: ${feature.properties.No2} ug/m3
+    //                 <br>O3: ${feature.properties.Ozone} ug/m3
+    //                 <br>SO2: ${feature.properties.So2} ug/m3
+    //                 <br>CO: ${feature.properties.Co} mg/m3
+    //                 <br>NH3: ${feature.properties.Nh3} ug/m3
+    //                 `);
     }catch(error){
       console.log(error);
     }

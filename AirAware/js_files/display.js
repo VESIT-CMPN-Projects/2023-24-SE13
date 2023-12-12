@@ -31,10 +31,15 @@ let aqiValue;
 function fetchGovDataForCity(city) {
   clearModalContent(); // Clear existing modal content
   clearCityName(); // Clear city name in navbar
-
+ 
   var firstmatch = jsongovdataarray.find(
-    (element) => element.properties.city === city
+    (element) => element.properties.station === city
   );
+  if(!firstmatch){
+    firstmatch = jsongovdataarray.find(
+      (element) => element.properties.city === city
+    );
+  }
 
   if (firstmatch) {
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
