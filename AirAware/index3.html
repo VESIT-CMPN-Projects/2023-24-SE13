@@ -18,6 +18,7 @@
             crossorigin="anonymous"></script>
       <title>AIR AWARE</title>
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="..." crossorigin="anonymous">
       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +32,7 @@
       <link rel="icon" href="ImagesOfSite/Air Aware.png">
       <link rel="stylesheet" type="text/css" href="styles3.css" />
       <link rel="stylesheet" type="text/css" href="Different Portals/contact.css" />
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -184,10 +186,18 @@
       <!-- Modal -->
       <div id="govDataModal" class="modal">
             <div class="modal-content">
-                  <span class="close">&times;</span>
-                  <div id="modalContent"></div>
+                  <div class="nav-model">
+                        <h1 class="cityname"></h1>
+                  </div>
+                  <div id="modalContent">
+                        
+                  </div>
             </div>
       </div>
+      
+      
+      <script src="chart.js"></script>
+
     
 
 

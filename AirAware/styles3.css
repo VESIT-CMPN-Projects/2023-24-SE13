@@ -8,7 +8,11 @@ body {
 }
 /* Add this CSS for the modal */
 /* The Modal (background) */
-/* idr se copy kr */
+#mypollutantsChart {
+      width: 300px; /* Set desired width */
+      height: 300px; /* Set desired height */
+    }
+    
 .modal {
       display: none;
       position: fixed;
@@ -23,17 +27,67 @@ body {
     /* Modal Content/Box */
     .modal-content {
       background-color: #fefefe;
-      margin: 0 0 0 52pc;
-      padding: 20px;
+      margin: 0 0 0 60vw;
+      padding: 2vw;
       border: 1px solid #888;
       width: 40%;
     }
+    .modal-content p:first-child{
+      padding-top: 3vw;
+    }
+    .modal-content a{
+      text-decoration: none;
+      color: rgb(21, 168, 226);
+    }
+    .modal-content a:hover{
+      color: #f89058;
+    }
+    .modal-content span{
+      margin-right: 1vw;
+    }
+    .aqi-pollutants{
+      display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Adjust alignment as needed */
+    margin-top: 2vw;
+    gap: 8%;
+    }
+    .aqi-box{
+      position: relative;
+      top: 3vw;
+      border-radius: 20px;
+      padding: 1.5vw;
+      background-color: rgb(174, 224, 243);
+    }
+    .aqi-box h1,h4{
+      color: rgb(30, 76, 141);
+      display: flex;
+      justify-content: center;
+      align-content: center;
+    }
+    /* Additional styles for pollutants div (adjust as needed) */
+    .pollutants {
+      flex-grow: 1;
+      margin-left: 20%; /* Adjust spacing between the boxes */
+    }
+    .nav-model{
+      position: sticky;
+      top: 0; /* Stick to the top of the viewport */
+      background-color: #ffffff; /* Add a background color if needed */
+      z-index: 100; /* Adjust the z-index as necessary */
+    }
+    .cityname{
+      color: rgb(30, 76, 141);
+    }
     /* Close Button */
     .close {
-      color: #aaa;
+      color: white;
       float: right;
-      font-size: 28px;
+      font-size: 2rem;
       font-weight: bold;
+      padding: 1px 2px 1px 2px;
+      background-color: rgb(30, 76, 141);
+      border-radius: 50%;
     }
     
     .close:hover,
@@ -42,7 +96,28 @@ body {
       text-decoration: none;
       cursor: pointer;
     }
-    /* idr tak copy kr for styles3 */
+    #station{
+      padding-top: 5vw;
+    }
+    .standard,.lower-head{
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .pie-head{
+      margin-top: 3rem;
+      margin-bottom: 0.1rem;
+    }
+    .high-pollutant p{
+      font-weight: 500;
+      position: relative;
+      bottom: 5vw;
+      color: #000000;
+      font-size: 1rem;
+    }
+    .high-pollutant p:last-child{
+      font-weight: 300;
+    }
+    
 .navbar {
       padding: 2%;
 }
