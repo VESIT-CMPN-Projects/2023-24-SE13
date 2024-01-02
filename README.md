@@ -1,6 +1,7 @@
 #AirAware
+
 ##Overview
-AirAware is a comprehensive web platform designed to provide real-time data on pollutant levels in various cities across India. This platform aims to offer easily accessible and understandable information regarding air quality indices (AQI), pollutants, and comparative charts for better analysis and awareness.
+-AirAware is a comprehensive web platform designed to provide real-time data on pollutant levels in various cities across India. This platform aims to offer easily accessible and understandable information regarding air quality indices (AQI), pollutants, and comparative charts for better analysis and awareness.
 
 ##Features
 
