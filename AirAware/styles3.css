@@ -1,86 +1,131 @@
 body {
-      /* background-image: url("ImagesOfSite/cloud-image.jpg");
-    background-repeat: no-repeat;
-    background-size:cover; */
-      /* -webkit-filter: blur(100px); */
       background-color: rgba(81, 121, 181, 0.4);
       margin-bottom: 0px;
 }
+
 /* Add this CSS for the modal */
 /* The Modal (background) */
 #mypollutantsChart {
-      width: 300px; /* Set desired width */
-      height: 300px; /* Set desired height */
-    }
-    
+      width: 20%;
+      /* Set desired width */
+      height: 20%;
+      /* Set desired height */
+}
+
 .modal {
       display: none;
+      justify-content: center;
       position: fixed;
       z-index: 10000;
       left: 0;
       top: 0;
       width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.4);
-    }
-    /* Modal Content/Box */
-    .modal-content {
+      
+      /* height: max-content; */
+      background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+/* Modal Content/Box */
+.modal-content {
       background-color: #fefefe;
-      margin: 0 0 0 60vw;
-      padding: 2vw;
+      /* margin: 0 0 0 60vw; */
+      padding: 3.7%;
       border: 1px solid #888;
-      width: 40%;
-    }
-    .modal-content p:first-child{
+      width: 80%;
+      
+}
+
+
+
+
+/* ::-webkit-scrollbar {
+      width: 20px;
+}
+
+::-webkit-scrollbar-track {
+      box-shadow: inset 100px 100px #ffffff;
+      border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+      background: rgb(190, 190, 190);
+      border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+      background: #929292;
+} */
+
+
+
+
+
+.modal-content p:first-child {
       padding-top: 3vw;
-    }
-    .modal-content a{
+}
+
+.modal-content a {
       text-decoration: none;
       color: rgb(21, 168, 226);
-    }
-    .modal-content a:hover{
+}
+
+.modal-content a:hover {
       color: #f89058;
-    }
-    .modal-content span{
+}
+
+.modal-content span {
       margin-right: 1vw;
-    }
-    .aqi-pollutants{
+}
+
+.aqi-pollutants {
       display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Adjust alignment as needed */
-    margin-top: 2vw;
-    gap: 8%;
-    }
-    .aqi-box{
+      justify-content: space-between;
+      align-items: flex-start;
+      /* Adjust alignment as needed */
+      margin-top: 2vw;
+      gap: 8%;
+}
+
+.aqi-box {
       position: relative;
       top: 3vw;
       border-radius: 20px;
       padding: 1.5vw;
       background-color: rgb(174, 224, 243);
-    }
-    .aqi-box h1,h4{
+}
+
+.aqi-box h1,
+h4 {
       color: rgb(30, 76, 141);
       display: flex;
       justify-content: center;
       align-content: center;
-    }
-    /* Additional styles for pollutants div (adjust as needed) */
-    .pollutants {
+}
+
+/* Additional styles for pollutants div (adjust as needed) */
+.pollutants {
       flex-grow: 1;
-      margin-left: 20%; /* Adjust spacing between the boxes */
-    }
-    .nav-model{
+      margin-left: 20%;
+      /* Adjust spacing between the boxes */
+}
+
+.nav-model {
       position: sticky;
-      top: 0; /* Stick to the top of the viewport */
-      background-color: #ffffff; /* Add a background color if needed */
-      z-index: 100; /* Adjust the z-index as necessary */
-    }
-    .cityname{
+      top: 0;
+      /* Stick to the top of the viewport */
+      background-color: #ffffff;
+      /* Add a background color if needed */
+      z-index: 100;
+      /* Adjust the z-index as necessary */
+}
+
+.cityname {
       color: rgb(30, 76, 141);
-    }
-    /* Close Button */
-    .close {
+}
+
+/* Close Button */
+.close {
       color: white;
       float: right;
       font-size: 2rem;
@@ -88,36 +133,42 @@ body {
       padding: 1px 2px 1px 2px;
       background-color: rgb(30, 76, 141);
       border-radius: 50%;
-    }
-    
-    .close:hover,
-    .close:focus {
+}
+
+.close:hover,
+.close:focus {
       color: black;
       text-decoration: none;
       cursor: pointer;
-    }
-    #station{
+}
+
+#station {
       padding-top: 5vw;
-    }
-    .standard,.lower-head{
+}
+
+.standard,
+.lower-head {
       margin-top: 3rem;
       margin-bottom: 1.5rem;
-    }
-    .pie-head{
+}
+
+.pie-head {
       margin-top: 3rem;
       margin-bottom: 0.1rem;
-    }
-    .high-pollutant p{
+}
+
+.high-pollutant p {
       font-weight: 500;
       position: relative;
       bottom: 5vw;
       color: #000000;
       font-size: 1rem;
-    }
-    .high-pollutant p:last-child{
+}
+
+.high-pollutant p:last-child {
       font-weight: 300;
-    }
-    
+}
+
 .navbar {
       padding: 2%;
 }
@@ -150,11 +201,12 @@ body {
 .navbar-brand:hover {
       color: grey;
 }
+
 input::placeholder {
       font-weight: bold;
       opacity: 0.5;
       color: rgb(255, 255, 255);
-    }
+}
 
 .nav-item {
       background-color: rgb(30, 76, 141);
@@ -415,19 +467,29 @@ input::placeholder {
 
 
 @media (max-width:1170px) and (min-width:0px) {
-      .container-fluid{
+      .container-fluid {
             gap: 1%;
       }
 }
+
 @media (max-width:993px) and (min-width:0px) {
-      .navbar-brand-div-inside{
+      .navbar-brand-div-inside {
             padding-left: 0%;
             font-size: 1rem;
             margin-top: 4%;
       }
 }
+
 @media (max-width:609px) and (min-width:0px) {
-      .navbar-menu{
+      .navbar-menu {
             margin-top: 4%;
+      }
+}
+@media (min-width:0px) and (max-width:502px){
+      .modal-content{
+            width: 100%;
+      }
+      .govDataModal{
+            padding: 2%;
       }
 }
