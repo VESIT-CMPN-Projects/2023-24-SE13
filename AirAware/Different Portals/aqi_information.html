@@ -48,12 +48,13 @@
 
             :root {
                   --main-color: #FE043C;
-                  --sec-color: #35cd8c;
+                  --sec-color: white;
                   --color-dark: #1D2231;
                   --text-grey: #8390A2;
             }
 
             * {
+                  overflow-x: hidden;
                   padding: 0;
                   margin: 0 0 0 0;
                   box-sizing: border-box;
@@ -64,12 +65,16 @@
 
             .hero {
                   background-color: var(--sec-color);
-                  position: relative;
-                  height: 50pc;
-                  width: 80pc;
-                  top: 6pc;
+                  /* position: relative; */
+                  height: 20%;
+                  margin-left: 5%;
+                  width: 90%;
+                  margin-top: 3rem;
                   display: flex;
                   justify-content: center;
+                  border-radius: 20px;
+                  padding: 1rem ;
+                  border: 2px solid black;
             }
 
             .hero img {
@@ -78,45 +83,52 @@
             }
 
             .hero h1 {
-                  padding-top: 20px;
+                  padding-top: 1.2rem;
                   font-size: 3rem;
                   text-align: center;
+                  margin: auto ;
             }
 
             .hero p {
-                  padding: 20px 250px 20px 250px;
+                  font-size: 1rem;
+                  margin: auto;
             }
 
             .hero h2 {
                   text-align: center;
                   font-size: 2rem;
+                  margin: auto ;
             }
 
             .pollutants-sec {
-                  position: relative;
-                  top: 10pc;
+                  background-color: white;
                   padding: 10px 25px 10px 25px;
-                  border: 2px solid skyblue;
+                  border: 2px solid rgb(0, 0, 0);
                   border-radius: 20px;
-                  margin: 0px 10px 10px 10px;
+                  margin: 3rem;
                   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
             }
-
             .pollutants-sec h1 {
                   text-align: center;
+                  margin-top: 2rem;
             }
-
-            .pollutant-intro {
-                  padding: 20px 180px 20px 180px;
+            p{
+                  font-size: 1rem;
             }
 
             .pollutants {
                   display: grid;
-                  grid-template-columns: 50% 50%;
+                  grid-template-columns: repeat(2,1fr);
+                  padding-left: 10px;
+                  margin: 0;
+            }
+            .pollutant-intro {
+                  padding: 2rem 8rem 2rem 8rem;
+                  font-size: 1rem;
             }
 
             .pollutant {
-                  border: 2px solid skyblue;
+                  border: 1px solid rgb(0, 0, 0);
                   padding: 20px 20px 20px 20px;
                   border-radius: 20px;
                   gap: 2%;
@@ -125,40 +137,37 @@
             }
 
             .pollutant:hover {
-                  background-color: skyblue;
+                  background-color: rgba(81, 121, 181, 0.4);
                   border: 2px solid rgb(0, 0, 0);
             }
 
             .hero2 {
                   background-color: var(--sec-color);
-                  position: relative;
-                  height: 50pc;
-                  width: 80pc;
-                  top: 12pc;
+                  height: 20%;
                   display: flex;
                   justify-content: center;
+                  border-radius: 20px;
+                  border: 2px solid black;
+                  height: 20%;
+                  width: 90%;
+                  margin-left: 5%;
+                  margin-top: 3rem;
             }
 
             .hero2 img {
                   display: block;
-                  margin: 0 auto;
+                  margin: 1rem auto;
                   position: relative;
                   top: 20px;
             }
 
             .hero2 h1 {
                   padding-top: 25px;
-                  font-size: 3rem;
                   text-align: center;
             }
 
-            .hero2 p {
-                  padding: 20px 250px 20px 250px;
-            }
-
             .aqi-table-sec {
-                  position: relative;
-                  top: 15pc;
+                  margin-top: 2rem;
             }
 
             .aqi-table {
@@ -169,15 +178,74 @@
 
             .aqi-table-sec h2 {
                   text-align: center;
-                  font-size: 2rem;
+                  font-size: 2.5rem;
                   padding-bottom: 20px;
             }
+            .hero2 p,.hero p{
+                  padding: 2rem 12rem 2rem 12rem;
+            }
+            @media (max-width:1170px) and (min-width:0px) {
+      .container-fluid{
+            gap: 1%;
+      }
+      h1{
+            font-size: 3rem !important;
+      }
+      .hero2 p,.hero p{
+            padding: 2rem 12rem 2rem 12rem !important;
+      }
+}
+      @media (max-width:993px) and (min-width:0px) {
+      .navbar-brand-div-inside{
+            padding-left: 0%;
+            font-size: 1rem;
+            margin-top: 4%;
+      }
+      .hero2 p,.hero p{
+            padding: 2rem 4rem 2rem 4rem !important;
+      }
+      h1{
+            font-size: 2.5rem !important;
+      }
+      .pollutant-intro {
+                  padding: 2rem 4rem 2rem 4rem;
+                  font-size: 1rem;
+            }
+}
+      @media (max-width:609px) and (min-width:0px) {
+      .navbar-menu{
+            margin-top: 4%;
+      }
+      h1{
+            font-size: 2rem !important;
+      }
+      h2{
+            font-size: 1.5rem !important;
+      }
+      .hero2 p,.hero p{
+            padding: 2rem 3rem 2rem 3rem !important;
+      }
+      .pollutants {
+                  display: grid;
+                  grid-template-columns: repeat(1,1fr);
+            }
+            .pollutant-intro {
+                  padding: 2rem 2rem 2rem 2rem;
+                  font-size: 1rem;
+            }
+            .aqi-table img{
+                  width: 95vw;
+                  margin: 0 1rem 0 1rem;
+            }
+
+}
+
       </style>
 </head>
 
 <body>
       <nav style="margin-bottom: 1%;background-color: rgb(10, 46, 95);padding: 0%;"
-            class="navbar navbar-light navbar-expand-lg">
+            class="navbar navbar-light navbar-expand-lg" width="100vw">
             <div class="container-fluid"
                   style="display: flex;padding: 0 2%;justify-content: space-evenly;gap: 0%;padding: 1.5%;">
                   <div class="navbar-brand-div">
@@ -246,7 +314,7 @@
       <main>
             <section class="hero" >
                   <div class="hero-inner" style="display: flex;flex-wrap: wrap;">
-                        <img src="ImagesOfSite/icons8-plant-100.png" width="200px">
+                        <!-- <div class="hero-image"><img src="ImagesOfSite/search_logo image.png" width="150px" height=""></div> -->
                         <h1>What is Air Quality Index <br><span>(AQI)?</span></h1>
                         <p> The Air Quality Index, or AQI, is a standardised system used worldwide to assess the quality
                               of the air we breathe. It provides a numerical value and
@@ -261,7 +329,7 @@
                               know how bad the pollution is in different places, making it easier for countries to work
                               together to tackle air pollution.
                         </p>
-                        <img src="ImagesOfSite/icons8-plant-100.png" width="100px">
+                        <img src="ImagesOfSite/icons8-plant-100.png" width="150px" height="">
                   </div>
             </section>
             <section class="pollutants-sec">
@@ -416,16 +484,16 @@
                               pollution to the public. It is calculated using a sub-index for each of the
                               primary pollutants mentioned above, and then the maximum sub-index value is
                               selected to represent the overall AQI value for a given location. The process
-                              involves the following steps:
-                        <p><span class="fas fa-arrow-right"></span><b> Sub-Indices</b> : The concentration of each
+                              involves the following steps:<br><br>
+                        <span class="fas fa-arrow-right"></span><b> Sub-Indices</b> : The concentration of each
                               primary pollutant is
                               transformed into a sub-index, indicating the level of air quality
                               associated with that pollutant. These sub-indices are calculated using
-                              specific equations.</p>
-                        <p><span class="fas fa-arrow-right"></span><b> Select the Maximum Sub-Index</b> : The highest
+                              specific equations.<br><br>
+                        <span class="fas fa-arrow-right"></span><b> Select the Maximum Sub-Index</b> : The highest
                               sub-index value among all the
-                              primary pollutants is chosen as the overall AQI value for that location.</p>
-                        <p><span class="fas fa-arrow-right"></span><b> Color-Coding</b> : The AQI value is associated
+                              primary pollutants is chosen as the overall AQI value for that location.<br><br>
+                        <span class="fas fa-arrow-right"></span><b> Color-Coding</b> : The AQI value is associated
                               with a specific color code,
                               ranging from "Good" (good) to "Hazardous" (maroon), to make it easier
                               for the public to interpret.</p>
@@ -438,9 +506,40 @@
                   </div>
             </section>
       </main>
-      <footer>
+      <div style="background-color: rgb(25, 49, 82);text-align: center;margin-top: 5%;">
+            <div style="font-family: 'Poppins', sans-serif;color: white;padding: 1%;">
+                  <h4 style="margin-top: 2%;">AirAware Developers</h4>
+            </div>
+            <footer>
+                  <div class="footer-divs">
+                        <h6>Aadil Shah ( Leader )</h6>
+                        <p>2022.aadil.shah@ves.ac.in</p>
+                  </div>
+                  <div style="border: solid rgb(255, 255, 255);border-width: 0.2px;"></div>
+                  <div class="footer-divs">
+                        <h6>Anusha Gonal</h6>
+                        <p>2022.anusha.gonal@ves.ac.in</p>
+                  </div>
+                  <div style="border: solid rgb(255, 255, 255);border-width: 0.2px;"></div>
 
-      </footer>
+                  <div class="footer-divs">
+                        <h6>Jennifer Cherriyan</h6>
+                        <p>2022.jennifer.thozhuvathinkal@ves.ac.in</p>
+                  </div>
+                  <div style="border: solid rgb(255, 255, 255);border-width: 0.2px;"></div>
+
+                  <div class="footer-divs">
+                        <h6>Mayuresh Gujare</h6>
+                        <p>2022.mayuresh.gujare@ves.ac.in</p>
+                  </div>
+                  <div style="border: solid rgb(255, 255, 255);;border-width: 0.2px;"></div>
+                  <div class="footer-divs" style="border-right: transparent;">
+                        <h6>Vedant Navani</h6>
+                        <p>2022.vedant.navani@ves.ac.in</p>
+                  </div>
+            </footer>
+      </div>
+
       <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 </body>
 
