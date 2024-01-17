@@ -6,9 +6,9 @@ body {
 /* Add this CSS for the modal */
 /* The Modal (background) */
 #mypollutantsChart {
-      width: 20%;
+      width: 10%;
       /* Set desired width */
-      height: 20%;
+      height: 10%;
       /* Set desired height */
 }
 
@@ -20,7 +20,6 @@ body {
       left: 0;
       top: 0;
       width: 100%;
-      
       /* height: max-content; */
       background-color: rgba(0, 0, 0, 0.4);
 }
@@ -30,9 +29,12 @@ body {
 .modal-content {
       background-color: #fefefe;
       /* margin: 0 0 0 60vw; */
-      padding: 3.7%;
+      padding: 5%;
+      margin-top: 4%;
+      margin-left: 8%;
+      margin-right: 8%;
       border: 1px solid #888;
-      width: 80%;
+      width: 84%;
       
 }
 
@@ -485,11 +487,11 @@ input::placeholder {
             margin-top: 4%;
       }
 }
-@media (min-width:0px) and (max-width:502px){
+/* @media (min-width:0px) and (max-width:502px){
       .modal-content{
             width: 100%;
       }
       .govDataModal{
             padding: 2%;
       }
-}
+} */
