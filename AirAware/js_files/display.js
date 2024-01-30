@@ -40,6 +40,7 @@ function fetchGovDataForCity(city) {
       (element) => element.properties.city === city
     );
   }
+  console.log("searchedd"+firstmatch,city)
 
   if (firstmatch) {
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city

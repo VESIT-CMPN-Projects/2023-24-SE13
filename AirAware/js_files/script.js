@@ -1,33 +1,34 @@
 
 import { updateGovData, jsongovdataarray } from './jsondatafunc.js';
 import apidata from './apidata.js';
-import {fetchGovDataForCity} from './display.js';
+import { fetchGovDataForCity } from './display.js';
 import coordata from './data.js';
-
+import med_data from './med_data.js';
 
 apidata()
   .then(function (response) {
     return response;
   })
   .then(function (data) {
-    console.log("data received", data);
+    // console.log("data received", data);
+    // imp
     updateGovData(data);
   })
 
-  async () => {
-    try {
-      const response = await fetch('YOUR_FIREBASE_FUNCTION_ENDPOINT');
-      const data = await response.json();
-      console.log(data.message); // This will log the response from the function
-    } catch (error) {
-      console.error("Error:", error);
-    }
+async () => {
+  try {
+    const response = await fetch('YOUR_FIREBASE_FUNCTION_ENDPOINT');
+    const data = await response.json();
+    console.log(data.message); // This will log the response from the function
+  } catch (error) {
+    console.error("Error:", error);
   }
+}
 
-  var search = document.getElementById("search-button");
+var search = document.getElementById("search-button");
 
-  var cityin = document.getElementById("cityin");
-  
+var cityin = document.getElementById("cityin");
+
 search.addEventListener("click", () => {
   event.preventDefault();
   // searchit();
@@ -36,12 +37,12 @@ search.addEventListener("click", () => {
     var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
     cityin.value = capitalizedText;
   }
- // console.log(cityin.value);
+  // console.log(cityin.value);
   fetchGovDataForCity(cityin.value);
- 
+
   cityin.value = '';
-  console.log("search button clicked "+cityin.value );
-  
+  console.log("search button clicked " + cityin.value);
+
 });
 
 
@@ -108,7 +109,7 @@ legend.onAdd = function () {
 
   return div;
 };
-console.log("lol")
+// console.log("lol")
 note.addTo(map);
 legend.addTo(map);
 
@@ -127,64 +128,71 @@ document.querySelector('.note').style.marginTop = '10px'; // Adjust the margins 
 // if (!jsongovdataarray || !jsongovdataarray.length) {
 //   jsongovdataarray = coordata;
 // }
-function  updateMapWithData (){
+function updateMapWithData() {
   jsongovdataarray.map(feature => {
 
-    function customIcon(col,val){
+    function customIcon(col, val) {
       var color;
-      if(col=="nh3"){
-        color ="green.png";}
-        else if(col=="co"){
-          color ="blue.png";}
-          else if(col=="so2"){
-            color ="yellow.png";}
-            else if(col=="o3"){
-              color ="orange.png";}
-              else if(col=="no2"){
-                color ="Red.png";}
-                else if(col=="pm10"){
-                  color ="purple.png";}
-                  else if(col=="pm25"){
-                    color ="black.png";}
-                    else{color="grey.png"}
-    return  customIcon = L.icon({
-      iconUrl: `./ImagesOfSite/${color}`,
-    //   html: `<div style=" height:20px;width:20px; position:absolute;">
-    //   <img src="./ImagesOfSite/${color}"  style="width:16px; height:16px; padding: 0;border: none;">
-    //   <div style="">${val}</div>
-    // </div>
-    // `,
-      iconSize: [10, 10], // size of the icon
-      iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
-    });
-  }
-    
-    try{
-    var marker = L.marker([feature.geometry.coordinates[0], // Latitude
-    feature.geometry.coordinates[1],], { icon: customIcon(feature.properties.maxele, feature.properties.max) });
-     marker.addTo(map);
-    // let aqi =feature.properties.aqi;
-    //  if (aqi==-1){
-    //   aqi="Insufficient data";
-    //  } else{
-    //   aqi =aqi + " ug/m3";
-    //  }
-    marker.on('click', function() {
-     fetchGovDataForCity(feature.properties.station);
-  });
-    // marker.bindPopup(`<b>${feature.properties.station}</b>
-    //                 <br><b>City: ${feature.properties.city}</b>
-    //                 <br>Aqi: ${aqi}
-    //                 <br>PM 2.5: ${feature.properties.Pm25} ug/m3
-    //                 <br>PM 10: ${feature.properties.Pm10} ug/m3
-    //                 <br>NO2: ${feature.properties.No2} ug/m3
-    //                 <br>O3: ${feature.properties.Ozone} ug/m3
-    //                 <br>SO2: ${feature.properties.So2} ug/m3
-    //                 <br>CO: ${feature.properties.Co} mg/m3
-    //                 <br>NH3: ${feature.properties.Nh3} ug/m3
-    //                 `);
-    }catch(error){
+      if (col == "nh3") {
+        color = "green.png";
+      }
+      else if (col == "co") {
+        color = "blue.png";
+      }
+      else if (col == "so2") {
+        color = "yellow.png";
+      }
+      else if (col == "o3") {
+        color = "orange.png";
+      }
+      else if (col == "no2") {
+        color = "Red.png";
+      }
+      else if (col == "pm10") {
+        color = "purple.png";
+      }
+      else if (col == "pm25") {
+        color = "black.png";
+      }
+      else { color = "grey.png" }
+      return customIcon = L.icon({
+        iconUrl: `./ImagesOfSite/${color}`,
+        //   html: `<div style=" height:20px;width:20px; position:absolute;">
+        //   <img src="./ImagesOfSite/${color}"  style="width:16px; height:16px; padding: 0;border: none;">
+        //   <div style="">${val}</div>
+        // </div>
+        // `,
+        iconSize: [10, 10], // size of the icon
+        iconAnchor: [5, 5], // point of the icon which will correspond to marker's location
+        popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
+      });
+    }
+
+    try {
+      var marker = L.marker([feature.geometry.coordinates[0], // Latitude
+      feature.geometry.coordinates[1],], { icon: customIcon(feature.properties.maxele, feature.properties.max) });
+      marker.addTo(map);
+      // let aqi =feature.properties.aqi;
+      //  if (aqi==-1){
+      //   aqi="Insufficient data";
+      //  } else{
+      //   aqi =aqi + " ug/m3";
+      //  }
+      marker.on('click', function () {
+        fetchGovDataForCity(feature.properties.station);
+      });
+      // marker.bindPopup(`<b>${feature.properties.station}</b>
+      //                 <br><b>City: ${feature.properties.city}</b>
+      //                 <br>Aqi: ${aqi}
+      //                 <br>PM 2.5: ${feature.properties.Pm25} ug/m3
+      //                 <br>PM 10: ${feature.properties.Pm10} ug/m3
+      //                 <br>NO2: ${feature.properties.No2} ug/m3
+      //                 <br>O3: ${feature.properties.Ozone} ug/m3
+      //                 <br>SO2: ${feature.properties.So2} ug/m3
+      //                 <br>CO: ${feature.properties.Co} mg/m3
+      //                 <br>NH3: ${feature.properties.Nh3} ug/m3
+      //                 `);
+    } catch (error) {
       console.log(error);
     }
     // Adding a popup to the marker
@@ -194,3 +202,116 @@ function  updateMapWithData (){
 
 updateMapWithData();
 export { updateMapWithData };
+
+
+
+function handleInputChange(value) {
+  console.log("Respiratory Disease changed to: " + value);
+  // Add your logic to handle the changed value here
+}
+var respiratoryInputValue = document.getElementById("respiratoryInput");
+
+respiratoryInputValue.addEventListener("change", function (event) {
+  // showSuggestions(respiratoryInputValue.value);
+});
+
+document.getElementById("userInputForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Get input values
+  var cityInputValue = document.getElementById("cityInput");
+  var respiratoryInputValue = document.getElementById("respiratoryInput");
+
+  event.preventDefault();
+  // searchit();
+  var inputValue = cityInputValue.value;
+  if (inputValue.length > 0) {
+    var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+    cityInputValue.value = capitalizedText;
+  }
+  //  console.log(inputValue, capitalizedText);
+  // fetchGovDataForCity(cityInputValue.value);
+  var aqiValue = "none";
+  var city = cityInputValue.value;
+  var firstmatch = jsongovdataarray.find(
+    (element) => element.properties.station === city
+  );
+  if (!firstmatch) {
+    firstmatch = jsongovdataarray.find(
+      (element) => element.properties.city === city
+    );
+  }
+
+  if (firstmatch) {
+    aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
+  }
+  console.log(firstmatch, city)
+
+  // cityin.value = '';
+  // console.log("search button clicked "+cityin.value );
+
+  // Log or use the input values as needed
+  console.log("aqi: " + aqiValue);
+
+  console.log("City: " + cityInputValue.value);
+  console.log("Respiratory Diseases: " + respiratoryInputValue.value);
+  var disease = respiratoryInputValue.value;
+
+  // console.log(disease==="Asthma")
+  const medkey = Object.keys(med_data);
+
+  medkey.forEach(item => {
+    // console.log(med_data[item])
+
+    if (med_data[item].disease === disease) {
+      if(aqiValue>= med_data[item].aqi){
+        console.log("not safe")
+      }else{
+        console.log("safe")
+      }
+      console.log(med_data[item])
+    } else {
+      // console.log(item)
+    }
+  })
+})
+
+
+
+
+const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
+
+function showSuggestions(input) {
+  console.log("sdbkj" + respiratoryInputValue.value)
+
+  const suggestionsContainer = document.getElementById("suggestions");
+  suggestionsContainer.innerHTML = ""; // Clear previous suggestions
+
+  const filteredDiseases = diseases.filter(disease =>
+    disease.toLowerCase().includes(input.toLowerCase())
+  );
+
+  if (filteredDiseases.length > 0) {
+    filteredDiseases.forEach(disease => {
+      const suggestionElement = document.createElement("div");
+      suggestionElement.classList.add("suggestion");
+      suggestionElement.textContent = disease;
+      suggestionElement.addEventListener("click", function () {
+        document.getElementById("respiratoryInput").value = disease;
+        suggestionsContainer.style.display = "none";
+      });
+      suggestionsContainer.appendChild(suggestionElement);
+    });
+
+    suggestionsContainer.style.display = "block";
+  } else {
+    suggestionsContainer.style.display = "none";
+  }
+}
+
+// Close suggestions when clicking outside the input and suggestions container
+document.addEventListener("click", function (event) {
+  if (!event.target.matches("#respiratoryInput") && !event.target.matches(".suggestion")) {
+    document.getElementById("suggestions").style.display = "none";
+  }
+});

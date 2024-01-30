@@ -283,3 +283,18 @@
       color: black;
   }
   
+  #suggestions {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+  }
+  .suggestion {
+    padding: 10px;
+    cursor: pointer;
+  }
+  .suggestion:hover {
+    background-color: #ddd;
+  }
