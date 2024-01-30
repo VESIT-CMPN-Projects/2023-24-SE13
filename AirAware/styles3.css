@@ -6,12 +6,10 @@ body {
 /* Add this CSS for the modal */
 /* The Modal (background) */
 #mypollutantsChart {
-      width: 10%;
-      /* Set desired width */
-      height: 10%;
-      /* Set desired height */
-}
-
+      width: 80% !important;
+      height: 700px !important;
+      margin-bottom: 2rem;
+    }
 .modal {
       display: none;
       justify-content: center;
@@ -31,10 +29,10 @@ body {
       /* margin: 0 0 0 60vw; */
       padding: 5%;
       margin-top: 4%;
-      margin-left: 8%;
+      margin-left: 16%;
       margin-right: 8%;
       border: 1px solid #888;
-      width: 84%;
+      width: 70%;
       
 }
 

@@ -37,6 +37,8 @@
 
 <body>
       <div class="map-and-table" style="display: flex; justify-content: space-around; gap: 0px; padding: 0%">
+            
+         
             <div class="map-container" >
                   <div id="map"></div>
                   <div class="nav-container" id="customControl"
@@ -138,7 +140,17 @@
                   </div>
             </div>
       </div>
+      <h2>User Information</h2>
+      <form id="userInputForm">
+    <label for="cityInput">City:</label>
+    <input type="text" id="cityInput" name="cityInput" placeholder="Enter your city" required>
 
+    <label for="respiratoryInput">Respiratory Diseases:</label>
+    <input type="text" id="respiratoryInput" name="respiratoryInput" placeholder="Enter respiratory diseases">
+
+    <button type="submit">Submit</button>
+</form> 
+       
       <!-- <div style="background-color: rgb(25, 49, 82);text-align: center;margin-top: 5%;position: absolute;">
             <div style="font-family: 'Poppins', sans-serif;color: white;padding: 1%;">
                   <h4 style="margin-top: 2%;">AirAware Developers</h4>
@@ -183,6 +195,7 @@
                   </div>
             </div>
       </div>
+      
       
       
       <script src="chart.js"></script>

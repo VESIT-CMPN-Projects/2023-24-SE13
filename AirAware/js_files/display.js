@@ -186,9 +186,9 @@ if (maxPollutant === 'CO') {
     </table></div>
     </div>
     <h4 class="standard">Standard AQI values</h4>
-    <img src="ImagesOfSite/aqi_modalchart.png" width="100%">
+    <img src="ImagesOfSite/aqi_modalchart.png" width="80%" height="80%">
     <h4 class="pie-head">Distribution of Pollutants</h4>
-    <canvas id="mypollutantsChart" width="100" height="100"></canvas>
+    <canvas id="mypollutantsChart" width="100%" height="100px"></canvas>
     <div class="high-pollutant">
     <p>Highest Pollutant: ${maxPollutant}</p>
     <p>Highest Pollutant Value: ${maxPollutantValue} ug/m<sup>3</sup></p>
@@ -218,58 +218,105 @@ if (maxPollutant === 'CO') {
 
     govDataModal.style.display = 'block';
 
-    // Creating the pie chart using Chart.js
-    const pollutantsData = {
-      NH3: firstmatch.properties.Nh3,
-      CO: firstmatch.properties.Co,
-      SO2: firstmatch.properties.So2,
-      Ozone: firstmatch.properties.Ozone,
-      NO2: firstmatch.properties.No2,
-      PM25: firstmatch.properties.Pm25,
-      PM10: firstmatch.properties.Pm10,
-    };
+    
 
-    const data = {
-      labels: ['NH3', 'CO', 'SO2', 'Ozone', 'NO2', 'PM2.5', 'PM10'],
-      datasets: [
-        {
-          data: Object.values(pollutantsData),
-          backgroundColor: [
-            'green',
-            'blue',
-            'yellow',
-            'orange',
-            'red',
-            'black',
-            'purple',
-          ],
-        },
+// Creating the bar chart using Chart.js
+const ctxBar = document.getElementById('mypollutantsChart').getContext('2d');
+
+ctxBar.canvas.width = 100; // Set your desired width
+ctxBar.canvas.height = 200; 
+
+const pollutantsData = {
+  NH3: firstmatch.properties.Nh3,
+  CO: firstmatch.properties.Co,
+  SO2: firstmatch.properties.So2,
+  Ozone: firstmatch.properties.Ozone,
+  NO2: firstmatch.properties.No2,
+  PM25: firstmatch.properties.Pm25,
+  PM10: firstmatch.properties.Pm10,
+};
+
+// Filter out pollutants with 0 values
+const filteredLabels = [];
+const filteredData = [];
+
+Object.keys(pollutantsData).forEach((pollutant) => {
+  const value = pollutantsData[pollutant];
+  if (!isNaN(value) && value !== 0) {
+    filteredLabels.push(pollutant);
+    filteredData.push(value);
+  }
+});
+
+const barChartData = {
+  labels: filteredLabels,
+  datasets: [
+    { 
+      label: 'Pollutant Values (ug/m^3)',
+      data: filteredData,
+      backgroundColor: [
+        'rgba(75, 192, 192, 0.6)', // Teal
+  'rgba(255, 99, 132, 0.6)', // Red
+  'rgba(255, 205, 86, 0.6)', // Yellow
+  'rgba(255, 159, 64, 0.6)', // Orange
+  'rgba(153, 102, 255, 0.6)', // Purple
+  'rgba(255, 0, 0, 0.6)', // Dark Red
+  'rgba(0, 128, 0, 0.6)', // Dark Green
       ],
-    };
+      borderWidth: 1, // Add border width for better visibility
+    },
+  ],
+};
 
-    const ctxPie = document.getElementById('mypollutantsChart').getContext('2d');
-    const myPieChart = new Chart(ctxPie, {
-      type: 'pie',
-      data: data,
-      options: {
-        plugins: {
-          legend: {
-            position: 'right',
-          },
-          tooltip: {
-            callbacks: {
-              label: (context) => {
-                const label = data.labels[context.dataIndex];
-                const value = data.datasets[0].data[context.dataIndex];
-                const total = data.datasets[0].data.reduce((acc, val) => acc + val);
-                const percentage = ((value / total) * 100).toFixed(2);
-                return `${label}: ${value} (${percentage}%)`;
-              },
-            },
+new Chart(ctxBar, {
+  type: 'bar',
+  data: barChartData,
+  options: {
+    scales: {
+      x: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Pollutants',
+        },
+        grid: {
+          display: false, // Set to false to hide x-axis grid lines
+        },
+        font: {
+          size: 20, // Increase font size as needed
+        },
+
+      },
+
+      y: {
+        display: true,
+        title: {
+          display: true,
+          text: 'Pollutant Values (ug/m^3)',
+        },
+         grid: {
+          display: false, // Set to false to hide x-axis grid lines
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false, // Set to true if you want to display the legend
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const label = barChartData.labels[context.dataIndex];
+            const value = context.parsed.y;
+            return `${label}: ${value} ug/m^3`;
           },
         },
       },
-    });
+    },
+  },
+});
+
+    
 
     spanClose.addEventListener('click', function () {
       govDataModal.style.display = 'none';
