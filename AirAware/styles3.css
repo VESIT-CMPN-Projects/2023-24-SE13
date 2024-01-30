@@ -26,6 +26,7 @@ body {
 /* Modal Content/Box */
 .modal-content {
       background-color: #fefefe;
+      font-family: 'Poppins', sans-serif;
       /* margin: 0 0 0 60vw; */
       padding: 5%;
       margin-top: 4%;
@@ -80,11 +81,11 @@ body {
 
 .aqi-pollutants {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: flex-start;
       /* Adjust alignment as needed */
       margin-top: 2vw;
-      gap: 8%;
+      gap: 10%;
 }
 
 .aqi-box {
