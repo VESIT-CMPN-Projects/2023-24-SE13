@@ -232,7 +232,7 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
   //  console.log(inputValue, capitalizedText);
   // fetchGovDataForCity(cityInputValue.value);
   var aqiValue = "none";
-  var city = cityInputValue.value;
+  var city = locationInput.value;
   var firstmatch = jsongovdataarray.find(
     (element) => element.properties.station === city
   );
@@ -309,26 +309,37 @@ function updateModalText() {
 }
 
 
+document.addEventListener('DOMContentLoaded', (event) => {
+  let locationInput = document.getElementById('locationInput');
 
-const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
+  locationInput.oninput = function() {
+      // Your code here
+      showSuggestions(locationInput.value)
+      console.log(locationInput.value);
+  }
+});
+// const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
 
 function showSuggestions(input) {
-  console.log("sdbkj" + respiratoryInputValue.value)
+  // console.log("sdbkj" + respiratoryInputValue.value)
 
   const suggestionsContainer = document.getElementById("suggestions");
   suggestionsContainer.innerHTML = ""; // Clear previous suggestions
+const cokeys =Object.keys(coordata);
 
-  const filteredDiseases = diseases.filter(disease =>
-    disease.toLowerCase().includes(input.toLowerCase())
+  const filteredDiseases = cokeys.filter(key =>
+    coordata[key].properties.station.toLowerCase().includes(input.toLowerCase())
+    // disease.toLowerCase().includes(input.toLowerCase())
   );
 
   if (filteredDiseases.length > 0) {
-    filteredDiseases.forEach(disease => {
+    filteredDiseases.forEach(item => {
+var disease =coordata[item].properties.station
       const suggestionElement = document.createElement("div");
       suggestionElement.classList.add("suggestion");
       suggestionElement.textContent = disease;
       suggestionElement.addEventListener("click", function () {
-        document.getElementById("respiratoryInput").value = disease;
+        document.getElementById("locationInput").value = disease;
         suggestionsContainer.style.display = "none";
       });
       suggestionsContainer.appendChild(suggestionElement);
