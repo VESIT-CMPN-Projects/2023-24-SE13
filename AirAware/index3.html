@@ -139,9 +139,6 @@
                   </p>
                 </button>
 
-                <!-- <button id="submit2">
-                                                faltu beech me a rha tha
-                                          </button> -->
               </form>
 
               <div class="navbar-brand-div">
@@ -325,30 +322,64 @@
         </div>
       </div>
     </div>
-    <h2>User Information</h2>
-    <form id="userInputForm">
-      <label for="cityInput">City:</label>
-      <input
-        type="text"
-        id="cityInput"
-        name="cityInput"
-        placeholder="Enter your city"
-        required
-      />
-
-      <label for="respiratoryInput">Respiratory Diseases:</label>
-      <input
-        type="text"
-        id="respiratoryInput"
-        name="respiratoryInput"
-        placeholder="Enter respiratory diseases"
-      />
+    <!--  -->
       <!--NOTE: check script js line 268 and 270 for conclusion output of safe or not -->
       <!-- <div id="suggestions"></div>  -->
       <!-- styling in styl.css at line 286 -->
-      <button type="submit">Submit</button>
-    </form>
+<!-- Add a div to display the safety status -->
 
+<div class="respiratory-form">
+  <h1 class="respiratory-head">Navigating Cities with Respiratory Resilience</h1>
+  <div class="form-section">
+    <div class="respiratory-img">
+      <img src="Different Portals/ImagesOfSite/respiratory1.jpeg" width="450px">
+    </div>
+    <div class="respiratory-info">
+      <form id="userInputForm">
+        <label for="cityInput">Enter your city:</label>
+        <input
+          type="text"
+          id="cityInput"
+          name="cityInput"
+          placeholder="Enter your city"
+          required
+        />
+        <label for="locationInput">Enter your location:</label>
+        <input
+          type="text"
+          id="locationInput"
+          name="locationInput"
+          placeholder="Enter your city"
+          required
+        />
+        <label for="respiratoryInput">Enter the Respiratory Disease:</label>
+        <select id="respiratoryInput" name="respiratoryInput">
+          <!-- Add options dynamically or manually -->
+          <option value="Asthma">Asthma</option>
+          <option value="COPD">COPD</option>
+          <option value="Bronchitis">Bronchitis</option>
+          <option value="Emphysema">Emphysema</option>
+          <option value="LungCancer">Lung Cancer</option>
+          <option value="Influenza">Influenza</option>
+          <option value="PleuralEffusion">Pleural Effusion</option>
+          <option value="Bronchiectasis">Bronchiectasis</option>
+          <!-- Add more respiratory diseases as needed -->
+        </select>
+       
+        <button type="submit" class="resp-button">Submit</button>
+        <div id="safetyStatus"></div>
+      </form>
+    </div>  
+    </div>
+</div>
+<div id="resultModal" class="modal-resp">
+  <div class="modal-content-resp">
+    <span class="close" onclick="closeResultModal()">&times;</span>
+    <p id="modalText-resp">City is Safe/Not Safe!</p>
+  </div>
+</div>
+  
+</section>
     <!-- <div style="background-color: rgb(25, 49, 82);text-align: center;margin-top: 5%;position: absolute;">
             <div style="font-family: 'Poppins', sans-serif;color: white;padding: 1%;">
                   <h4 style="margin-top: 2%;">AirAware Developers</h4>

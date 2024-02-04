@@ -256,26 +256,57 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
   console.log("City: " + cityInputValue.value);
   console.log("Respiratory Diseases: " + respiratoryInputValue.value);
   var disease = respiratoryInputValue.value;
+  let safetyStatus = "Unknown";
 
-  // console.log(disease==="Asthma")
   const medkey = Object.keys(med_data);
 
   medkey.forEach(item => {
-    // console.log(med_data[item])
-
     if (med_data[item].disease === disease) {
-      if(aqiValue>= med_data[item].aqi){
-        console.log("not safe")
-      }else{
-        console.log("safe")
+      if (aqiValue >= med_data[item].aqi) {
+        safetyStatus = "Not Safe";
+        console.log("Not Safe");
+      } else {
+        safetyStatus = "Safe";
+        console.log("Safe")
       }
-      console.log(med_data[item])
+      console.log(med_data[item]);
     } else {
       // console.log(item)
     }
-  })
-})
+  });
 
+  // Display the safety status on the HTML page
+  document.getElementById('safetyStatus').innerText = `Safety Status: ${safetyStatus}`;
+});
+// script.js
+function showResultModal() {
+  // Display the modal
+  document.getElementById('resultModal').style.display = 'block';
+
+  // Call the logic to check if the city is safe or not and update the modal text
+  updateModalText();
+}
+
+function closeResultModal() {
+  // Close the modal
+  document.getElementById('resultModal').style.display = 'none';
+}
+
+function updateModalText() {
+  // Add your logic to determine if the city is safe or not
+  // For now, let's assume it's based on a variable named 'isCitySafe'
+  const isCitySafe = true; // Replace this with your actual logic
+
+  // Get the modal text element
+  const modalTextElement = document.getElementById('modalText-resp');
+
+  // Update the modal text based on the result
+  if (isCitySafe) {
+    modalTextElement.innerText = 'City is Safe!';
+  } else {
+    modalTextElement.innerText = 'City is Not Safe!';
+  }
+}
 
 
 

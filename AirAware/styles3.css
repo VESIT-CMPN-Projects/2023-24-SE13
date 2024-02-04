@@ -2,6 +2,76 @@ body {
       background-color: rgba(81, 121, 181, 0.4);
       margin-bottom: 0px;
 }
+.respiratory-form {
+      position: relative;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+    
+    .form-section{
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+    } 
+    .corner-image {
+      position: absolute;
+      top: 10px;
+      right: 30px;
+      max-width: 50px; 
+      border-radius: 5px;
+    }
+    #userInputForm label{
+      margin-top: 1rem;
+      font-family: 'Poppins', sans-serif
+    }
+    #userInputForm input,select{
+      padding: 5px;
+      border: none; 
+      border-bottom: 1px solid black; 
+      outline: none;
+    }
+    #userInputForm button{
+      margin-top: 1rem;
+      padding: 0.8rem;
+      font-family: 'Poppins', sans-serif;
+      background-color: rgb(30, 76, 141);
+    }
+    .respiratory-info{
+      padding: 0px;
+      position: relative;
+      right: 4rem;
+      top: 3rem;
+    }
+    .respiratory-head{
+      color: rgb(30, 76, 141);
+      font-family: 'Poppins', sans-serif
+    }
+    #userInputForm{
+      display: flex;
+      flex-direction: column;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    label {
+      margin-bottom: 8px;
+    }
+    
+    select, .resp-button {
+      margin-bottom: 16px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    
+    .resp-button {
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
 /* Add this CSS for the modal */
 /* The Modal (background) */
@@ -10,7 +80,11 @@ body {
       height: 700px !important;
       margin-bottom: 2rem;
     }
-.modal {
+.respiratory-img{
+      position: relative;
+      left: 8rem;
+}
+.modal,.modal-resp {
       display: none;
       justify-content: center;
       position: fixed;
@@ -21,10 +95,12 @@ body {
       /* height: max-content; */
       background-color: rgba(0, 0, 0, 0.4);
 }
-
+#modalText-resp{
+      color: #000000;
+}
 
 /* Modal Content/Box */
-.modal-content {
+.modal-content,.modal-content-resp {
       background-color: #fefefe;
       font-family: 'Poppins', sans-serif;
       /* margin: 0 0 0 60vw; */
