@@ -219,16 +219,16 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
   event.preventDefault(); // Prevent the default form submission
 
   // Get input values
-  var cityInputValue = document.getElementById("cityInput");
+  // var cityInputValue = document.getElementById("cityInput");
   var respiratoryInputValue = document.getElementById("respiratoryInput");
 
   event.preventDefault();
   // searchit();
-  var inputValue = cityInputValue.value;
-  if (inputValue.length > 0) {
-    var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-    cityInputValue.value = capitalizedText;
-  }
+  // var inputValue = cityInputValue.value;
+  // if (inputValue.length > 0) {
+  //   var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+  //   cityInputValue.value = capitalizedText;
+  // }
   //  console.log(inputValue, capitalizedText);
   // fetchGovDataForCity(cityInputValue.value);
   var aqiValue = "none";
@@ -238,11 +238,13 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
   );
   if (!firstmatch) {
     firstmatch = jsongovdataarray.find(
-      (element) => element.properties.city === city
+      (element) => element.properties.city.toLowerCase() === city.toLowerCase()
     );
   }
 
   if (firstmatch) {
+    document.getElementById("locationInput").value = firstmatch.properties.station;
+
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
   }
   console.log(firstmatch, city)
@@ -253,7 +255,7 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
   // Log or use the input values as needed
   console.log("aqi: " + aqiValue);
 
-  console.log("City: " + cityInputValue.value);
+  // console.log("City: " + cityInputValue.value);
   console.log("Respiratory Diseases: " + respiratoryInputValue.value);
   var disease = respiratoryInputValue.value;
   let safetyStatus = "Unknown";
@@ -311,21 +313,21 @@ function updateModalText() {
 
 document.addEventListener('DOMContentLoaded', (event) => {
   let locationInput = document.getElementById('locationInput');
-
-  locationInput.oninput = function() {
-      // Your code here
-      showSuggestions(locationInput.value)
-      console.log(locationInput.value);
+  // console.log("sum is ", sum, money.length)
+  locationInput.oninput = function () {
+    // Your code here
+    showSuggestions(locationInput.value)
+    console.log(locationInput.value);
   }
 });
 // const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
-
+const cokeys = Object.keys(coordata);
+// console.log(coordata);
 function showSuggestions(input) {
   // console.log("sdbkj" + respiratoryInputValue.value)
 
   const suggestionsContainer = document.getElementById("suggestions");
   suggestionsContainer.innerHTML = ""; // Clear previous suggestions
-const cokeys =Object.keys(coordata);
 
   const filteredDiseases = cokeys.filter(key =>
     coordata[key].properties.station.toLowerCase().includes(input.toLowerCase())
@@ -334,7 +336,7 @@ const cokeys =Object.keys(coordata);
 
   if (filteredDiseases.length > 0) {
     filteredDiseases.forEach(item => {
-var disease =coordata[item].properties.station
+      var disease = coordata[item].properties.station
       const suggestionElement = document.createElement("div");
       suggestionElement.classList.add("suggestion");
       suggestionElement.textContent = disease;
@@ -356,4 +358,79 @@ document.addEventListener("click", function (event) {
   if (!event.target.matches("#respiratoryInput") && !event.target.matches(".suggestion")) {
     document.getElementById("suggestions").style.display = "none";
   }
+});
+
+
+// script.js
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to update the table body with new data
+  function updateTableBody() {
+    // Get the table body element
+    var tableBody_poll = document.querySelector("#mostHarmful tbody");
+    var tableBody_safe = document.querySelector("#safestPlaces tbody");
+
+    // Clear existing rows
+    tableBody_poll.innerHTML = "";
+    tableBody_safe.innerHTML = "";
+
+   
+    var sortt = coordata.sort(function (a, b) {
+      // Assuming the data type of the column is numeric
+      // For descending order, switch the positions of a and b in the comparison
+      return b.properties.aqi - a.properties.aqi;
+    });
+    
+    var top10 = sortt.slice(0, 10);
+
+    // Get the last 10 elements
+    // var last10 = sortt.slice(-10).reverse();
+  
+    var indexOfElement = sortt.findIndex(item => item.properties.aqi === -1); // Replace the criteria as needed
+
+    if (indexOfElement !== -1) {
+      // Get the 10 elements before the particular element
+      var last10 = sortt.slice(Math.max(0, indexOfElement - 10), indexOfElement).reverse();
+
+      // Output the result
+      // console.log("10 elements before the particular element:", elementsBefore,indexOfElement);
+    } else {
+      // console.log("Element not found in the array.");
+    }
+
+    top10.forEach(item=>{
+      item.id = top10.findIndex(item2=>item2===item) +1
+    })
+    // console.log(top10, last10);
+    // Loop through the new data and create new rows
+    top10.forEach(function (cityData) {
+      var newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${cityData.id}</td>
+        <td>${cityData.properties.station}</td>
+        <td>${cityData.properties.state}</td>
+        <td>${cityData.properties.aqi}</td>
+      `;
+      tableBody_poll.appendChild(newRow);
+    });
+
+    last10.forEach(item=>{
+      item.id = last10.findIndex(item2=>item2===item) +1
+    })
+    console.log(top10, last10);
+    // Loop through the new data and create new rows
+    last10.forEach(function (cityData) {
+      var newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${cityData.id}</td>
+        <td>${cityData.properties.station}</td>
+        <td>${cityData.properties.state}</td>
+        <td>${cityData.properties.aqi}</td>
+      `;
+      tableBody_safe.appendChild(newRow);
+    });
+  }
+
+  // Call the updateTableBody function to initially populate the table
+  updateTableBody();
 });

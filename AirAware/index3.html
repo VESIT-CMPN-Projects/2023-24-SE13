@@ -221,22 +221,22 @@
                   </div>
                   <div class="respiratory-info">
                         <form id="userInputForm" style="font-size: 1.2rem;">
-                              <label for="cityInput">Enter your city:</label>
-                              <input type="text" id="cityInput" name="cityInput" placeholder="Enter your city" />
-                              <label for="locationInput">Enter your location:</label>
-                              <input type="text" id="locationInput" name="locationInput" placeholder="Enter your city"
+                              <!-- <label for="cityInput">Enter your city:</label> -->
+                              <!-- <input type="text" id="cityInput" name="cityInput" placeholder="Enter your city" /> -->
+                              <label for="locationInput">Enter your location or city:</label>
+                              <input type="text" id="locationInput" name="locationInput" placeholder="Enter your city" autocomplete="off"
                                     required />
                               <div id="suggestions"></div>
                               <label for="respiratoryInput">Enter the Respiratory Disease:</label>
                               <select id="respiratoryInput" name="respiratoryInput">
                                     <!-- Add options dynamically or manually -->
                                     <option value="Asthma">Asthma</option>
-                                    <option value="COPD">COPD</option>
+                                    <option value="Chronic obstructive pulmonary disease (COPD)">COPD</option>
                                     <option value="Bronchitis">Bronchitis</option>
                                     <option value="Emphysema">Emphysema</option>
-                                    <option value="LungCancer">Lung Cancer</option>
+                                    <option value="Lung Cancer">Lung Cancer</option>
                                     <option value="Influenza">Influenza</option>
-                                    <option value="PleuralEffusion">Pleural Effusion</option>
+                                    <option value="Pleural effusion">Pleural Effusion</option>
                                     <option value="Bronchiectasis">Bronchiectasis</option>
                                     <!-- Add more respiratory diseases as needed -->
                               </select>
@@ -271,7 +271,8 @@
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>City Name</th>
+                <th>City </th>
+                <th>State</th>
                 <th>AQI Value</th>
               </tr>
             </thead>
@@ -307,7 +308,8 @@
             <thead>
               <tr>
                 <th>Rank</th>
-                <th>City Name</th>
+                <th>City </th>
+                <th>State</th>
                 <th>AQI Value</th>
               </tr>
             </thead>
