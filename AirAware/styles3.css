@@ -730,14 +730,6 @@ input::placeholder {
       #mostHarmful,
       #safestPlaces {
             width: 80%;
+            margin-top: 8%;
       }
 }
-
-/* @media (min-width:0px) and (max-width:502px){
-      .modal-content{
-            width: 100%;
-      }
-      .govDataModal{
-            padding: 2%;
-      }
-} */
