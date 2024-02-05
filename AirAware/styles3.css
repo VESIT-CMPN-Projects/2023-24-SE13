@@ -689,7 +689,8 @@ input::placeholder {
       .navbar-menu {
             margin-top: 4%;
       }
-      .additional-info-container{
+
+      .additional-info-container {
             font-size: 0.9rem;
       }
 }
@@ -712,7 +713,8 @@ input::placeholder {
             margin-top: 9%;
             width: 80%;
       }
-      .listofcities{
+
+      .listofcities {
             margin-top: 6%;
             display: flex;
             justify-content: center;
@@ -720,10 +722,13 @@ input::placeholder {
             padding: 0px;
             flex-direction: column;
       }
-      .additional-info-container{
+
+      .additional-info-container {
             margin: 0px;
       }
-      #mostHarmful, #safestPlaces{
+
+      #mostHarmful,
+      #safestPlaces {
             width: 80%;
       }
 }
