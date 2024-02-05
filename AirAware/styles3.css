@@ -89,10 +89,13 @@ thead {
 }
 
 th {
+      
       border-bottom: 1px solid #ddd;
       /* Bottom border for th elements */
 }
-
+.rank-th{
+      width: 3%;
+}
 tbody tr:nth-child(even) {
       background-color: #76afda4a;
       /* Alternate row background color */
