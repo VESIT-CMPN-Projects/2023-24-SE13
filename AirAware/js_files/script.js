@@ -200,7 +200,6 @@ function updateMapWithData() {
 }
 
 updateMapWithData();
-export { updateMapWithData };
 
 
 
@@ -341,10 +340,10 @@ document.addEventListener("click", function (event) {
 
 
 // script.js
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to update the table body with new data
-  function updateTableBody() {
+function updatetabledata(datafortable){
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Function to update the table body with new data
+//   function updateTableBody() {
     // Get the table body element
     var tableBody_poll = document.querySelector("#mostHarmful tbody");
     var tableBody_safe = document.querySelector("#safestPlaces tbody");
@@ -354,12 +353,14 @@ document.addEventListener("DOMContentLoaded", function () {
     tableBody_safe.innerHTML = "";
 
    
-    var sortt = coordata.sort(function (a, b) {
+    var sortt = datafortable.sort(function (a, b) {
       // Assuming the data type of the column is numeric
       // For descending order, switch the positions of a and b in the comparison
       return b.properties.aqi - a.properties.aqi;
     });
-    
+    console.log(coordata)
+    console.log(jsongovdataarray)
+    console.log(sortt)
     var top10 = sortt.slice(0, 10);
 
     // Get the last 10 elements
@@ -411,6 +412,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Call the updateTableBody function to initially populate the table
-  updateTableBody();
-});
+  // updateTableBody();
+// });
 
+
+
+
+
+export { updateMapWithData ,updatetabledata};

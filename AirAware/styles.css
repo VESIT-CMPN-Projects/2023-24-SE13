@@ -1,300 +1,770 @@
-.navbar {
-      padding: 2%;
+body {
+    background-color: rgba(81, 121, 181, 0.4);
+    margin-bottom: 0px;
+}
+.popup {
+    font-family: 'Poppins', sans-serif;
+    border-radius: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 2rem;
+    z-index: 1000;
   }
-  .navbar-brand-div{
-      display: flex;
-      align-items: center;
-      gap: 5%;
-      
+  .know-more{
+    color: white;
+    margin-left: 25rem;
   }
-  .brand-logo{
-      text-decoration: none;
-      display: flex;
-      /* border-radius: 100%;
-      background-color: rgb(151, 151, 151); */
-      align-items: center;
-      color: rgb(43, 43, 110);
-  }
-  .brand-logo:hover{
-      color: rgb(99, 99, 119);
-  }
-  .navbar-brand{
-      color: rgb(4, 4, 41);
-      text-decoration: none;
-  }
-  .navbar-brand:hover{
-      color: grey;
-  }
-  .nav-item{
-      border-right: solid black;
-      border-width: 0.2rem;    
-      background-color: rgba(255, 255, 255, 0.9);
-                      border-radius: 50px; 
-  }
-  body {
-      /* background-image: url("ImagesOfSite/cloud-image.jpg");
-      background-repeat: no-repeat;
-      background-size:cover; */
-      /* -webkit-filter: blur(100px); */
-      background-color: rgba(81, 121, 181, 0.4);
-      margin-bottom: 0px;
-  }
-  /* 
-  .btn btn-outline-success {
-      background-color: white;
-      color: white;
-  } */
-  
-  .airaware-image-logo {
-      background-color: none;
+  .know-more:hover{
+    color: black;
   }
   
-  #customControl {
-      position: absolute;
-      top: 10px;
-     
-      z-index: 1000;
-     
-      border: none;
-      border-radius: 5px;
+  .green {
+    background-color: green;
+    color: white;
   }
   
-  .logo-brand-div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+  .red {
+    background-color: rgb(158, 6, 6);
+    color: white;
   }
   
-  .navbar {
-      display: flex;
-      justify-content: space-around;
-      font-size: 1.5rem;
-      padding: 0.3%;
-      align-items: center;
-  }
-  
-  .navbar>.container-fluid {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      flex-direction: row;
-  }
-  
-  .navbar-things {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  }
-  
-  .navbar-nav {
-      display: flex;
-      justify-content: flex-start;
-      flex-direction: row;
-      gap: 5%;
-  }
-  
-  
-  .navbar-brand {
-      margin-left: 0%;
-      font-family: 'Raleway', sans-serif;
-      align-self: center;
-      font-size: 2rem;
-      color: rgb(255, 255, 255);
-  }
-  
-  .navbar-brand:hover {
-      color: rgb(127, 179, 246);
-  }
-  
-  .button-container {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 60vh;
-      margin-left: 5vw;
-  }
-  
-  #button1 {
-      width: 20%;
-  }
-  
-  
-  
-  .red-level {
-      background-color: #f85858;
-      border-radius: 15%;
-  }
-  
-  .orange-level {
-      background-color: #f89058;
-      border-radius: 15%;
-  }
-  
-  .most-polluted-city {
-      font-family: 'Lexend', sans-serif;
-      font-size: 2.5rem;
-  }
-  
-  .city-fonts {
-      font-size: 1.5rem;
-  }
-  
-  .input {
-      margin-top: 5px;
-  }
-  
-  #button {
-      margin-left: 0px;
-  }
-  
-  #button1,
-  #button2,
-  #button3 {
-      width: 0vw;
-      height: 0px;
-      font-size: 1rem;
-      border-radius: 3px;
-      padding: 0px;
-      color: rgb(0, 0, 0);
-      /* background-color: white; */
-      /* border-radius: 10%; */
-      background-attachment: scroll;
-      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  
-  #button1::after {
-      color: rgb(0, 0, 0);
-  }
-  
-  .button-map {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 5%;
-      margin-top: 0pc;
-  }
-  
-  .nav-link {
-      color: rgb(255, 255, 255);
-      font-family: 'Raleway', sans-serif;
-      font-size: 1.5rem;
-  }
-  
-  .nav-link:hover {
-      color: rgb(55, 142, 255);
-  }
-  
-  .mapattributes {
-      background-color: white;
-      width: 10px;
-  }
-  
-  #right-panel {
-      background-color: #0c08524c;
-      /* width: fit-content; */
-      /* height: fit-div; */
-      /* width: 450px;
-      height: 480px; */
-      /* margin-left: 64%; */
-      border-radius: 20px;
-  }
-  
-  #map {
-      height: 100vh;
-      width: 100vw;
-      /* display: flex; */
-      border-radius: 20px;
-      /* margin-bottom: 5%; */
-  
-  }
-  
-  .map-and-table {
-      display: flex;
-      flex-direction: row;
-      position: relative;
-    
-  
-  }
-  
-  .info {
-      padding: 6px 8px;
-      font: 14px/16px Arial, Helvetica, sans-serif;
-      background: white;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      border-radius: 5px;
-  }     
-  
-  .legend {
-      line-height: 18px;
-      color: #555;
-  }
-  
-  .legend-item {
-      margin-bottom: 5px;
-      font-weight: bold;
-  }
-  
-  .legend-color {
-      width: 20px;
-      height: 20px;
-      display: inline-block;
-      margin-right: 5px;
-      border: 1px solid #ccc;
-  }
-  
-  
-  /*morning 21oct edit */
-  .aqi-table-items {
-      font-family: 'Raleway', sans-serif;
-      color: white;
-      background: linear-gradient(rgb(13, 10, 59), rgba(5, 11, 43, 0.744));
-      /* background-image: url("ImagesOfSite/cloud-image.jpg");
-      background-clip: padding-box;
-      background-repeat:no-repeat;
-      background-size:cover; */
-      border-radius: 1rem;
-  }
-  .footer-webname{
-      font-family: 'Mulish', sans-serif;
-      color: rgb(0, 0, 0);
-      text-decoration: none;
-      padding-left: 15px;
-      font-size: 20px !important;
-  }
-  .footer{
-      display: flex;
-      padding-bottom: 0px;
-      margin-bottom: 0px;
-      position: relative;
-      top:90px
-  }
-  .contact-about{
-      position: relative;
-      left: 50pc;
-      top: 24px;
-  }
-  .contact-about a{
-      padding-left: 20px;
-      color: black;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  }
-  .contact-about a:hover{
-      color: black;
-  }
-  
-  #suggestions {
-    display: none;
+
+
+.respiratory-form {
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+
+.form-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 6%;
+    /* flex-direction: column; */
+    /* grid-template-columns: repeat(2,1fr); */
+}
+
+.corner-image {
     position: absolute;
+    top: 10px;
+    right: 30px;
+    max-width: 50px;
+    border-radius: 5px;
+}
+
+.additional-info-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow flex items to wrap to the next line */
+    justify-content: space-between;
+    /* Adjust alignment as needed */
+    /* margin-right: 6rem; */
+}
+
+.listofcities {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 5%;
+    padding: 2% 5%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.listofcities h6 {
+    color: rgb(30, 76, 141);
+    padding-bottom: 0;
+}
+
+#mostHarmful,
+#safestPlaces {
+    width: 52%;
+    /* Adjust the width as needed */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 15px;
+    height: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    /* Adjust margin as needed for spacing between divs */
+}
+
+#mostHarmful {
+    /* margin-left: 4rem; */
+    width: 48%;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px;
+    /* Add some margin at the top of the table */
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+thead {
+    background-color: rgb(30, 76, 141);
+    color: white;
+}
+
+th {
+    
+    border-bottom: 1px solid #ddd;
+    /* Bottom border for th elements */
+}
+.rank-th{
+    width: 3%;
+}
+tbody tr:nth-child(even) {
+    background-color: #76afda4a;
+    /* Alternate row background color */
+}
+
+tbody tr:hover {
+    background-color: #f5f5f5;
+    /* Hover effect for rows */
+}
+
+#userInputForm label {
+    margin-top: 1rem;
+    font-family: 'Poppins', sans-serif
+}
+
+#userInputForm input,
+select {
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+#userInputForm button {
+    margin-top: 1rem;
+    padding: 0.8rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: rgb(30, 76, 141);
+}
+
+.respiratory-info {
+    padding: 1%;
+    /* width: 35%; */
+    display: flex;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.751);
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    /* position: relative; */
+    /* right: 4rem;
+    top: 3rem; */
+}
+
+.respiratory-head {
+    color: rgb(30, 76, 141);
+    font-family: 'Poppins', sans-serif;
+}
+
+#userInputForm {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+select,
+.resp-button {
+    margin-bottom: 16px;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.resp-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Add this CSS for the modal */
+/* The Modal (background) */
+#mypollutantsChart {
+    width: 80% !important;
+    height: 700px !important;
+    margin-bottom: 2rem;
+}
+
+.resp-image {
+    /* width: 20%; */
+    width: 90%;
+}
+
+.respiratory-img-div {
+    /* width: 60%; */
+    background-color: transparent;
+    align-self: center;
+    /* text-align: center; */
+    /* position: relative; */
+    /* left: 8rem; */
+}
+
+.modal,
+.modal-resp {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* height: max-content; */
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalText-resp {
+    color: #000000;
+}
+
+/* Modal Content/Box */
+.modal-content,
+.modal-content-resp {
+    background-color: #fefefe;
+    font-family: 'Poppins', sans-serif;
+    /* margin: 0 0 0 60vw; */
+    font-size: 1.7rem;
+    padding: 5%;
+    margin-top: 4%;
+    margin-left: 16%;
+    margin-right: 8%;
+    border: 1px solid #888;
+    width: 70%;
+
+}
+
+
+
+
+/* ::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 100px 100px #ffffff;
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(190, 190, 190);
+    border-radius: 25px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #929292;
+} */
+
+
+
+
+
+.modal-content p:first-child {
+    padding-top: 3vw;
+}
+
+.modal-content a {
+    text-decoration: none;
+    color: rgb(21, 168, 226);
+}
+
+.modal-content a:hover {
+    color: #f89058;
+}
+
+.modal-content span {
+    margin-right: 1vw;
+}
+
+.aqi-pollutants {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    /* Adjust alignment as needed */
+    margin-top: 2vw;
+    gap: 10%;
+}
+
+.aqi-box {
+    position: relative;
+    top: 3vw;
+    border-radius: 20px;
+    padding: 1.5vw;
+    background-color: rgb(174, 224, 243);
+}
+
+.aqi-box h1,
+h4 {
+    color: rgb(30, 76, 141);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+/* Additional styles for pollutants div (adjust as needed) */
+.pollutants {
+    flex-grow: 1;
+    margin-left: 20%;
+    /* Adjust spacing between the boxes */
+}
+
+.nav-model {
+    position: sticky;
+    top: 0;
+    /* Stick to the top of the viewport */
+    background-color: #ffffff;
+    /* Add a background color if needed */
+    z-index: 100;
+    /* Adjust the z-index as necessary */
+}
+
+.cityname {
+    color: rgb(30, 76, 141);
+}
+
+/* Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1px 2px 1px 2px;
+    background-color: rgb(30, 76, 141);
+    border-radius: 50%;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#station {
+    padding-top: 5vw;
+}
+
+.standard,
+.lower-head {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.pie-head {
+    margin-top: 3rem;
+    margin-bottom: 0.1rem;
+}
+
+.high-pollutant p {
+    font-weight: 500;
+    position: relative;
+    bottom: 5vw;
+    color: #000000;
+    font-size: 1rem;
+}
+
+.high-pollutant p:last-child {
+    font-weight: 300;
+}
+
+.navbar {
+    padding: 2%;
+}
+
+.navbar-brand-div {
+    display: flex;
+    align-items: center;
+    gap: 5%;
+
+}
+
+.brand-logo {
+    text-decoration: none;
+    display: flex;
+    /* border-radius: 100%;
+  background-color: rgb(151, 151, 151); */
+    align-items: center;
+    color: rgb(43, 43, 110);
+}
+
+.brand-logo:hover {
+    color: rgb(99, 99, 119);
+}
+
+.navbar-brand {
+    color: rgb(4, 4, 41);
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: grey;
+}
+
+input::placeholder {
+    font-weight: bold;
+    opacity: 0.5;
+    color: rgb(255, 255, 255);
+}
+
+.nav-item {
+    background-color: rgb(30, 76, 141);
+    border-radius: 20px;
+    border: solid black;
+
+    border-width: 2px;
+}
+
+/* 
+.btn btn-outline-success {
+  background-color: white;
+  color: white;
+} */
+
+.airaware-image-logo {
+    background-color: none;
+}
+
+#customControl {
+    position: absolute;
+    top: 10px;
+
+    z-index: 1000;
+
+    border: none;
+    border-radius: 5px;
+}
+
+.logo-brand-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    padding: 0.3%;
+    align-items: center;
+}
+
+.navbar>.container-fluid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.navbar-things {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 5%;
+}
+
+
+.navbar-brand {
+    margin-left: 0%;
+    font-family: 'Raleway', sans-serif;
+    align-self: center;
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+}
+
+.navbar-brand:hover {
+    color: rgb(127, 179, 246);
+}
+
+.button-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 60vh;
+    margin-left: 5vw;
+}
+
+#button1 {
+    width: 20%;
+}
+
+
+
+.red-level {
+    background-color: #f85858;
+    border-radius: 15%;
+}
+
+.orange-level {
+    background-color: #f89058;
+    border-radius: 15%;
+}
+
+.most-polluted-city {
+    font-family: 'Lexend', sans-serif;
+    font-size: 2.5rem;
+}
+
+.city-fonts {
+    font-size: 1.5rem;
+}
+
+.input {
+    margin-top: 5px;
+}
+
+#button {
+    margin-left: 0px;
+}
+
+#button1,
+#button2,
+#button3 {
+    width: 10vw;
+    height: 30px;
+    font-size: 1rem;
+    border-radius: 3px;
+    padding: 0px;
+    color: rgb(0, 0, 0);
+    /* background-color: white; */
+    /* border-radius: 10%; */
+    background-attachment: scroll;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#button1::after {
+    color: rgb(0, 0, 0);
+}
+
+.button-map {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+    margin-top: 0pc;
+}
+
+.nav-link {
+    color: rgb(255, 255, 255);
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.5rem;
+}
+
+.nav-link:hover {
+    color: rgb(55, 142, 255);
+}
+
+.mapattributes {
+    background-color: white;
+    width: 10px;
+}
+
+#right-panel {
+    background-color: #0c08524c;
+    /* width: fit-content; */
+    /* height: fit-div; */
+    /* width: 450px;
+  height: 480px; */
+    /* margin-left: 64%; */
+    border-radius: 20px;
+}
+
+#map {
+    height: 100vh;
+    width: 90vw;
+    /* display: flex; */
+    border-radius: 20px;
+    margin-top: 2%;
+    /* margin-bottom: 5%; */
+
+}
+
+.map-and-table {
+    display: flex;
+    flex-direction: row;
+    /* position: relative; */
+
+
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+
+.legend-item {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #ccc;
+}
+
+
+/*morning 21oct edit */
+.aqi-table-items {
+    font-family: 'Raleway', sans-serif;
+    color: white;
+    background: linear-gradient(rgb(13, 10, 59), rgba(5, 11, 43, 0.744));
+    /* background-image: url("ImagesOfSite/cloud-image.jpg");
+  background-clip: padding-box;
+  background-repeat:no-repeat;
+  background-size:cover; */
+    border-radius: 1rem;
+}
+
+.footer-webname {
+    font-family: 'Mulish', sans-serif;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding-left: 15px;
+    font-size: 20px !important;
+}
+
+.footer {
+    display: flex;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    position: relative;
+    top: 90px
+}
+
+.contact-about {
+    position: relative;
+    left: 50pc;
+    top: 24px;
+}
+
+.contact-about a {
+    padding-left: 20px;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.contact-about a:hover {
+    color: black;
+}
+
+#suggestions {
+    display: none;
+    /* position: absolute; */
     background-color: #f1f1f1;
     max-height: 150px;
     overflow-y: auto;
     border: 1px solid #ddd;
-  }
-  .suggestion {
+}
+
+.suggestion {
     padding: 10px;
     cursor: pointer;
-  }
-  .suggestion:hover {
+}
+
+.suggestion:hover {
     background-color: #ddd;
-  }
+}
+
+@media (max-width:1170px) and (min-width:0px) {
+    .container-fluid {
+          gap: 1%;
+    }
+}
+
+@media (max-width:1135px) and (min-width:0px) {
+    .navbar-brand-div-inside {
+          padding-left: 0%;
+          font-size: 1rem;
+          margin-top: 4%;
+    }
+
+}
+
+
+@media (max-width:609px) and (min-width:0px) {
+    .navbar-menu {
+          margin-top: 4%;
+    }
+
+    .additional-info-container {
+          font-size: 0.9rem;
+    }
+}
+
+@media (max-width:940px) and (min-width:0px) {
+    .form-section {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+    }
+
+    .respiratory-info {
+          font-size: 1rem;
+          width: 80%;
+    }
+
+    #userInputForm {
+          margin-bottom: 9%;
+          margin-top: 9%;
+          width: 80%;
+    }
+
+    .listofcities {
+          margin-top: 6%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0px;
+          flex-direction: column;
+    }
+
+    .additional-info-container {
+          margin: 0px;
+    }
+
+    #mostHarmful,
+    #safestPlaces {
+          width: 80%;
+          margin-top: 8%;
+    }
+}
