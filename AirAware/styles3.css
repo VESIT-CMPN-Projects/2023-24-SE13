@@ -567,9 +567,10 @@ input::placeholder {
 
 #map {
       height: 100vh;
-      width: 100vw;
+      width: 90vw;
       /* display: flex; */
       border-radius: 20px;
+      margin-top: 2%;
       /* margin-bottom: 5%; */
 
 }
@@ -577,7 +578,7 @@ input::placeholder {
 .map-and-table {
       display: flex;
       flex-direction: row;
-      position: relative;
+      /* position: relative; */
 
 
 }
