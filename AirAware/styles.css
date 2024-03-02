@@ -601,7 +601,7 @@ input::placeholder {
     width: 90vw;
     /* display: flex; */
     border-radius: 20px;
-    margin-top: 2%;
+    margin-top: 0.5%;
     /* margin-bottom: 5%; */
 
 }

@@ -369,9 +369,9 @@ function updatetabledata(datafortable){
       // For descending order, switch the positions of a and b in the comparison
       return b.properties.aqi - a.properties.aqi;
     });
-    console.log(coordata)
-    console.log(jsongovdataarray)
-    console.log(sortt)
+    // console.log(coordata)
+    // console.log(jsongovdataarray)
+    // console.log(sortt)
     var top10 = sortt.slice(0, 10);
 
     // Get the last 10 elements
@@ -389,6 +389,11 @@ function updatetabledata(datafortable){
       // console.log("Element not found in the array.");
     }
 
+function showStationDetails(city){
+  // console.log("damn dude")
+  fetchGovDataForCity(city);
+}
+
     top10.forEach(item=>{
       item.id = top10.findIndex(item2=>item2===item) +1
     })
@@ -402,6 +407,9 @@ function updatetabledata(datafortable){
         <td>${cityData.properties.state}</td>
         <td>${cityData.properties.aqi}</td>
       `;
+      newRow.addEventListener("click", () => {
+        showStationDetails(cityData.properties.station); // Call your function here
+      });
       tableBody_poll.appendChild(newRow);
     });
 
@@ -418,6 +426,9 @@ function updatetabledata(datafortable){
         <td>${cityData.properties.state}</td>
         <td>${cityData.properties.aqi}</td>
       `;
+      newRow.addEventListener("click", () => {
+        showStationDetails(cityData.properties.station); // Call your function here
+      });
       tableBody_safe.appendChild(newRow);
     });
   }
