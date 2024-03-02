@@ -40,7 +40,7 @@ function fetchGovDataForCity(city) {
       (element) => element.properties.city === city
     );
   }
-  console.log("searchedd"+firstmatch,city)
+  console.log("searched"+firstmatch,city)
 
   if (firstmatch) {
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
@@ -145,10 +145,12 @@ if (maxPollutant === 'CO') {
 
     const content = `
     <p><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></p>
+    <br>
+    <small id="city">City: ${firstmatch.properties.city}</small>
+    <br>
     <small>${firstmatch.properties.state}/Lat.: ${firstmatch.geometry.coordinates[0]}/Lon.: ${firstmatch.geometry.coordinates[1]}</small>
     <br><small>Timezone: Asia/Kolkata (UTC+5)/Current Time: ${getCurrentDateTime()}</small>
     <br>
-    <small id="station">Station: ${firstmatch.properties.station}</small>
     <h4 class="lower-head">AQI and pollutant values:</h4>
     <div class="aqi-pollutants">
       <div class="aqi-box">
@@ -207,7 +209,7 @@ if (maxPollutant === 'CO') {
 
     const cityNameElement = document.createElement('h1');
     cityNameElement.classList.add('cityname');
-    cityNameElement.textContent = firstmatch.properties.city;
+    cityNameElement.textContent = firstmatch.properties.station;
 
     const spanClose = document.createElement('span');
     spanClose.classList.add('close');

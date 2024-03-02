@@ -1,4 +1,3 @@
-
 import { updateGovData, jsongovdataarray } from './jsondatafunc.js';
 import apidata from './apidata.js';
 import { fetchGovDataForCity } from './display.js';
@@ -214,23 +213,40 @@ var respiratoryInputValue = document.getElementById("respiratoryInput");
 respiratoryInputValue.addEventListener("change", function (event) {
   // showSuggestions(respiratoryInputValue.value);
 });
+function showPopup(location, disease, safetyStatus) {
+  // Create the popup element
+  var popup = document.createElement('div');
+  popup.className = 'popup';
+  popup.innerHTML = `<strong>Location:</strong> ${location}<br><br><strong>Respiratory Disease:</strong> ${disease}<br><br><strong>Safety Status:</strong> ${safetyStatus}<br><a href="#" class="know-more">Know More</a>`;
+
+  // Apply color based on safety status
+  if (safetyStatus === 'Safe') {
+    popup.classList.add('green');
+  } else {
+    popup.classList.add('red');
+  }
+
+  // Append the popup to the popupContainer div
+  document.getElementById('popupContainer').appendChild(popup);
+
+  // You may add an event listener to close the popup when clicked
+  popup.addEventListener('click', function() {
+    popup.parentNode.removeChild(popup);
+  });
+  var knowMoreLink = popup.querySelector('.know-more');
+  knowMoreLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    fetchGovDataForCity(locationInput.value);
+  });
+}
+
 
 document.getElementById("userInputForm").addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent the default form submission
 
-  // Get input values
-  // var cityInputValue = document.getElementById("cityInput");
   var respiratoryInputValue = document.getElementById("respiratoryInput");
+  var disease = respiratoryInputValue.value;
 
-  event.preventDefault();
-  // searchit();
-  // var inputValue = cityInputValue.value;
-  // if (inputValue.length > 0) {
-  //   var capitalizedText = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-  //   cityInputValue.value = capitalizedText;
-  // }
-  //  console.log(inputValue, capitalizedText);
-  // fetchGovDataForCity(cityInputValue.value);
   var aqiValue = "none";
   var city = locationInput.value;
   var firstmatch = jsongovdataarray.find(
@@ -244,18 +260,10 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
 
   if (firstmatch) {
     document.getElementById("locationInput").value = firstmatch.properties.station;
-
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
   }
-  console.log(firstmatch, city)
 
-  // cityin.value = '';
-  // console.log("search button clicked "+cityin.value );
-
-  // Log or use the input values as needed
   console.log("aqi: " + aqiValue);
-
-  // console.log("City: " + cityInputValue.value);
   console.log("Respiratory Diseases: " + respiratoryInputValue.value);
   var disease = respiratoryInputValue.value;
   let safetyStatus = "Unknown";
@@ -277,38 +285,9 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
     }
   });
 
-  // Display the safety status on the HTML page
-  document.getElementById('safetyStatus').innerText = `Safety Status: ${safetyStatus}`;
+  // Call showPopup outside the forEach loop
+  showPopup(city, disease, safetyStatus);
 });
-// script.js
-function showResultModal() {
-  // Display the modal
-  document.getElementById('resultModal').style.display = 'block';
-
-  // Call the logic to check if the city is safe or not and update the modal text
-  updateModalText();
-}
-
-function closeResultModal() {
-  // Close the modal
-  document.getElementById('resultModal').style.display = 'none';
-}
-
-function updateModalText() {
-  // Add your logic to determine if the city is safe or not
-  // For now, let's assume it's based on a variable named 'isCitySafe'
-  const isCitySafe = true; // Replace this with your actual logic
-
-  // Get the modal text element
-  const modalTextElement = document.getElementById('modalText-resp');
-
-  // Update the modal text based on the result
-  if (isCitySafe) {
-    modalTextElement.innerText = 'City is Safe!';
-  } else {
-    modalTextElement.innerText = 'City is Not Safe!';
-  }
-}
 
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -434,3 +413,4 @@ document.addEventListener("DOMContentLoaded", function () {
   // Call the updateTableBody function to initially populate the table
   updateTableBody();
 });
+
