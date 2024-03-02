@@ -26,7 +26,7 @@ async () => {
 
 var search = document.getElementById("search-button");
 
-var cityin = document.getElementById("cityin");
+var cityin = document.getElementById("cityInput");
 
 search.addEventListener("click", () => {
   event.preventDefault();
@@ -203,10 +203,6 @@ updateMapWithData();
 
 
 
-function handleInputChange(value) {
-  console.log("Respiratory Disease changed to: " + value);
-  // Add your logic to handle the changed value here
-}
 var respiratoryInputValue = document.getElementById("respiratoryInput");
 
 respiratoryInputValue.addEventListener("change", function (event) {
@@ -291,35 +287,48 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
 
 document.addEventListener('DOMContentLoaded', (event) => {
   let locationInput = document.getElementById('locationInput');
+let cityInput = document.getElementById('cityInput');
   // console.log("sum is ", sum, money.length)
+  cityInput.oninput = function () {
+    // Your code here
+    showSuggestions(cityInput.value,"city","2")
+    // console.log(locationInput.value);
+  }
   locationInput.oninput = function () {
     // Your code here
-    showSuggestions(locationInput.value)
-    console.log(locationInput.value);
+    showSuggestions(locationInput.value,"location","1")
+    // console.log(locationInput.value);
   }
 });
 // const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
-const cokeys = Object.keys(coordata);
 // console.log(coordata);
-function showSuggestions(input) {
-  // console.log("sdbkj" + respiratoryInputValue.value)
+function showSuggestions(input,parent,offset) {
+  console.log("city val:  " + input)
 
-  const suggestionsContainer = document.getElementById("suggestions");
+  const suggestionsContainer = document.getElementById(`suggestions${offset}`);
   suggestionsContainer.innerHTML = ""; // Clear previous suggestions
+if(jsongovdataarray){
+  console.log("exists")
+  var usingdata=jsongovdataarray
+}else{
+ var usingdata=coordata
+}
+const cokeys = Object.keys(usingdata);
 
-  const filteredDiseases = cokeys.filter(key =>
-    coordata[key].properties.station.toLowerCase().includes(input.toLowerCase())
-    // disease.toLowerCase().includes(input.toLowerCase())
-  );
+var filteredDiseases = cokeys.filter(key =>
+   usingdata[key].properties.station.toLowerCase().includes(input.toLowerCase())
+   // disease.toLowerCase().includes(input.toLowerCase())
+ );
+   console.log(filteredDiseases)
 
   if (filteredDiseases.length > 0) {
     filteredDiseases.forEach(item => {
-      var disease = coordata[item].properties.station
+      var disease = usingdata[item].properties.station
       const suggestionElement = document.createElement("div");
       suggestionElement.classList.add("suggestion");
       suggestionElement.textContent = disease;
       suggestionElement.addEventListener("click", function () {
-        document.getElementById("locationInput").value = disease;
+        document.getElementById(`${parent}Input`).value = disease;
         suggestionsContainer.style.display = "none";
       });
       suggestionsContainer.appendChild(suggestionElement);
@@ -334,7 +343,9 @@ function showSuggestions(input) {
 // Close suggestions when clicking outside the input and suggestions container
 document.addEventListener("click", function (event) {
   if (!event.target.matches("#respiratoryInput") && !event.target.matches(".suggestion")) {
-    document.getElementById("suggestions").style.display = "none";
+    document.getElementById("suggestions2").style.display = "none";
+
+    document.getElementById("suggestions1").style.display = "none";
   }
 });
 

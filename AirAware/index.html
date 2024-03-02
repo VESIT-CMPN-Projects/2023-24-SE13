@@ -44,7 +44,7 @@
         gap: 0px;
         padding: 0%;
       ">
-                  <div class="map-container" >
+                  <div class="map-container">
                         <div id="map"></div>
                         <div class="nav-container" id="customControl" style="
             position: absolute;
@@ -68,12 +68,17 @@
                   align-items: center;
                   color: white;
                 ">
-                                                <input class="form-control me-2" type="search" id="cityin"
+                <div style="position: relative;">
+                                                <input class="form-control me-2" type="text" id="cityInput"
                                                       placeholder="Search Location Here" aria-label="Search" style="
                     border-radius: 50px;
                     width: 15pc;
                     background-color: rgb(30, 76, 141);
-                  " />
+                    
+                  "
+                  autocomplete="off" ></input>
+                                                <div style="position: absolute; color:black; transform: scale(0.85);" id="suggestions2"></div>
+                                          </div>
                                                 <button class="btn" type="submit" style="
                     border-radius: 50px;
                     position: relative;
@@ -231,13 +236,14 @@
                               <label for="locationInput">Enter location or city to search:</label>
                               <input type="text" id="locationInput" name="locationInput" placeholder="Enter your city"
                                     autocomplete="off" required />
-                              <div id="suggestions"></div>
+                              <div id="suggestions1"></div>
                               <label for="respiratoryInput">Choose the Respiratory Disease (if any):</label>
                               <select id="respiratoryInput" name="respiratoryInput">
                                     <!-- Add options dynamically or manually -->
                                     <option value="None">None</option>
                                     <option value="Asthma">Asthma</option>
-                                    <option value="Chronic obstructive pulmonary disease (COPD)">COPD Chronic obstructive pulmonary disease </option>
+                                    <option value="Chronic obstructive pulmonary disease (COPD)">COPD Chronic
+                                          obstructive pulmonary disease </option>
                                     <option value="Bronchitis">Bronchitis</option>
                                     <option value="Emphysema">Emphysema</option>
                                     <option value="Lung Cancer">Lung Cancer</option>
@@ -254,7 +260,7 @@
                   </div>
             </div>
       </div>
-      
+
 
       </section>
 

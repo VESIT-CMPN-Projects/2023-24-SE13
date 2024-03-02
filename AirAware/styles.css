@@ -686,7 +686,7 @@ input::placeholder {
     color: black;
 }
 
-#suggestions {
+#suggestions2 , #suggestions1 {
     display: none;
     /* position: absolute; */
     background-color: #f1f1f1;
