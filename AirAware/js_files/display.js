@@ -144,7 +144,23 @@ function fetchGovDataForCity(city) {
       measuresToReducePollutant = 'To mitigate NO2 levels, measures such as using public transportation, reducing vehicle emissions, and implementing stricter emission standards for industries are recommended.';
     }
 
+            // Define the function to show pollutant information
+      function showPollutantInfo(pollutant) {
+        console.log("PollutantInfo function called")
+        const pollutantInfo = document.getElementById('pollutant-info');
+        pollutantInfo.innerHTML = `Information for ${pollutant}`;
+      }
 
+      // Add event listeners to each button
+      document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                const pollutant = this.getAttribute('data-pollutant');
+                showPollutantInfo(pollutant);
+            });
+        });
+      });
     const content = `
     <small class="Googlemaps"><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></small>
     <br><br>
@@ -157,7 +173,7 @@ function fetchGovDataForCity(city) {
     <h4 class="lower-head">AQI and pollutant values:</h4>
     <div class="aqi-info">
       <div class="aqi-pollutants1">
-        <div class="aqi-box">
+        <div class="aqi-box" style="background-color: ${getAqiColor(aqiValue)}; ">
             <h1>AQI: ${aqiValue} </h1>
             <h4 class="aqi-condition">${aqiCondition}</h4>
         </div>
@@ -167,47 +183,26 @@ function fetchGovDataForCity(city) {
       </div>
       <div class="vertical-line"></div>
       <div class="aqi-pollutants2">
-      <table>
-      <thead>
-        <tr>
-          <th style="border: 0px solid #000; padding: 8px 15px 0px 0px;"></th>
-          <th style="border: 0px solid #000; padding: 8px 15px 0px 0px;">AQI (ug/m<sup>3</sup>)</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${pollutantsArray.map(
-      (pollutantData, index) => `
-            <tr class="aqidata" style="border: 0px solid #000;">
-              <td  style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${index === 0 ? 'background-color: ;' : ''
-        }" onclick="showPollutantInfo()">
-                <span style="${index === 0 ? ': bold; ;' : ''}">${pollutantData.name}</span>
-              </td>
-              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${index === 0 ? '; ;' : ''
-        }">
-                ${pollutantData.value}
-              </td>
-            </tr>
-          `
-    ).join('')}
-      </tbody>
-    </table>
-    <div id="pollution-container" style="display: none;">
-      <div class="close-btn" onclick="hidePollutantInfo()"><span>&times;</span></div>
-      <h2></h2>
-      <div class="pollutant-information">
-                    <div class="sci-diag">
-                        <img src="ImagesOfSite/sci-diag.jpeg" width="150px">
-                    </div>
-                    <div class="values">
-                        <p>24h avg</p>
-                        <p>24h min</p>
-                        <p>24h max</p>
-                    </div>
-      </div>
-     </div>
+        <ul class="button-list" id="pollutantButtons">
+          <li><button class="button" data-pollutant="PM10">PM10</button></li>
+          <li><button class="button" data-pollutant="CO">CO</button></li>
+          <li><button class="button" data-pollutant="PM25">PM2.5</button></li>
+          <li><button class="button" data-pollutant="Ozone">Ozone</button></li>
+          <li><button class="button" data-pollutant="NO2">NO2</button></li>
+          <li><button class="button" data-pollutant="SO2">SO2</button></li>
+          <li><button class="button" data-pollutant="NH3">NH3</button></li>
+        </ul>
+        <div id="pollutant-info">
+          <div id="sci-img"><img src="ImagesOfSite/sci-diag.jpeg" width="150px"></div>
+          <div id="avgminmax">
+            <p>24H avg:</p>
+            <p>24 Min:</p>
+            <p>24H Max:</p>
+          </div>
+        
+        </div>
+    </div>
 
-   </div>    
-     </div>
      
     
 </div>
@@ -216,7 +211,7 @@ function fetchGovDataForCity(city) {
       <img src="ImagesOfSite/aqi_modalchart.png" width="80%" height="80%">
     </div>
     <h4 class="pie-head">Distribution of Pollutants</h4>
-    <canvas id="mypollutantsChart"></canvas>
+    <canvas id="mypollutantsChart" width="250px"></canvas>
    <div class="high-pollutant">
     <p>Highest Pollutant: ${maxPollutant}</p>
     <p>Highest Pollutant Value: ${maxPollutantValue} ug/m<sup>3</sup></p>
@@ -254,9 +249,7 @@ function fetchGovDataForCity(city) {
 
 
     
-    
-    
-    <canvas id="myGaugeChart" width="100" height="100"></canvas>
+  
   `;
 
     modalContent.innerHTML = content;
@@ -276,20 +269,38 @@ function fetchGovDataForCity(city) {
     govDataModal.style.display = 'block';
 
     const aqidataDiv = document.querySelector(".aqidata");
-
-    // Check if the element is found
-    if (aqidataDiv) {
-      // Add the onclick event listener to the element
-      aqidataDiv.addEventListener("click", function () {
-        // Your desired function to be executed when clicked
-        console.log("AQI data clicked!");
-        showPollutantInfo()
-        // Replace this with your actual code logic
-        // (e.g., display details, open a modal, etc.)
-      });
-    } else {
-      console.error("Element with class .aqidata not found!");
-    }
+    
+    function getAqiColor(aqiValue) {
+      if (aqiValue >= 0 && aqiValue <= 50) {
+          return 'rgba(0, 128, 0, 0.6)'; // Green
+      } else if (aqiValue >= 51 && aqiValue <= 100) {
+          return 'rgba(144, 238, 144, 0.6)'; // Light Green
+      } else if (aqiValue >= 101 && aqiValue <= 150) {
+          return 'rgba(255, 255, 0, 0.6)'; // Yellow
+      } else if (aqiValue >= 151 && aqiValue <= 200) {
+          return 'rgba(255, 165, 0, 0.6)'; // Orange
+      } else if (aqiValue >= 201 && aqiValue <= 300) {
+          return 'rgba(255, 0, 0, 0.6)'; // Red
+      } else if (aqiValue >= 301 && aqiValue <= 500) {
+          return 'rgba(128, 0, 128, 0.6)'; // Purple
+      } else {
+          return 'rgba(128, 128, 128, 0.6)'; // Default color (grey)
+      }
+  }
+  
+    // // Check if the element is found
+    // if (aqidataDiv) {
+    //   // Add the onclick event listener to the element
+    //   aqidataDiv.addEventListener("click", function () {
+    //     // Your desired function to be executed when clicked
+    //     console.log("AQI data clicked!");
+    //     showPollutantInfo()
+    //     // Replace this with your actual code logic
+    //     // (e.g., display details, open a modal, etc.)
+    //   });
+    // } else {
+    //   console.error("Element with class .aqidata not found!");
+    // }
 
   
 
@@ -302,11 +313,11 @@ function fetchGovDataForCity(city) {
       PM25: firstmatch.properties.Pm25,
       PM10: firstmatch.properties.Pm10,
     };
-
+    
     // Filter out pollutants with 0 values
     const filteredLabels = [];
     const filteredData = [];
-
+    
     Object.keys(pollutantsData).forEach((pollutant) => {
       const value = pollutantsData[pollutant];
       if (!isNaN(value) && value !== 0) {
@@ -314,26 +325,41 @@ function fetchGovDataForCity(city) {
         filteredData.push(value);
       }
     });
-
+    
+    // Assign colors based on specified pollutants using the same logic as createRectangleMarker
+    const backgroundColors = filteredLabels.map((pollutant) => {
+      switch (pollutant) {
+        case 'NH3':
+          return 'rgba(0, 128, 0, 0.5)'; // Green
+        case 'CO':
+          return 'rgba(0, 0, 255, 0.5)'; // Blue
+        case 'SO2':
+          return 'rgba(255, 255, 0, 0.7)'; // Yellow
+        case 'Ozone':
+          return 'rgba(255, 165, 0, 0.5)'; // Orange
+        case 'NO2':
+          return 'rgba(255, 0, 0, 0.5)'; // Red
+        case 'PM25':
+          return 'rgba(0, 0, 0, 0.5)'; // Black
+        case 'PM10':
+          return 'rgba(128, 0, 128, 0.5)'; // Purple
+        default:
+          return 'rgba(128, 128, 128, 0.5)'; // Grey
+      }
+    });
+    
     const barChartData = {
       labels: filteredLabels,
       datasets: [
-        {
+        { 
           label: 'Pollutant Values (ug/m^3)',
           data: filteredData,
-          backgroundColor: [
-            'rgba(75, 192, 192, 0.6)', // Teal
-            'rgba(255, 99, 132, 0.6)', // Red
-            'rgba(255, 205, 86, 0.6)', // Yellow
-            'rgba(255, 159, 64, 0.6)', // Orange
-            'rgba(153, 102, 255, 0.6)', // Purple
-            'rgba(255, 0, 0, 0.6)', // Dark Red
-            'rgba(0, 128, 0, 0.6)', // Dark Green
-          ],
+          backgroundColor: backgroundColors,
           borderWidth: 1, // Add border width for better visibility
         },
       ],
     };
+    
     const barChartData2 = {
       labels: ['Pollutant1', 'Pollutant2', 'Pollutant3'],
       datasets: [{
@@ -404,16 +430,6 @@ function fetchGovDataForCity(city) {
       options: options,
     });
 
-    // Function to show the pollutant info container
-    function showPollutantInfo() {
-      console.log("butttt clicked")
-      document.getElementById("pollution-container").style.display = "block";
-    }
-
-    // Function to hide the pollutant info container
-    function hidePollutantInfo() {
-      document.getElementById("pollution-container").style.display = "none";
-    }
 
 
     spanClose.addEventListener('click', function () {

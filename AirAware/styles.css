@@ -2,6 +2,74 @@ body {
     background-color: rgba(81, 121, 181, 0.4);
     margin-bottom: 0px;
 }
+.button-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .button-list li {
+    margin-bottom: 10px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover {
+    background-color: #45a049;
+  }
+  
+  .info-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    display: none;
+  }
+  
+  .info-panel h2 {
+    margin-top: 0;
+  }
+  #pollutant-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 16rem;
+    margin-left: 1.5rem;
+    height: 25rem;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 999; /* Ensure it appears above other elements */
+}
+#pollutant-info p{
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+#pollutant-info.active {
+    display: block; /* Show the div when active */
+}
+.pollutant-info{
+    
+}
+
+  
 .leaflet-div-icon{
     /* border:  ; */
     border-radius: 100%;
@@ -369,8 +437,6 @@ select,
 /* Add this CSS for the modal */
 /* The Modal (background) */
 #mypollutantsChart {
-    width: 80% !important;
-    height: 700px !important;
     margin-bottom: 2rem;
 }
 
@@ -472,7 +538,10 @@ select,
     gap: 10%;
     flex-direction: column;
 }
-
+.aqi-pollutants2{
+    display: flex;
+    margin-top: 2rem;
+}
 .aqi-box {
     position: relative;
     top: 3vw;
@@ -483,7 +552,7 @@ select,
 
 .aqi-box h1,
 h4 {
-    color: rgb(30, 76, 141);
+    color: black;
     display: flex;
     justify-content: center;
     align-content: center;

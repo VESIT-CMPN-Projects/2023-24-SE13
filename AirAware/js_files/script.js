@@ -238,6 +238,23 @@ function updateMapWithData() {
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
     }
+    function showPollutantInfo(pollutant) {
+      // You can customize this function to display information about the selected pollutant
+      console.log("Help mf")
+      const pollutantInfo = document.getElementById('pollutant-info');
+      pollutantInfo.innerHTML = `Information for ${pollutant}`;
+    }
+    
+    // Add event listeners to each button
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.button');
+      buttons.forEach(button => {
+          button.addEventListener('mouseover', function() {
+              const pollutant = this.getAttribute('data-pollutant');
+              showPollutantInfo(pollutant);
+          });
+      });
+    });
     function createRectangleMarker(latLng, value,col) {
       // Create a div element for the marker content
       var color;
@@ -563,17 +580,14 @@ function updatetabledata(datafortable) {
   });
 }
 
-// Call the updateTableBody function to initially populate the table
-// updateTableBody();
-// });
-/*=============== SHOW & HIDE MENU ===============*/
-const toggleButton = document.getElementById('floating-toggle')
-
-const activeMenu = () =>{
-    toggleButton.classList.toggle('active')
+function showPollutantInfo() {
+  document.getElementById("pollution-container").style.display = "block";
 }
 
-toggleButton.addEventListener('click', activeMenu)
+// Function to hide the pollutant info container
+function hidePollutantInfo() {
+  document.getElementById("pollution-container").style.display = "none";
+}
 
 
 
