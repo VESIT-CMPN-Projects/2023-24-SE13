@@ -144,19 +144,27 @@ if (maxPollutant === 'CO') {
 
 
     const content = `
-    <p><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></p>
-    <br>
+    <small class="Googlemaps"><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></small>
+    <br><br>
+    <small id="last-update">Last Update: </small><br>
     <small id="city">City: ${firstmatch.properties.city}</small>
     <br>
     <small>${firstmatch.properties.state}/Lat.: ${firstmatch.geometry.coordinates[0]}/Lon.: ${firstmatch.geometry.coordinates[1]}</small>
     <br><small>Timezone: Asia/Kolkata (UTC+5)/Current Time: ${getCurrentDateTime()}</small>
     <br>
     <h4 class="lower-head">AQI and pollutant values:</h4>
-    <div class="aqi-pollutants">
-      <div class="aqi-box">
-      <h1>AQI: ${aqiValue} </h1>
-      <h4 class="aqi-condition">${aqiCondition}</h4></div>
-      <div class="pollutants-table"><table style="border-collapse: collapse; width: 100%;">
+    <div class="aqi-info">
+      <div class="aqi-pollutants1">
+        <div class="aqi-box">
+            <h1>AQI: ${aqiValue} </h1>
+            <h4 class="aqi-condition">${aqiCondition}</h4>
+        </div>
+        <div class="person-img">
+            <img src="ImagesOfSite/person.png">
+        </div>
+      </div>
+      <div class="vertical-line"></div>
+      <div class="aqi-pollutants2">
       <table>
       <thead>
         <tr>
@@ -165,31 +173,48 @@ if (maxPollutant === 'CO') {
         </tr>
       </thead>
       <tbody>
-        ${pollutantsArray
-          .map(
-            (pollutantData, index) => `
-              <tr style="border: 0px solid #000;">
-                <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
-                  index === 0 ? 'background-color: ;' : ''
-                }">
-                  <span style="${
-                    index === 0 ? ': bold; ;' : ''
-                  }">${pollutantData.name}</span>
-                </td>
-                <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
-                  index === 0 ? '; ;' : ''
-                }">
-                  ${pollutantData.value}
-                </td>
-              </tr>
-            `
-          )
-          .join('')}
+        ${pollutantsArray.map(
+          (pollutantData, index) => `
+            <tr style="border: 0px solid #000;">
+              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
+                index === 0 ? 'background-color: ;' : ''
+              }" onclick="showPollutantInfo()">
+                <span style="${index === 0 ? ': bold; ;' : ''}">${pollutantData.name}</span>
+              </td>
+              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
+                index === 0 ? '; ;' : ''
+              }">
+                ${pollutantData.value}
+              </td>
+            </tr>
+          `
+        ).join('')}
       </tbody>
-    </table></div>
-    </div>
+    </table>
+    <div id="pollution-container" style="display: none;">
+      <div class="close-btn" onclick="hidePollutantInfo()"><span>&times;</span></div>
+      <h2></h2>
+      <div class="pollutant-information">
+                    <div class="sci-diag">
+                        <img src="ImagesOfSite/sci-diag.jpeg" width="150px">
+                    </div>
+                    <div class="values">
+                        <p>24h avg</p>
+                        <p>24h min</p>
+                        <p>24h max</p>
+                    </div>
+      </div>
+     </div>
+
+   </div>    
+     </div>
+     
+    
+</div>
     <h4 class="standard">Standard AQI values</h4>
-    <img src="ImagesOfSite/aqi_modalchart.png" width="80%" height="80%">
+    <div class="standardtable">
+      <img src="ImagesOfSite/aqi_modalchart.png" width="80%" height="80%">
+    </div>
     <h4 class="pie-head">Distribution of Pollutants</h4>
     <canvas id="mypollutantsChart" width="100%" height="100px"></canvas>
     <div class="high-pollutant">
@@ -198,7 +223,36 @@ if (maxPollutant === 'CO') {
     <p>What can be done to reduce  ${maxPollutant} in the air?</p>
     <p>${measuresToReducePollutant}</p>
     </div>
-    
+    <div class="protection-section">
+    <h5>Health Advice <i class="fa fa-exclamation-circle"></i></h5>
+    <div class="protection-itemslist"> <div class="protection-item">
+    <img src="ImagesOfSite/wear-mask-icon.webp" alt="Wear Mask">
+    <p>Wear Mask</p>
+    <p class="required">Required</p>
+  </div>
+  <div class="protection-item">
+    <img src="ImagesOfSite/stay-indoors-icon.webp" alt="Stay Indoors">
+    <p>Stay Indoors</p>
+    <p class="required">Not Required</p>
+  </div>
+  <div class="protection-item">
+    <img src="ImagesOfSite/Shut-Openings-icon-cross.webp" alt="Use Air Purifier">
+    <p>Windows</p>
+    <p class="required">Keep Close</p>
+  </div>
+  <div class="protection-item">
+    <img src="ImagesOfSite/use-a-purifier-icon.webp" alt="Use Air Purifier">
+    <p>Use Air Purifier</p>
+    <p class="required">Required</p>
+  </div>
+  <div class="protection-item">
+    <img src="ImagesOfSite/family-icon-cross.webp" alt="Use Air Purifier">
+    <p>Family</p>
+    <p class="required">Avoid Outdoor</p>
+  </div></div>
+    </div>
+
+
     
     
     
@@ -286,7 +340,7 @@ new Chart(ctxBar, {
           display: false, // Set to false to hide x-axis grid lines
         },
         font: {
-          size: 20, // Increase font size as needed
+          size: 80, // Increase font size as needed
         },
 
       },
@@ -299,6 +353,9 @@ new Chart(ctxBar, {
         },
          grid: {
           display: false, // Set to false to hide x-axis grid lines
+        },
+        font: {
+          size: 80, // Increase font size as needed
         },
       },
     },
@@ -326,5 +383,18 @@ new Chart(ctxBar, {
     });
   }
 }
+
+// Function to show the pollutant info container
+function showPollutantInfo() {
+  document.getElementById("pollution-container").style.display = "block";
+}
+
+// Function to hide the pollutant info container
+function hidePollutantInfo() {
+  document.getElementById("pollution-container").style.display = "none";
+}
+
+
+
 
 export { fetchGovDataForCity };
