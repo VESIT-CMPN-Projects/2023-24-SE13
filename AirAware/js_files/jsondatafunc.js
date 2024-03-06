@@ -31,6 +31,7 @@ function updateGovData(data) {
         "station": element.station,
         "city": element.city,
         "state": element.state,
+        "last_update":element.last_update,
         "aqi": element.aqi,
         "So2": element.pollutants.SO2?.pollutant_avg ?? NaN,
         "Nh3": element.pollutants.NH3?.pollutant_avg ?? NaN,

@@ -4,12 +4,14 @@ import { fetchGovDataForCity } from './display.js';
 import coordata from './data.js';
 import med_data from './med_data.js';
 
+
+
 apidata()
   .then(function (response) {
     return response;
   })
   .then(function (data) {
-    // console.log("data received", data);
+    console.log("data received", data);
     // imp
     updateGovData(data);
   })

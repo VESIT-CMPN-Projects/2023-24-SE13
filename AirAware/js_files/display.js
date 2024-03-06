@@ -31,16 +31,16 @@ let aqiValue;
 function fetchGovDataForCity(city) {
   clearModalContent(); // Clear existing modal content
   clearCityName(); // Clear city name in navbar
- 
+
   var firstmatch = jsongovdataarray.find(
     (element) => element.properties.station === city
   );
-  if(!firstmatch){
+  if (!firstmatch) {
     firstmatch = jsongovdataarray.find(
       (element) => element.properties.city === city
     );
   }
-  console.log("searched"+firstmatch,city)
+  console.log("searched" + firstmatch, city)
 
   if (firstmatch) {
     aqiValue = firstmatch.properties.aqi; // Obtained AQI value for the city
@@ -126,27 +126,27 @@ function fetchGovDataForCity(city) {
 
     let measuresToReducePollutant = '';
 
-if (maxPollutant === 'CO') {
-  measuresToReducePollutant = 'To reduce CO levels in the air, some measures include enhancing ventilation, reducing vehicle emissions, and limiting the use of household fuels like wood and coal.';
-} else if (maxPollutant === 'Ozone') {
-  measuresToReducePollutant = 'To decrease ozone levels, measures such as reducing vehicle emissions, using public transportation, and avoiding outdoor activities during peak pollution hours can be effective.';
-} else if (maxPollutant === 'SO2') {
-  measuresToReducePollutant = 'To mitigate SO2 levels, measures such as using low-sulfur fuels, installing emission control devices, and regulating industrial emissions are recommended.';
-} else if (maxPollutant === 'NH3') {
-  measuresToReducePollutant = 'To reduce NH3 levels, measures such as proper fertilizer application, avoiding excessive livestock waste, and reducing industrial emissions are advisable.';
-} else if (maxPollutant === 'PM25') {
-  measuresToReducePollutant = 'To lower PM2.5 levels, actions like using air purifiers, reducing vehicle emissions, and minimizing outdoor activities during high pollution periods can be effective.';
-} else if (maxPollutant === 'PM10') {
-  measuresToReducePollutant = 'To reduce PM10 levels, measures such as reducing dust from construction sites, using dust control methods, and avoiding burning of wood or other materials can be beneficial.';
-} else if (maxPollutant === 'NO2') {
-  measuresToReducePollutant = 'To mitigate NO2 levels, measures such as using public transportation, reducing vehicle emissions, and implementing stricter emission standards for industries are recommended.';
-}
+    if (maxPollutant === 'CO') {
+      measuresToReducePollutant = 'To reduce CO levels in the air, some measures include enhancing ventilation, reducing vehicle emissions, and limiting the use of household fuels like wood and coal.';
+    } else if (maxPollutant === 'Ozone') {
+      measuresToReducePollutant = 'To decrease ozone levels, measures such as reducing vehicle emissions, using public transportation, and avoiding outdoor activities during peak pollution hours can be effective.';
+    } else if (maxPollutant === 'SO2') {
+      measuresToReducePollutant = 'To mitigate SO2 levels, measures such as using low-sulfur fuels, installing emission control devices, and regulating industrial emissions are recommended.';
+    } else if (maxPollutant === 'NH3') {
+      measuresToReducePollutant = 'To reduce NH3 levels, measures such as proper fertilizer application, avoiding excessive livestock waste, and reducing industrial emissions are advisable.';
+    } else if (maxPollutant === 'PM25') {
+      measuresToReducePollutant = 'To lower PM2.5 levels, actions like using air purifiers, reducing vehicle emissions, and minimizing outdoor activities during high pollution periods can be effective.';
+    } else if (maxPollutant === 'PM10') {
+      measuresToReducePollutant = 'To reduce PM10 levels, measures such as reducing dust from construction sites, using dust control methods, and avoiding burning of wood or other materials can be beneficial.';
+    } else if (maxPollutant === 'NO2') {
+      measuresToReducePollutant = 'To mitigate NO2 levels, measures such as using public transportation, reducing vehicle emissions, and implementing stricter emission standards for industries are recommended.';
+    }
 
 
     const content = `
     <small class="Googlemaps"><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></small>
     <br><br>
-    <small id="last-update">Last Update: </small><br>
+    <small id="last-update">Last Update:${firstmatch.properties.last_update} </small><br>
     <small id="city">City: ${firstmatch.properties.city}</small>
     <br>
     <small>${firstmatch.properties.state}/Lat.: ${firstmatch.geometry.coordinates[0]}/Lon.: ${firstmatch.geometry.coordinates[1]}</small>
@@ -174,21 +174,19 @@ if (maxPollutant === 'CO') {
       </thead>
       <tbody>
         ${pollutantsArray.map(
-          (pollutantData, index) => `
-            <tr style="border: 0px solid #000;">
-              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
-                index === 0 ? 'background-color: ;' : ''
-              }" onclick="showPollutantInfo()">
+      (pollutantData, index) => `
+            <tr class="aqidata" style="border: 0px solid #000;">
+              <td  style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${index === 0 ? 'background-color: ;' : ''
+        }" onclick="showPollutantInfo()">
                 <span style="${index === 0 ? ': bold; ;' : ''}">${pollutantData.name}</span>
               </td>
-              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${
-                index === 0 ? '; ;' : ''
-              }">
+              <td style="border: 0px solid #000; padding: 8px 15px 0px 0px; ${index === 0 ? '; ;' : ''
+        }">
                 ${pollutantData.value}
               </td>
             </tr>
           `
-        ).join('')}
+    ).join('')}
       </tbody>
     </table>
     <div id="pollution-container" style="display: none;">
@@ -216,8 +214,8 @@ if (maxPollutant === 'CO') {
       <img src="ImagesOfSite/aqi_modalchart.png" width="80%" height="80%">
     </div>
     <h4 class="pie-head">Distribution of Pollutants</h4>
-    <canvas id="mypollutantsChart" width="100%" height="100px"></canvas>
-    <div class="high-pollutant">
+    <canvas id="mypollutantsChart"></canvas>
+   <div class="high-pollutant">
     <p>Highest Pollutant: ${maxPollutant}</p>
     <p>Highest Pollutant Value: ${maxPollutantValue} ug/m<sup>3</sup></p>
     <p>What can be done to reduce  ${maxPollutant} in the air?</p>
@@ -275,108 +273,146 @@ if (maxPollutant === 'CO') {
 
     govDataModal.style.display = 'block';
 
-    
+    const aqidataDiv = document.querySelector(".aqidata");
 
-// Creating the bar chart using Chart.js
-const ctxBar = document.getElementById('mypollutantsChart').getContext('2d');
+    // Check if the element is found
+    if (aqidataDiv) {
+      // Add the onclick event listener to the element
+      aqidataDiv.addEventListener("click", function () {
+        // Your desired function to be executed when clicked
+        console.log("AQI data clicked!");
+        showPollutantInfo()
+        // Replace this with your actual code logic
+        // (e.g., display details, open a modal, etc.)
+      });
+    } else {
+      console.error("Element with class .aqidata not found!");
+    }
 
-ctxBar.canvas.width = 100; // Set your desired width
-ctxBar.canvas.height = 200; 
+  
 
-const pollutantsData = {
-  NH3: firstmatch.properties.Nh3,
-  CO: firstmatch.properties.Co,
-  SO2: firstmatch.properties.So2,
-  Ozone: firstmatch.properties.Ozone,
-  NO2: firstmatch.properties.No2,
-  PM25: firstmatch.properties.Pm25,
-  PM10: firstmatch.properties.Pm10,
-};
+    const pollutantsData = {
+      NH3: firstmatch.properties.Nh3,
+      CO: firstmatch.properties.Co,
+      SO2: firstmatch.properties.So2,
+      Ozone: firstmatch.properties.Ozone,
+      NO2: firstmatch.properties.No2,
+      PM25: firstmatch.properties.Pm25,
+      PM10: firstmatch.properties.Pm10,
+    };
 
-// Filter out pollutants with 0 values
-const filteredLabels = [];
-const filteredData = [];
+    // Filter out pollutants with 0 values
+    const filteredLabels = [];
+    const filteredData = [];
 
-Object.keys(pollutantsData).forEach((pollutant) => {
-  const value = pollutantsData[pollutant];
-  if (!isNaN(value) && value !== 0) {
-    filteredLabels.push(pollutant);
-    filteredData.push(value);
-  }
-});
+    Object.keys(pollutantsData).forEach((pollutant) => {
+      const value = pollutantsData[pollutant];
+      if (!isNaN(value) && value !== 0) {
+        filteredLabels.push(pollutant);
+        filteredData.push(value);
+      }
+    });
 
-const barChartData = {
-  labels: filteredLabels,
-  datasets: [
-    { 
-      label: 'Pollutant Values (ug/m^3)',
-      data: filteredData,
-      backgroundColor: [
-        'rgba(75, 192, 192, 0.6)', // Teal
-  'rgba(255, 99, 132, 0.6)', // Red
-  'rgba(255, 205, 86, 0.6)', // Yellow
-  'rgba(255, 159, 64, 0.6)', // Orange
-  'rgba(153, 102, 255, 0.6)', // Purple
-  'rgba(255, 0, 0, 0.6)', // Dark Red
-  'rgba(0, 128, 0, 0.6)', // Dark Green
+    const barChartData = {
+      labels: filteredLabels,
+      datasets: [
+        {
+          label: 'Pollutant Values (ug/m^3)',
+          data: filteredData,
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.6)', // Teal
+            'rgba(255, 99, 132, 0.6)', // Red
+            'rgba(255, 205, 86, 0.6)', // Yellow
+            'rgba(255, 159, 64, 0.6)', // Orange
+            'rgba(153, 102, 255, 0.6)', // Purple
+            'rgba(255, 0, 0, 0.6)', // Dark Red
+            'rgba(0, 128, 0, 0.6)', // Dark Green
+          ],
+          borderWidth: 1, // Add border width for better visibility
+        },
       ],
-      borderWidth: 1, // Add border width for better visibility
-    },
-  ],
-};
+    };
+    const barChartData2 = {
+      labels: ['Pollutant1', 'Pollutant2', 'Pollutant3'],
+      datasets: [{
+        label: 'Pollutant Values (ug/m^3)',
+        data: [10, 20, 15],
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    };
 
-new Chart(ctxBar, {
-  type: 'bar',
-  data: barChartData,
-  options: {
-    scales: {
-      x: {
-        display: true,
-        title: {
+    const options = {
+      scales: {
+        x: {
           display: true,
-          text: 'Pollutants',
+          title: {
+            display: true,
+            text: 'Pollutants',
+          },
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 14,
+              color:"black",
+              weight:"bold"
+            },
+          },
         },
-        grid: {
-          display: false, // Set to false to hide x-axis grid lines
-        },
-        font: {
-          size: 80, // Increase font size as needed
-        },
-
-      },
-
-      y: {
-        display: true,
-        title: {
+        y: {
           display: true,
-          text: 'Pollutant Values (ug/m^3)',
-        },
-         grid: {
-          display: false, // Set to false to hide x-axis grid lines
-        },
-        font: {
-          size: 80, // Increase font size as needed
-        },
-      },
-    },
-    plugins: {
-      legend: {
-        display: false, // Set to true if you want to display the legend
-      },
-      tooltip: {
-        callbacks: {
-          label: (context) => {
-            const label = barChartData.labels[context.dataIndex];
-            const value = context.parsed.y;
-            return `${label}: ${value} ug/m^3`;
+          title: {
+            display: true,
+            text: 'Pollutant Values (ug/m^3)',
+          },
+          grid: {
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 14,
+              color:"black",
+              weight:"bold"
+            },
           },
         },
       },
-    },
-  },
-});
+      plugins: {
+        legend: {
+          display: false,
+        },
+        tooltip: {
+          callbacks: {
+            label: (context) => {
+              const label = barChartData.labels[context.dataIndex];
+              const value = context.parsed.y;
+              return `${label}: ${value} ug/m^3`;
+            },
+          },
+        },
+      },
+    };
 
-    
+    new Chart('mypollutantsChart', {
+      type: 'bar',
+      data: barChartData,
+      options: options,
+    });
+
+    // Function to show the pollutant info container
+    function showPollutantInfo() {
+      console.log("butttt clicked")
+      document.getElementById("pollution-container").style.display = "block";
+    }
+
+    // Function to hide the pollutant info container
+    function hidePollutantInfo() {
+      document.getElementById("pollution-container").style.display = "none";
+    }
+
 
     spanClose.addEventListener('click', function () {
       govDataModal.style.display = 'none';
@@ -384,15 +420,6 @@ new Chart(ctxBar, {
   }
 }
 
-// Function to show the pollutant info container
-function showPollutantInfo() {
-  document.getElementById("pollution-container").style.display = "block";
-}
-
-// Function to hide the pollutant info container
-function hidePollutantInfo() {
-  document.getElementById("pollution-container").style.display = "none";
-}
 
 
 
