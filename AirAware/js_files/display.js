@@ -160,6 +160,7 @@ if (maxPollutant === 'CO') {
             <h4 class="aqi-condition">${aqiCondition}</h4>
         </div>
         <div class="person-img">
+            <img src="ImagesOfSite/person.png">
         </div>
       </div>
       <div class="vertical-line"></div>
