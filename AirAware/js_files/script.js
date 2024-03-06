@@ -212,7 +212,7 @@ function showPopup(location, disease, safetyStatus) {
   // Create the popup element
   var popup = document.createElement('div');
   popup.className = 'popup';
-  popup.innerHTML = `<strong>Location:</strong> ${location}<br><br><strong>Respiratory Disease:</strong> ${disease}<br><br><strong>Safety Status:</strong> ${safetyStatus}<br><a href="#" class="know-more">Know More</a>`;
+  popup.innerHTML = `<div class="close-btnpopup" onclick="hidePollutantInfo()"><span>&times;</span></div><strong>Location:</strong> ${location}<br><br><strong>Respiratory Disease:</strong> ${disease}<br><br><strong>Safety Status:</strong> ${safetyStatus}<br><a href="#" class="know-more">Know More</a>`;
 
   // Apply color based on safety status
   if (safetyStatus === 'Safe') {
@@ -436,7 +436,14 @@ function showStationDetails(city){
   // Call the updateTableBody function to initially populate the table
   // updateTableBody();
 // });
+/*=============== SHOW & HIDE MENU ===============*/
+const toggleButton = document.getElementById('floating-toggle')
 
+const activeMenu = () =>{
+    toggleButton.classList.toggle('active')
+}
+
+toggleButton.addEventListener('click', activeMenu)
 
 
 
