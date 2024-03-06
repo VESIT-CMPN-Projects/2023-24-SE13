@@ -1,5 +1,5 @@
 import { jsongovdataarray } from './jsondatafunc.js';
-
+import { showsuggonmap } from './script.js';
 // Function to get current date and time in the specified format
 function getCurrentDateTime() {
   const currentDate = new Date();
@@ -40,6 +40,8 @@ function fetchGovDataForCity(city) {
       (element) => element.properties.city === city
     );
   }
+  showsuggonmap(jsongovdataarray,firstmatch.properties.city)
+
   console.log("searched" + firstmatch, city)
 
   if (firstmatch) {

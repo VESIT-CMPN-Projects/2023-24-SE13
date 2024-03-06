@@ -48,7 +48,7 @@ function updateGovData(data) {
   });
   updatetabledata(jsongovdataarray);
   updateMapWithData();
-  showsuggonmap(jsongovdataarray);
+  showsuggonmap(jsongovdataarray,"mumbai");
 }
 
 export { jsongovdataarray, updateGovData };

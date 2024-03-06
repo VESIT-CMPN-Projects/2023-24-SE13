@@ -13,17 +13,21 @@ body {
 }
 .leaflet-left{
     height: 10%;
-    margin-bottom: 2%;
+    margin-bottom: 7vh;
     border-radius: 10px;
 }
+.outer-sugg{
+    width: 100%;
+    height: 100%;
+}
 .note2 {
-    background-color: red !important;
+    /* background-color: red !important; */
     width: 95%;
     /* width: 50%; */
     height: 100%;
     border-radius: 10px;
     display: flex;
-    align-items: center;
+    align-items:baseline;
     gap: 5px;
     overflow-x: scroll;
   
@@ -56,10 +60,35 @@ body {
   }
   
   .suggcard{
-    background-color: wheat;
+    background-color: skyblue;
+    border:1px solid blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
     border-radius: 10px;
-    min-width: 200px;
-    height: 70%;
+    overflow-wrap: normal;
+    min-height: 70%;
+    max-height: 90%;
+    height: fit-content;
+    white-space: nowrap;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .suggcard2{
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+  .suggstation{
+    margin: 0;
+    padding: 0;
+    font-size: 1.1rem;
+    /* background-color: red; */
+  }
+  .suggval{
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
   }
 .info{
     background-color: blue;

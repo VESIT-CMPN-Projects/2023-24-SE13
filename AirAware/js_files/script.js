@@ -132,20 +132,34 @@ document.querySelector('.note').style.marginTop = '10px'; // Adjust the margins 
 // if (!jsongovdataarray || !jsongovdataarray.length) {
 //   jsongovdataarray = coordata;
 // }
-function showsuggonmap(suggdata){
+var noteDiv = L.DomUtil.create('div','outer-sugg');
+function showsuggonmap(suggdata,city){
   var note2 = L.control({ position: 'bottomleft' });
-
+ city=city.toLowerCase();
 note2.onAdd = function () {
-  var noteDiv = L.DomUtil.create('div', 'sugg note2');
+  noteDiv.innerHTML = '';
+
   // noteDiv.innerHTML = '<p>suggestions will be shown</p>';
- var parentDiv=noteDiv
+ 
+//  var parentDiv=noteDiv
     // Remove the paragraph element from the DOM
     // parentDiv.removeChild(paragraph);
 
     // Create an array of content segments for the cards (modify as needed)
-    const cardContentList = suggdata.filter(item=>item.properties.city.toLowerCase().includes("mumbai"));
+    const cardContentList = suggdata.filter(item=>item.properties.city.toLowerCase().includes(city));
     const cokeys2=Object.keys(suggdata);
 
+    const cardDiv2 = document.createElement('div');
+    cardDiv2.classList.add('suggcard2'); // Add a "card" class for styling
+
+    // Add the text content to the new div
+    cardDiv2.textContent = `${cardContentList[0].properties.city}`;
+    noteDiv.appendChild(cardDiv2);
+    // const parentDiv = document.createElement('div' );
+    // parentDiv.classList.add('sugg note2'); // Add a "card" class for styling
+    var parentDiv = L.DomUtil.create('div',"sugg note2");
+
+    noteDiv.appendChild(parentDiv);
     // const  = content.split(/\s+/); // Split by whitespace
 console.log(cardContentList)
     // Loop through the content segments
@@ -154,9 +168,28 @@ console.log(cardContentList)
       const cardDiv = document.createElement('div');
       cardDiv.classList.add('suggcard'); // Add a "card" class for styling
 
-      // Add the text content to the new div
-      cardDiv.textContent = `${segment.properties.station} : ${segment.properties.aqi}`;
+      const station = segment.properties.station.split(',')[0].trim();
+  const aqi = segment.properties.aqi;
 
+  // Set the text content with two different headings
+  cardDiv.innerHTML = `<p class="suggstation">${station}</p><p class="suggval">AQI: ${aqi}</p>`;
+
+  // Set background color based on AQI value
+  if (aqi >= 0 && aqi <= 50) {
+    cardDiv.style.backgroundColor = 'green'; // Set your desired color for this range
+  } else if (aqi > 50 && aqi <= 100) {
+    cardDiv.style.backgroundColor = 'lightgreen'; // Set your desired color for this range
+  } else if (aqi > 100 && aqi <= 200) {
+    cardDiv.style.backgroundColor = 'yellow'; // Set your desired color for this range
+  } else if (aqi > 200 && aqi <= 300) {
+    cardDiv.style.backgroundColor = 'orange'; // Set your desired color for this range
+  } else if (aqi > 300 && aqi <= 400) {
+    cardDiv.style.backgroundColor = 'red'; // Set your desired color for this range
+  }else if (aqi > 400 ) {
+    cardDiv.style.backgroundColor = 'brown'; // Set your desired color for this range
+  } else {
+    cardDiv.style.backgroundColor = 'grey'; // Set your desired color for values above 150
+  }
       // Optionally, add styling for the card divs here
 
       // Append the new div to the parent div
