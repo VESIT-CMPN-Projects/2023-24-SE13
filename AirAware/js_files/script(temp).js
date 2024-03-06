@@ -93,7 +93,6 @@ note.onAdd = function () {
   noteDiv.innerHTML = '<p>Displayed on the map is the predominant pollutant present within the specific city, indicated by the color of pollutant.</p>';
   return noteDiv;
 };
-
 var legend = L.control({ position: 'bottomright' });
 
 legend.onAdd = function () {
@@ -111,13 +110,11 @@ legend.onAdd = function () {
 };
 // console.log("lol")
 note.addTo(map);
-
 legend.addTo(map);
 
 // You can change the position by updating the CSS of the legend and note divs
 document.querySelector('.legend').style.marginRight = '10px'; // Adjust the margins as needed
 document.querySelector('.note').style.marginTop = '10px'; // Adjust the margins as needed
-// Get the "sugg note2" element
 
 // Custom Marker at Delhi's coordinates
 
@@ -130,40 +127,6 @@ document.querySelector('.note').style.marginTop = '10px'; // Adjust the margins 
 // if (!jsongovdataarray || !jsongovdataarray.length) {
 //   jsongovdataarray = coordata;
 // }
-function showsuggonmap(suggdata){
-  var note2 = L.control({ position: 'bottomleft' });
-
-note2.onAdd = function () {
-  var noteDiv = L.DomUtil.create('div', 'sugg note2');
-  // noteDiv.innerHTML = '<p>suggestions will be shown</p>';
- var parentDiv=noteDiv
-    // Remove the paragraph element from the DOM
-    // parentDiv.removeChild(paragraph);
-
-    // Create an array of content segments for the cards (modify as needed)
-    const cardContentList = suggdata.filter(item=>item.properties.city.toLowerCase().includes("mumbai"));
-    const cokeys2=Object.keys(suggdata);
-
-    // const  = content.split(/\s+/); // Split by whitespace
-console.log(cardContentList)
-    // Loop through the content segments
-    cardContentList.forEach((segment) => {
-      // Create a new div element for each segment
-      const cardDiv = document.createElement('div');
-      cardDiv.classList.add('suggcard'); // Add a "card" class for styling
-
-      // Add the text content to the new div
-      cardDiv.textContent = `${segment.properties.station} : ${segment.properties.aqi}`;
-
-      // Optionally, add styling for the card divs here
-
-      // Append the new div to the parent div
-      parentDiv.appendChild(cardDiv);})
-  return noteDiv;
-};
-note2.addTo(map);
-
-}
 function updateMapWithData() {
   jsongovdataarray.map(feature => {
 
@@ -203,69 +166,11 @@ function updateMapWithData() {
         popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
     }
-    function createRectangleMarker(latLng, value,col) {
-      // Create a div element for the marker content
-      var color;
-      if (col === "nh3") {
-        color = 'rgba(0, 128, 0, 0.5)'; // Green
-      } else if (col === "co") {
-        color = 'rgba(0, 0, 255, 0.5)'; // Blue
-      } else if (col === "so2") {
-        color = 'rgba(255, 255, 0, 0.7)'; // Yellow
-      } else if (col === "o3") {
-        color = 'rgba(255, 165, 0, 0.5)'; // Orange
-      } else if (col === "no2") {
-        color = 'rgba(255, 0, 0, 0.5)'; // Red
-      } else if (col === "pm10") {
-        color = 'rgba(128, 0, 128, 0.5)'; // Purple
-      } else if (col === "pm25") {
-        color = 'rgba(0, 0, 0, 0.5)'; // Black
-      } else {
-        color = 'rgba(128, 128, 128, 0.5)'; // Grey
-      }
-      
 
-      const markerContent = document.createElement('div');
-      markerContent.className = 'custom-marker no-default-border'; // Add the class
-
-      // Set the font and text content dynamically (adjust as needed)
-      markerContent.style.fontSize = '12px';
-      markerContent.style.fontWeight = 'bold';
-      markerContent.style.color="black";
-      markerContent.style.width = '20px'; // Adjust as needed
-      markerContent.style.height = '20px'; // Adjust as needed
-      markerContent.style.borderRadius = '50%';      markerContent.style.backgroundColor = color; // Example red with 80% opacity
-    
-      // Set border styles (adjust as needed)
-      // markerContent.style.border = '0.1px solid #fff'; // White border with 2px width
-      // markerContent.style.borderStyle = 'none'; 
-      markerContent.textContent = value.toString();
-      // Create a Leaflet DivIcon using the marker content
-      const customIcon = L.divIcon({
-        html: markerContent,
-        iconSize: [20, 20], // Adjust size as needed
-        iconAnchor: [10, 10]   // Adjust anchor point as needed
-      });
-
-      // Create the marker and add it to the map
-      const marker = L.marker(latLng, { icon: customIcon });
-      marker.addTo(map);
-
-      // Optionally, add a tooltip or popup for additional information
-      marker.bindTooltip(`Max: ${value}`); // Example tooltip content
-
-      return marker;
-    }
     try {
-      // var marker = L.marker([feature.geometry.coordinates[0], // Latitude
-      // feature.geometry.coordinates[1],], { icon: customIcon(feature.properties.maxele, feature.properties.max) });
-      // marker.addTo(map);
-      // const latLng = [19.07,72.877];
-      // const value = 123;
-      const marker = createRectangleMarker([feature.geometry.coordinates[0], // Latitude
-      feature.geometry.coordinates[1],], feature.properties.aqi,feature.properties.maxele);
+      var marker = L.marker([feature.geometry.coordinates[0], // Latitude
+      feature.geometry.coordinates[1],], { icon: customIcon(feature.properties.maxele, feature.properties.max) });
       marker.addTo(map);
-
       // let aqi =feature.properties.aqi;
       //  if (aqi==-1){
       //   aqi="Insufficient data";
@@ -320,11 +225,11 @@ function showPopup(location, disease, safetyStatus) {
   document.getElementById('popupContainer').appendChild(popup);
 
   // You may add an event listener to close the popup when clicked
-  popup.addEventListener('click', function () {
+  popup.addEventListener('click', function() {
     popup.parentNode.removeChild(popup);
   });
   var knowMoreLink = popup.querySelector('.know-more');
-  knowMoreLink.addEventListener('click', function (event) {
+  knowMoreLink.addEventListener('click', function(event) {
     event.preventDefault();
     fetchGovDataForCity(locationInput.value);
   });
@@ -382,39 +287,39 @@ document.getElementById("userInputForm").addEventListener("submit", function (ev
 
 document.addEventListener('DOMContentLoaded', (event) => {
   let locationInput = document.getElementById('locationInput');
-  let cityInput = document.getElementById('cityInput');
+let cityInput = document.getElementById('cityInput');
   // console.log("sum is ", sum, money.length)
   cityInput.oninput = function () {
     // Your code here
-    showSuggestions(cityInput.value, "city", "2")
+    showSuggestions(cityInput.value,"city","2")
     // console.log(locationInput.value);
   }
   locationInput.oninput = function () {
     // Your code here
-    showSuggestions(locationInput.value, "location", "1")
+    showSuggestions(locationInput.value,"location","1")
     // console.log(locationInput.value);
   }
 });
 // const diseases = ["Asthma", "COPD", "Bronchitis", "Emphysema", "Lung Cancer", "Influenza", "Pleural Effusion", "Bronchiectasis"];
 // console.log(coordata);
-function showSuggestions(input, parent, offset) {
+function showSuggestions(input,parent,offset) {
   console.log("city val:  " + input)
 
   const suggestionsContainer = document.getElementById(`suggestions${offset}`);
   suggestionsContainer.innerHTML = ""; // Clear previous suggestions
-  if (jsongovdataarray) {
-    console.log("exists")
-    var usingdata = jsongovdataarray
-  } else {
-    var usingdata = coordata
-  }
-  const cokeys = Object.keys(usingdata);
+if(jsongovdataarray){
+  console.log("exists")
+  var usingdata=jsongovdataarray
+}else{
+ var usingdata=coordata
+}
+const cokeys = Object.keys(usingdata);
 
-  var filteredDiseases = cokeys.filter(key =>
-    usingdata[key].properties.station.toLowerCase().includes(input.toLowerCase())
-    // disease.toLowerCase().includes(input.toLowerCase())
-  );
-  console.log(filteredDiseases)
+var filteredDiseases = cokeys.filter(key =>
+   usingdata[key].properties.station.toLowerCase().includes(input.toLowerCase())
+   // disease.toLowerCase().includes(input.toLowerCase())
+ );
+   console.log(filteredDiseases)
 
   if (filteredDiseases.length > 0) {
     filteredDiseases.forEach(item => {
@@ -446,94 +351,94 @@ document.addEventListener("click", function (event) {
 
 
 // script.js
-function updatetabledata(datafortable) {
-  // document.addEventListener("DOMContentLoaded", function () {
-  //   // Function to update the table body with new data
-  //   function updateTableBody() {
-  // Get the table body element
-  var tableBody_poll = document.querySelector("#mostHarmful tbody");
-  var tableBody_safe = document.querySelector("#safestPlaces tbody");
+function updatetabledata(datafortable){
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Function to update the table body with new data
+//   function updateTableBody() {
+    // Get the table body element
+    var tableBody_poll = document.querySelector("#mostHarmful tbody");
+    var tableBody_safe = document.querySelector("#safestPlaces tbody");
 
-  // Clear existing rows
-  tableBody_poll.innerHTML = "";
-  tableBody_safe.innerHTML = "";
+    // Clear existing rows
+    tableBody_poll.innerHTML = "";
+    tableBody_safe.innerHTML = "";
 
-
-  var sortt = datafortable.sort(function (a, b) {
-    // Assuming the data type of the column is numeric
-    // For descending order, switch the positions of a and b in the comparison
-    return b.properties.aqi - a.properties.aqi;
-  });
-  // console.log(coordata)
-  // console.log(jsongovdataarray)
-  // console.log(sortt)
-  var top10 = sortt.slice(0, 10);
-
-  // Get the last 10 elements
-  // var last10 = sortt.slice(-10).reverse();
-
-  var indexOfElement = sortt.findIndex(item => item.properties.aqi === -1); // Replace the criteria as needed
-
-  if (indexOfElement !== -1) {
-    // Get the 10 elements before the particular element
-    var last10 = sortt.slice(Math.max(0, indexOfElement - 10), indexOfElement).reverse();
-
-    // Output the result
-    // console.log("10 elements before the particular element:", elementsBefore,indexOfElement);
-  } else {
-    // console.log("Element not found in the array.");
-  }
-
-  function showStationDetails(city) {
-    // console.log("damn dude")
-    fetchGovDataForCity(city);
-  }
-
-  top10.forEach(item => {
-    item.id = top10.findIndex(item2 => item2 === item) + 1
-  })
-  // console.log(top10, last10);
-  // Loop through the new data and create new rows
-  top10.forEach(function (cityData) {
-    var newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>${cityData.id}</td>
-        <td>${cityData.properties.station}</td>
-        <td>${cityData.properties.state}</td>
-        <td>${cityData.properties.aqi}</td>
-      `;
-    newRow.addEventListener("click", () => {
-      showStationDetails(cityData.properties.station); // Call your function here
+   
+    var sortt = datafortable.sort(function (a, b) {
+      // Assuming the data type of the column is numeric
+      // For descending order, switch the positions of a and b in the comparison
+      return b.properties.aqi - a.properties.aqi;
     });
-    tableBody_poll.appendChild(newRow);
-  });
+    // console.log(coordata)
+    // console.log(jsongovdataarray)
+    // console.log(sortt)
+    var top10 = sortt.slice(0, 10);
 
-  last10.forEach(item => {
-    item.id = last10.findIndex(item2 => item2 === item) + 1
-  })
-  console.log(top10, last10);
-  // Loop through the new data and create new rows
-  last10.forEach(function (cityData) {
-    var newRow = document.createElement("tr");
-    newRow.innerHTML = `
-        <td>${cityData.id}</td>
-        <td>${cityData.properties.station}</td>
-        <td>${cityData.properties.state}</td>
-        <td>${cityData.properties.aqi}</td>
-      `;
-    newRow.addEventListener("click", () => {
-      showStationDetails(cityData.properties.station); // Call your function here
-    });
-    tableBody_safe.appendChild(newRow);
-  });
+    // Get the last 10 elements
+    // var last10 = sortt.slice(-10).reverse();
+  
+    var indexOfElement = sortt.findIndex(item => item.properties.aqi === -1); // Replace the criteria as needed
+
+    if (indexOfElement !== -1) {
+      // Get the 10 elements before the particular element
+      var last10 = sortt.slice(Math.max(0, indexOfElement - 10), indexOfElement).reverse();
+
+      // Output the result
+      // console.log("10 elements before the particular element:", elementsBefore,indexOfElement);
+    } else {
+      // console.log("Element not found in the array.");
+    }
+
+function showStationDetails(city){
+  // console.log("damn dude")
+  fetchGovDataForCity(city);
 }
 
-// Call the updateTableBody function to initially populate the table
-// updateTableBody();
+    top10.forEach(item=>{
+      item.id = top10.findIndex(item2=>item2===item) +1
+    })
+    // console.log(top10, last10);
+    // Loop through the new data and create new rows
+    top10.forEach(function (cityData) {
+      var newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${cityData.id}</td>
+        <td>${cityData.properties.station}</td>
+        <td>${cityData.properties.state}</td>
+        <td>${cityData.properties.aqi}</td>
+      `;
+      newRow.addEventListener("click", () => {
+        showStationDetails(cityData.properties.station); // Call your function here
+      });
+      tableBody_poll.appendChild(newRow);
+    });
+
+    last10.forEach(item=>{
+      item.id = last10.findIndex(item2=>item2===item) +1
+    })
+    console.log(top10, last10);
+    // Loop through the new data and create new rows
+    last10.forEach(function (cityData) {
+      var newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${cityData.id}</td>
+        <td>${cityData.properties.station}</td>
+        <td>${cityData.properties.state}</td>
+        <td>${cityData.properties.aqi}</td>
+      `;
+      newRow.addEventListener("click", () => {
+        showStationDetails(cityData.properties.station); // Call your function here
+      });
+      tableBody_safe.appendChild(newRow);
+    });
+  }
+
+  // Call the updateTableBody function to initially populate the table
+  // updateTableBody();
 // });
 
 
 
 
 
-export { updateMapWithData, updatetabledata ,showsuggonmap};
+export { updateMapWithData ,updatetabledata};

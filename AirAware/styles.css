@@ -2,6 +2,73 @@ body {
     background-color: rgba(81, 121, 181, 0.4);
     margin-bottom: 0px;
 }
+.leaflet-div-icon{
+    /* border:  ; */
+    border-radius: 100%;
+    background: rgba(255, 255, 255, 0.5) ; 
+}
+.leaflet-bottom{
+    width: 50%;
+
+}
+.leaflet-left{
+    height: 10%;
+    margin-bottom: 2%;
+    border-radius: 10px;
+}
+.note2 {
+    background-color: red !important;
+    width: 95%;
+    /* width: 50%; */
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    overflow-x: scroll;
+  
+    /* Hide default scrollbar (fallback for browsers not supporting custom styles) */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome and Safari */
+    }
+  
+    &::-moz-scrollbar {
+      display: none; /* Firefox */
+    }
+  
+    /* Custom scrollbar track styling (optional) */
+    &::-webkit-scrollbar-track {
+      background-color: #f5f5f5; /* Light gray track background */
+      border-radius: 0; /* Remove default track border */
+    }
+  
+    /* Custom scrollbar thumb styling */
+    &::-webkit-scrollbar-thumb {
+      background-color: #ccc; /* Gray thumb color */
+      border-radius: 5px; /* Rounded corners for the thumb */
+      width: 5px; /* Set the width of the thumb (adjust as needed) */
+    }
+  
+    /* Optional: Adjust hover behavior for the thumb */
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #bbb; /* Slightly darker on hover */
+    }
+  }
+  
+  .suggcard{
+    background-color: wheat;
+    border-radius: 10px;
+    min-width: 200px;
+    height: 70%;
+  }
+.info{
+    background-color: blue;
+}
+.no-default-border {
+    box-sizing: border-box; /* Ensure border width is included in element size */
+    /* border-radius: 10%; */
+    border: none;
+  }
 .popup {
     font-family: 'Poppins', sans-serif;
     border-radius: 20px;

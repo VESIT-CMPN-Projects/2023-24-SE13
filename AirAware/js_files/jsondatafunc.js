@@ -1,4 +1,4 @@
-import { updateMapWithData ,updatetabledata } from './script.js';
+import { showsuggonmap, updateMapWithData ,updatetabledata } from './script.js';
 import coordata from './data.js';
 
 var jsongovdataarray = [
@@ -47,6 +47,7 @@ function updateGovData(data) {
   });
   updatetabledata(jsongovdataarray);
   updateMapWithData();
+  showsuggonmap(jsongovdataarray);
 }
 
 export { jsongovdataarray, updateGovData };
