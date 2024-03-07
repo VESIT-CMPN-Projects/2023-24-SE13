@@ -58,8 +58,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
-    /* Ensure it appears above other elements */
+
 }
 
 #pollutant-info p {
@@ -350,6 +349,11 @@ body {
     color: rgb(30, 76, 141);
     padding-bottom: 0;
 }
+#sci-img img {
+    width: 100px; /* Set a fixed width for the images */
+    height: 100px; /* Set a fixed height for the images */
+    object-fit: cover; /* Ensure the entire image fits inside the specified dimensions */
+}
 
 #mostHarmful,
 #safestPlaces {
@@ -524,7 +528,9 @@ select,
     width: 70%;
 
 }
-
+.protection-section{
+    font-size: 1rem !important;
+}
 
 
 

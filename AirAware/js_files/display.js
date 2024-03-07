@@ -288,29 +288,61 @@ function fetchGovDataForCity(city) {
     }
     var buttons = document.querySelectorAll('.button');
 
-    // Add click event listener to each button
-    buttons.forEach(function (button) {
-      button.addEventListener('click', function () {
+    
+  // Add click event listener to each button
+// Store reference to the previously selected button
+var prevSelectedButton = null;
+
+buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
         var pollutant = button.getAttribute('data-pollutant');
-        // alert('Clicked on ' + pollutant);
+        
+        // Get the background color of the button
+        var computedStyle = window.getComputedStyle(button);
+        var backgroundColor = computedStyle.getPropertyValue('background-color');
+  
+        // Update the background color of the pollutant-info div
+        document.getElementById('pollutant-info').style.backgroundColor = backgroundColor;
+
+        // Get the position of the button
+        var buttonRect = button.getBoundingClientRect();
+        var buttonRight = buttonRect.right;
+        
+        // Get the position of the pollutant-info div
+        var pollutantInfoRect = document.getElementById('pollutant-info').getBoundingClientRect();
+        var pollutantInfoLeft = pollutantInfoRect.left;
+        
+        // Calculate the distance to move the button
+        var distance = pollutantInfoLeft - buttonRight;
+        
+        // Move the previously selected button back to its original position
+        if (prevSelectedButton !== null) {
+            var originalPosition = parseFloat(window.getComputedStyle(prevSelectedButton).marginLeft);
+            prevSelectedButton.style.transition = 'transform 0.3s ease';
+            prevSelectedButton.style.transform = `translateX(${originalPosition}px)`;
+        }
+        button.style.transition = 'transform 0.3s ease'; 
+        // Move the button towards the right by translating it
+        button.style.transform = `translateX(${distance}px)`;
       
+        // Update prevSelectedButton to the current button
+        prevSelectedButton = button;
       
         // Example of calling the function with new values
-        updatePollutantInfo(pollutant,firstmatch.properties.pollutants[pollutant].pollutant_avg,
-           firstmatch.properties.pollutants[pollutant].pollutant_min,
-            firstmatch.properties.pollutants[pollutant].pollutant_max, `ImagesOfSite/${pollutant}.png`);
-        // You can do more with the pollutant value here
-      });
+        updatePollutantInfo(
+            pollutant,
+            firstmatch.properties.pollutants[pollutant].pollutant_avg,
+            firstmatch.properties.pollutants[pollutant].pollutant_min,
+            firstmatch.properties.pollutants[pollutant].pollutant_max,
+            `ImagesOfSite/${pollutant}.png`
+        );
     });
+});
+
+
     const aqidataDiv = document.querySelector(".aqidata");
     function updateImage(aqi) {
       var personImage = document.getElementById('personImage');
-      if (personImage) {
-        console.log("done")
-      }
-      else {
-        console.log("sorry not done")
-      }
       if (aqi >= 0 && aqi <= 50) {
         personImage.src = "ImagesOfSite/aqi_0_50.png";
       } else if (aqi > 50 && aqi <= 100) {
@@ -495,6 +527,7 @@ function fetchGovDataForCity(city) {
     });
   }
 }
+
 
 
 
