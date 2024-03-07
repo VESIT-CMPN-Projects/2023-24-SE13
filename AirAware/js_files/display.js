@@ -64,6 +64,10 @@ function fetchGovDataForCity(city) {
     } else {
       aqiCondition = 'Out of Range';
     }
+    // Get the image element
+var personImage = document.getElementById('personImage');
+
+// Function to update the image based on AQI condition
 
     const pollutants = {
       SO2: firstmatch.properties.So2,
@@ -178,7 +182,7 @@ function fetchGovDataForCity(city) {
             <h4 class="aqi-condition">${aqiCondition}</h4>
         </div>
         <div class="person-img">
-            <img src="ImagesOfSite/person.png">
+            <img id="personImage" src="ImagesOfSite/person.png">
         </div>
       </div>
       <div class="vertical-line"></div>
@@ -269,7 +273,31 @@ function fetchGovDataForCity(city) {
     govDataModal.style.display = 'block';
 
     const aqidataDiv = document.querySelector(".aqidata");
-    
+    function updateImage(aqi) {
+      var personImage = document.getElementById('personImage');
+       if(personImage){
+        console.log("done")
+       }
+       else{
+        console.log("sorry not done")
+       }
+        if (aqi >= 0 && aqi <= 50) {
+            personImage.src = "ImagesOfSite/aqi_0_50.png";
+        } else if (aqi > 50 && aqi <= 100) {
+            personImage.src = "ImagesOfSite/aqi_50_100.png";
+        } else if (aqi > 100 && aqi <= 200) {
+            personImage.src = "ImagesOfSite/aqi_100_200.png";
+        } else if (aqi > 200 && aqi <= 300) {
+            personImage.src = "ImagesOfSite/aqi_200_300.png";
+        } else if (aqi > 300 && aqi <= 400) {
+            personImage.src = "ImagesOfSite/aqi_300_400.png";
+        } else if (aqi > 400 && aqi <= 500) {
+            personImage.src = "ImagesOfSite/aqi_400_500.png";
+        } else {
+            personImage.src = "ImagesOfSite/default-person.png"; // Default image for other conditions
+        }
+    }
+    updateImage(`${aqiValue}`);
     function getAqiColor(aqiValue) {
       if (aqiValue >= 0 && aqiValue <= 50) {
           return 'rgba(0, 128, 0, 0.6)'; // Green
