@@ -350,7 +350,7 @@ body {
     padding-bottom: 0;
 }
 #sci-img img {
-    width: 100px; /* Set a fixed width for the images */
+    width: 200px; /* Set a fixed width for the images */
     height: 100px; /* Set a fixed height for the images */
     object-fit: cover; /* Ensure the entire image fits inside the specified dimensions */
 }
