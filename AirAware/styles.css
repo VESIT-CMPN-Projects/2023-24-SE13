@@ -2,17 +2,18 @@ body {
     background-color: rgba(81, 121, 181, 0.4);
     margin-bottom: 0px;
 }
+
 .button-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .button-list li {
+}
+
+.button-list li {
     margin-bottom: 10px;
-  }
-  
-  .button {
+}
+
+.button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -24,16 +25,13 @@ body {
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
-  }
-  
-  .button:hover {
+}
+
+.button:hover {
     background-color: #45a049;
-  }
-  .button.clicked{
-    transform: translateX(20px); 
-  }
-  
-  .info-panel {
+}
+
+.info-panel {
     position: fixed;
     top: 0;
     left: 0;
@@ -42,12 +40,13 @@ body {
     border: 1px solid #ccc;
     padding: 20px;
     display: none;
-  }
-  
-  .info-panel h2 {
+}
+
+.info-panel h2 {
     margin-top: 0;
-  }
-  #pollutant-info {
+}
+
+#pollutant-info {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -59,37 +58,43 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    /* Ensure it appears above other elements */
 }
-#pollutant-info p{
+
+#pollutant-info p {
     font-size: 1rem;
     margin-top: 1rem;
 }
+
 #pollutant-info.active {
-    display: block; /* Show the div when active */
-}
-.pollutant-info{
-    
+    display: block;
+    /* Show the div when active */
 }
 
-  
-.leaflet-div-icon{
+
+.leaflet-div-icon {
     /* border:  ; */
     border-radius: 100%;
-    background: rgba(255, 255, 255, 0.5) ; 
+    background: rgba(255, 255, 255, 0.5);
 }
-.leaflet-bottom{
+
+.leaflet-bottom {
     width: 50%;
 
 }
-.leaflet-left{
+
+.leaflet-left {
     height: 10%;
     margin-bottom: 7vh;
     border-radius: 10px;
 }
-.outer-sugg{
+
+.outer-sugg {
     width: 100%;
     height: 100%;
 }
+
 .note2 {
     /* background-color: red !important; */
     width: 95%;
@@ -97,41 +102,49 @@ body {
     height: 100%;
     border-radius: 10px;
     display: flex;
-    align-items:baseline;
+    align-items: baseline;
     gap: 5px;
     overflow-x: scroll;
-  
+
     /* Hide default scrollbar (fallback for browsers not supporting custom styles) */
     &::-webkit-scrollbar {
-      display: none; /* Chrome and Safari */
+        display: none;
+        /* Chrome and Safari */
     }
-  
+
     &::-moz-scrollbar {
-      display: none; /* Firefox */
+        display: none;
+        /* Firefox */
     }
-  
+
     /* Custom scrollbar track styling (optional) */
     &::-webkit-scrollbar-track {
-      background-color: #f5f5f5; /* Light gray track background */
-      border-radius: 0; /* Remove default track border */
+        background-color: #f5f5f5;
+        /* Light gray track background */
+        border-radius: 0;
+        /* Remove default track border */
     }
-  
+
     /* Custom scrollbar thumb styling */
     &::-webkit-scrollbar-thumb {
-      background-color: #ccc; /* Gray thumb color */
-      border-radius: 5px; /* Rounded corners for the thumb */
-      width: 5px; /* Set the width of the thumb (adjust as needed) */
+        background-color: #ccc;
+        /* Gray thumb color */
+        border-radius: 5px;
+        /* Rounded corners for the thumb */
+        width: 5px;
+        /* Set the width of the thumb (adjust as needed) */
     }
-  
+
     /* Optional: Adjust hover behavior for the thumb */
     &::-webkit-scrollbar-thumb:hover {
-      background-color: #bbb; /* Slightly darker on hover */
+        background-color: #bbb;
+        /* Slightly darker on hover */
     }
-  }
-  
-  .suggcard{
+}
+
+.suggcard {
     background-color: skyblue;
-    border:1px solid blue;
+    border: 1px solid blue;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,33 +157,43 @@ body {
     white-space: nowrap;
     padding-left: 5px;
     padding-right: 5px;
-  }
-  .suggcard2{
+}
+
+.suggcard2 {
     font-size: 1.3rem;
     font-weight: 600;
-  }
-  .suggstation{
+}
+
+.suggstation {
     margin: 0;
     padding: 0;
     font-size: 1.1rem;
     /* background-color: red; */
-  }
-  .suggval{
+}
+.suggstation:hover{
+    cursor: pointer;
+}
+.suggval {
     margin: 0;
     padding: 0;
     font-size: 0.9rem;
-  }
-.info{
+}
+
+.info {
     background-color: blue;
 }
+
 .no-default-border {
-    box-sizing: border-box; /* Ensure border width is included in element size */
+    box-sizing: border-box;
+    /* Ensure border width is included in element size */
     /* border-radius: 10%; */
     border: none;
-  }
-.Googlemaps{
+}
+
+.Googlemaps {
     font-size: 1rem;
 }
+
 #pollution-container {
     position: fixed;
     top: 50%;
@@ -179,44 +202,48 @@ body {
     background-color: white;
     border: 1px solid black;
     padding: 20px;
-  }
-  .protection-itemslist {
+}
+
+.protection-itemslist {
     display: flex;
     justify-content: space-around;
-  }
-  
-  .protection-item {
+}
+
+.protection-item {
     text-align: center;
-  }
-  
-  .protection-item img {
-    width: 50px; /* Adjust the size of the icons */
-  }
-  
-  .protection-item p {
+}
+
+.protection-item img {
+    width: 50px;
+    /* Adjust the size of the icons */
+}
+
+.protection-item p {
     margin: 5px 0;
-  }
-  
-  .required {
-    color: green; /* Style required items differently */
-  }
-  
-  .not-required {
-    color: red; /* Style not required items differently */
-  }
-  
-  .close-btn {
+}
+
+.required {
+    color: green;
+    /* Style required items differently */
+}
+
+.not-required {
+    color: red;
+    /* Style not required items differently */
+}
+
+.close-btn {
     position: absolute;
     top: 5px;
     right: 10px;
     cursor: pointer;
-  }
-  
-  .pollutant {
+}
+
+.pollutant {
     cursor: pointer;
     margin-bottom: 10px;
-  }
-  
+}
+
 .popup {
     font-family: 'Poppins', sans-serif;
     border-radius: 20px;
@@ -229,44 +256,51 @@ body {
     padding: 2rem;
     z-index: 1000;
     transition-duration: 3000ms;
-  }
-  .aqi-info{
+}
+
+.aqi-info {
     display: flex;
-  }
-  .vertical-line {
-    border-left: 1px solid black; 
-    height: 24rem; 
+}
+
+.vertical-line {
+    border-left: 1px solid black;
+    height: 24rem;
     margin: 2rem;
 }
-  .person-img{
+
+.person-img {
     margin-top: 2rem;
-  }
-  .standardtable{
+}
+
+.standardtable {
     text-align: center;
-  }
-  .close-btnpopup{
-    cursor:pointer;
-  font-size: 2rem; 
-  margin-left: 32rem;
-  }
-  .know-more{
+}
+
+.close-btnpopup {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: 32rem;
+}
+
+.know-more {
     color: white;
     margin-left: 25rem;
-  }
-  .know-more:hover{
+}
+
+.know-more:hover {
     color: black;
-  }
-  
-  .green {
+}
+
+.green {
     background-color: green;
     color: white;
-  }
-  
-  .red {
+}
+
+.red {
     background-color: rgb(158, 6, 6);
     color: white;
-  }
-  
+}
+
 
 
 .respiratory-form {
@@ -355,13 +389,15 @@ thead {
 }
 
 th {
-    
+
     border-bottom: 1px solid #ddd;
     /* Bottom border for th elements */
 }
-.rank-th{
+
+.rank-th {
     width: 3%;
 }
+
 tbody tr:nth-child(even) {
     background-color: #76afda4a;
     /* Alternate row background color */
@@ -540,10 +576,12 @@ select,
     gap: 10%;
     flex-direction: column;
 }
-.aqi-pollutants2{
+
+.aqi-pollutants2 {
     display: flex;
     margin-top: 2rem;
 }
+
 .aqi-box {
     position: relative;
     top: 3vw;
@@ -637,6 +675,7 @@ h4 {
 
 }
 
+
 .brand-logo {
     text-decoration: none;
     display: flex;
@@ -659,19 +698,18 @@ h4 {
     color: grey;
 }
 
+
 input::placeholder {
     font-weight: bold;
     opacity: 0.5;
     color: rgb(255, 255, 255);
 }
-
 .nav-item {
-    background-color: rgb(30, 76, 141);
-    border-radius: 20px;
-    border: solid black;
-
+    border-right: solid rgb(255, 255, 255);
+    border-width: 1.6px;
     border-width: 2px;
 }
+
 
 /* 
 .btn btn-outline-success {
@@ -683,22 +721,22 @@ input::placeholder {
     background-color: none;
 }
 
-#customControl {
-    position: absolute;
-    top: 10px;
-
-    z-index: 1000;
-
-    border: none;
-    border-radius: 5px;
-}
 
 .logo-brand-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+.button-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 60vh;
+    margin-left: 5vw;
+}
 
+/* 
 .navbar {
     display: flex;
     justify-content: space-around;
@@ -738,16 +776,8 @@ input::placeholder {
 
 .navbar-brand:hover {
     color: rgb(127, 179, 246);
-}
+} */
 
-.button-container {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 60vh;
-    margin-left: 5vw;
-}
 
 #button1 {
     width: 20%;
@@ -834,11 +864,11 @@ input::placeholder {
 }
 
 #map {
-    height: 100vh;
+    height: 85vh;
     width: 90vw;
     /* display: flex; */
     border-radius: 20px;
-    margin-top: 0.5%;
+    margin-top: 1%;
     /* margin-bottom: 5%; */
 
 }
@@ -890,7 +920,7 @@ input::placeholder {
   background-size:cover; */
     border-radius: 1rem;
 }
-
+/* 
 .footer-webname {
     font-family: 'Mulish', sans-serif;
     color: rgb(0, 0, 0);
@@ -921,37 +951,68 @@ input::placeholder {
 
 .contact-about a:hover {
     color: black;
-}
+} */
 
-#suggestions2 , #suggestions1 {
+
+#suggestions2,
+#suggestions1 {
     display: none;
-    /* position: absolute; */
+    position: absolute;
     background-color: #f1f1f1;
-    max-height: 150px;
+    max-height: 200px;
     overflow-y: auto;
+    font-size: 1.2rem;
+    z-index: 2000;
     border: 1px solid #ddd;
+    width: 30%;
+    font-family: 'Poppins', sans-serif;
+    border: solid black;
+    border-width: 1.2px;
 }
 
 .suggestion {
     padding: 10px;
     cursor: pointer;
 }
-
 .suggestion:hover {
     background-color: #ddd;
 }
 
+
+
+.footer-div {
+    display: flex;
+    padding: 2% 5% 0% 5%;
+    gap: 8%;
+    color: white;
+    background-color: rgb(25, 49, 82);
+    justify-content: flex-start;
+    font-family: 'Poppins', sans-serif;
+}
+
+.footer-service-a {
+    color: white;
+    margin-bottom: 6%;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.footer-service-a:hover,
+.service-head:hover {
+    color: grey;
+}
+
 @media (max-width:1170px) and (min-width:0px) {
     .container-fluid {
-          gap: 1%;
+        gap: 1%;
     }
 }
 
 @media (max-width:1135px) and (min-width:0px) {
     .navbar-brand-div-inside {
-          padding-left: 0%;
-          font-size: 1rem;
-          margin-top: 4%;
+        padding-left: 0%;
+        font-size: 1rem;
+        margin-top: 4%;
     }
 
 }
@@ -959,49 +1020,49 @@ input::placeholder {
 
 @media (max-width:609px) and (min-width:0px) {
     .navbar-menu {
-          margin-top: 4%;
+        margin-top: 4%;
     }
 
     .additional-info-container {
-          font-size: 0.9rem;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width:940px) and (min-width:0px) {
     .form-section {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .respiratory-info {
-          font-size: 1rem;
-          width: 80%;
+        font-size: 1rem;
+        width: 80%;
     }
 
     #userInputForm {
-          margin-bottom: 9%;
-          margin-top: 9%;
-          width: 80%;
+        margin-bottom: 9%;
+        margin-top: 9%;
+        width: 80%;
     }
 
     .listofcities {
-          margin-top: 6%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 0px;
-          flex-direction: column;
+        margin-top: 6%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px;
+        flex-direction: column;
     }
 
     .additional-info-container {
-          margin: 0px;
+        margin: 0px;
     }
 
     #mostHarmful,
     #safestPlaces {
-          width: 80%;
-          margin-top: 8%;
+        width: 80%;
+        margin-top: 8%;
     }
 }
