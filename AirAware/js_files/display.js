@@ -40,7 +40,7 @@ function fetchGovDataForCity(city) {
       (element) => element.properties.city === city
     );
   }
-  showsuggonmap(jsongovdataarray,firstmatch.properties.city)
+  showsuggonmap(jsongovdataarray, firstmatch.properties.city)
 
   console.log("searched" + firstmatch, city)
 
@@ -65,9 +65,9 @@ function fetchGovDataForCity(city) {
       aqiCondition = 'Out of Range';
     }
     // Get the image element
-var personImage = document.getElementById('personImage');
+    var personImage = document.getElementById('personImage');
 
-// Function to update the image based on AQI condition
+    // Function to update the image based on AQI condition
 
     const pollutants = {
       SO2: firstmatch.properties.So2,
@@ -148,23 +148,23 @@ var personImage = document.getElementById('personImage');
       measuresToReducePollutant = 'To mitigate NO2 levels, measures such as using public transportation, reducing vehicle emissions, and implementing stricter emission standards for industries are recommended.';
     }
 
-            // Define the function to show pollutant information
-      function showPollutantInfo(pollutant) {
-        console.log("PollutantInfo function called")
-        const pollutantInfo = document.getElementById('pollutant-info');
-        pollutantInfo.innerHTML = `Information for ${pollutant}`;
-      }
+    // Define the function to show pollutant information
+    function showPollutantInfo(pollutant) {
+      console.log("PollutantInfo function called")
+      const pollutantInfo = document.getElementById('pollutant-info');
+      pollutantInfo.innerHTML = `Information for ${pollutant}`;
+    }
 
-      // Add event listeners to each button
-      document.addEventListener('DOMContentLoaded', function() {
-        const buttons = document.querySelectorAll('.button');
-        buttons.forEach(button => {
-            button.addEventListener('click', function() {
-                const pollutant = this.getAttribute('data-pollutant');
-                showPollutantInfo(pollutant);
-            });
+    // Add event listeners to each button
+    document.addEventListener('DOMContentLoaded', function () {
+      const buttons = document.querySelectorAll('.button');
+      buttons.forEach(button => {
+        button.addEventListener('click', function () {
+          const pollutant = this.getAttribute('data-pollutant');
+          showPollutantInfo(pollutant);
         });
       });
+    });
     const content = `
     <small class="Googlemaps"><a href="https://www.google.com/maps/search/?api=1&query=${firstmatch.geometry.coordinates[0]},${firstmatch.geometry.coordinates[1]}" target="_blank"><span class="fas fa-map-marker-alt"></span>See on Google Maps</a></small>
     <br><br>
@@ -187,24 +187,23 @@ var personImage = document.getElementById('personImage');
       </div>
       <div class="vertical-line"></div>
       <div class="aqi-pollutants2">
-        <ul class="button-list" id="pollutantButtons">
-          <li><button class="button" data-pollutant="PM10">PM10</button></li>
-          <li><button class="button" data-pollutant="CO">CO</button></li>
-          <li><button class="button" data-pollutant="PM25">PM2.5</button></li>
-          <li><button class="button" data-pollutant="Ozone">Ozone</button></li>
-          <li><button class="button" data-pollutant="NO2">NO2</button></li>
-          <li><button class="button" data-pollutant="SO2">SO2</button></li>
-          <li><button class="button" data-pollutant="NH3">NH3</button></li>
-        </ul>
-        <div id="pollutant-info">
-          <div id="sci-img"><img src="ImagesOfSite/sci-diag.jpeg" width="150px"></div>
-          <div id="avgminmax">
-            <p>24H avg:</p>
-            <p>24 Min:</p>
-            <p>24H Max:</p>
-          </div>
-        
-        </div>
+      <ul class="button-list" id="pollutantButtons">
+      <li><button class="button" data-pollutant="PM10">PM10</button></li>
+      <li><button class="button" data-pollutant="CO">CO</button></li>
+      <li><button class="button" data-pollutant="PM2.5">PM2.5</button></li>
+      <li><button class="button" data-pollutant="OZONE">Ozone</button></li>
+      <li><button class="button" data-pollutant="NO2">NO2</button></li>
+      <li><button class="button" data-pollutant="SO2">SO2</button></li>
+      <li><button class="button" data-pollutant="NH3">NH3</button></li>
+    </ul>
+    <div id="pollutant-info">
+    <div id="sci-img"><img src="ImagesOfSite/sci-diag.jpeg" width="150px"></div>
+    <div id="avgminmax">
+      <p id="avg">24H avg:</p>
+      <p id="min">24 Min:</p>
+      <p id="max">24H Max:</p>
+    </div>
+  </div>
     </div>
 
      
@@ -272,50 +271,76 @@ var personImage = document.getElementById('personImage');
 
     govDataModal.style.display = 'block';
 
+
+    function updatePollutantInfo(avgValue, minValue, maxValue, imgUrl) {
+      // Update values inside <p> tags
+      document.getElementById('avg').textContent = '24H avg: ' + avgValue;
+      document.getElementById('min').textContent = '24 Min: ' + minValue;
+      document.getElementById('max').textContent = '24H Max: ' + maxValue;
+  
+      // Update src attribute of the <img> tag
+      document.getElementById('sci-img').querySelector('img').src = imgUrl;
+    }
+    var buttons = document.querySelectorAll('.button');
+
+    // Add click event listener to each button
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var pollutant = button.getAttribute('data-pollutant');
+        // alert('Clicked on ' + pollutant);
+      
+      
+        // Example of calling the function with new values
+        updatePollutantInfo(firstmatch.properties.pollutants[pollutant].pollutant_avg,
+           firstmatch.properties.pollutants[pollutant].pollutant_min,
+            firstmatch.properties.pollutants[pollutant].pollutant_max, `ImagesOfSite/${pollutant}.png`);
+        // You can do more with the pollutant value here
+      });
+    });
     const aqidataDiv = document.querySelector(".aqidata");
     function updateImage(aqi) {
       var personImage = document.getElementById('personImage');
-       if(personImage){
+      if (personImage) {
         console.log("done")
-       }
-       else{
+      }
+      else {
         console.log("sorry not done")
-       }
-        if (aqi >= 0 && aqi <= 50) {
-            personImage.src = "ImagesOfSite/aqi_0_50.png";
-        } else if (aqi > 50 && aqi <= 100) {
-            personImage.src = "ImagesOfSite/aqi_50_100.png";
-        } else if (aqi > 100 && aqi <= 200) {
-            personImage.src = "ImagesOfSite/aqi_100_200.png";
-        } else if (aqi > 200 && aqi <= 300) {
-            personImage.src = "ImagesOfSite/aqi_200_300.png";
-        } else if (aqi > 300 && aqi <= 400) {
-            personImage.src = "ImagesOfSite/aqi_300_400.png";
-        } else if (aqi > 400 && aqi <= 500) {
-            personImage.src = "ImagesOfSite/aqi_400_500.png";
-        } else {
-            personImage.src = "ImagesOfSite/default-person.png"; // Default image for other conditions
-        }
+      }
+      if (aqi >= 0 && aqi <= 50) {
+        personImage.src = "ImagesOfSite/aqi_0_50.png";
+      } else if (aqi > 50 && aqi <= 100) {
+        personImage.src = "ImagesOfSite/aqi_50_100.png";
+      } else if (aqi > 100 && aqi <= 200) {
+        personImage.src = "ImagesOfSite/aqi_100_200.png";
+      } else if (aqi > 200 && aqi <= 300) {
+        personImage.src = "ImagesOfSite/aqi_200_300.png";
+      } else if (aqi > 300 && aqi <= 400) {
+        personImage.src = "ImagesOfSite/aqi_300_400.png";
+      } else if (aqi > 400 && aqi <= 500) {
+        personImage.src = "ImagesOfSite/aqi_400_500.png";
+      } else {
+        personImage.src = "ImagesOfSite/default-person.png"; // Default image for other conditions
+      }
     }
     updateImage(`${aqiValue}`);
     function getAqiColor(aqiValue) {
       if (aqiValue >= 0 && aqiValue <= 50) {
-          return 'rgba(0, 128, 0, 0.6)'; // Green
+        return 'rgba(0, 128, 0, 0.6)'; // Green
       } else if (aqiValue >= 51 && aqiValue <= 100) {
-          return 'rgba(144, 238, 144, 0.6)'; // Light Green
+        return 'rgba(144, 238, 144, 0.6)'; // Light Green
       } else if (aqiValue >= 101 && aqiValue <= 150) {
-          return 'rgba(255, 255, 0, 0.6)'; // Yellow
+        return 'rgba(255, 255, 0, 0.6)'; // Yellow
       } else if (aqiValue >= 151 && aqiValue <= 200) {
-          return 'rgba(255, 165, 0, 0.6)'; // Orange
+        return 'rgba(255, 165, 0, 0.6)'; // Orange
       } else if (aqiValue >= 201 && aqiValue <= 300) {
-          return 'rgba(255, 0, 0, 0.6)'; // Red
+        return 'rgba(255, 0, 0, 0.6)'; // Red
       } else if (aqiValue >= 301 && aqiValue <= 500) {
-          return 'rgba(128, 0, 128, 0.6)'; // Purple
+        return 'rgba(128, 0, 128, 0.6)'; // Purple
       } else {
-          return 'rgba(128, 128, 128, 0.6)'; // Default color (grey)
+        return 'rgba(128, 128, 128, 0.6)'; // Default color (grey)
       }
-  }
-  
+    }
+
     // // Check if the element is found
     // if (aqidataDiv) {
     //   // Add the onclick event listener to the element
@@ -330,7 +355,7 @@ var personImage = document.getElementById('personImage');
     //   console.error("Element with class .aqidata not found!");
     // }
 
-  
+
 
     const pollutantsData = {
       NH3: firstmatch.properties.Nh3,
@@ -341,11 +366,11 @@ var personImage = document.getElementById('personImage');
       PM25: firstmatch.properties.Pm25,
       PM10: firstmatch.properties.Pm10,
     };
-    
+
     // Filter out pollutants with 0 values
     const filteredLabels = [];
     const filteredData = [];
-    
+
     Object.keys(pollutantsData).forEach((pollutant) => {
       const value = pollutantsData[pollutant];
       if (!isNaN(value) && value !== 0) {
@@ -353,7 +378,7 @@ var personImage = document.getElementById('personImage');
         filteredData.push(value);
       }
     });
-    
+
     // Assign colors based on specified pollutants using the same logic as createRectangleMarker
     const backgroundColors = filteredLabels.map((pollutant) => {
       switch (pollutant) {
@@ -375,11 +400,11 @@ var personImage = document.getElementById('personImage');
           return 'rgba(128, 128, 128, 0.5)'; // Grey
       }
     });
-    
+
     const barChartData = {
       labels: filteredLabels,
       datasets: [
-        { 
+        {
           label: 'Pollutant Values (ug/m^3)',
           data: filteredData,
           backgroundColor: backgroundColors,
@@ -387,7 +412,7 @@ var personImage = document.getElementById('personImage');
         },
       ],
     };
-    
+
     const barChartData2 = {
       labels: ['Pollutant1', 'Pollutant2', 'Pollutant3'],
       datasets: [{
@@ -413,8 +438,8 @@ var personImage = document.getElementById('personImage');
           ticks: {
             font: {
               size: 14,
-              color:"black",
-              weight:"bold"
+              color: "black",
+              weight: "bold"
             },
           },
         },
@@ -430,8 +455,8 @@ var personImage = document.getElementById('personImage');
           ticks: {
             font: {
               size: 14,
-              color:"black",
-              weight:"bold"
+              color: "black",
+              weight: "bold"
             },
           },
         },

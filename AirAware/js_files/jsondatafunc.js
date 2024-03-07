@@ -42,6 +42,7 @@ function updateGovData(data) {
         "Pm10": element.pollutants.PM10?.pollutant_avg ?? NaN,
         "max": element.max,
         "maxele": element.maxele,
+        "pollutants":element.pollutants,
       }
     });
 
