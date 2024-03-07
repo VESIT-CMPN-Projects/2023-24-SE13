@@ -327,15 +327,15 @@ function fetchGovDataForCity(city) {
       if (aqiValue >= 0 && aqiValue <= 50) {
         return 'rgba(0, 128, 0, 0.6)'; // Green
       } else if (aqiValue >= 51 && aqiValue <= 100) {
-        return 'rgba(144, 238, 144, 0.6)'; // Light Green
-      } else if (aqiValue >= 101 && aqiValue <= 150) {
-        return 'rgba(255, 255, 0, 0.6)'; // Yellow
-      } else if (aqiValue >= 151 && aqiValue <= 200) {
-        return 'rgba(255, 165, 0, 0.6)'; // Orange
+          return 'rgba(144, 238, 144, 0.6)'; // Light Green
+      } else if (aqiValue >= 101 && aqiValue <= 200) {
+          return 'rgba(255, 255, 0, 0.6)'; // Yellow
       } else if (aqiValue >= 201 && aqiValue <= 300) {
-        return 'rgba(255, 0, 0, 0.6)'; // Red
-      } else if (aqiValue >= 301 && aqiValue <= 500) {
-        return 'rgba(128, 0, 128, 0.6)'; // Purple
+          return 'rgba(255, 165, 0, 0.6)'; // Orange
+      } else if (aqiValue >= 301 && aqiValue <= 400) {
+          return 'rgba(255, 0, 0, 0.6)'; // Red
+      } else if (aqiValue >= 401 && aqiValue <= 500) {
+          return 'rgba(128, 0, 128, 0.6)'; // Purple
       } else {
         return 'rgba(128, 128, 128, 0.6)'; // Default color (grey)
       }

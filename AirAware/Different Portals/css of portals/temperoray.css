@@ -6,42 +6,7 @@ body {
       background-color: rgba(81, 121, 181, 0.4);
       margin-bottom: 0px;
   }
-  .navbar {
-      padding: 2%;
-  }
-  .navbar-brand-div{
-      display: flex;
-      align-items: center;
-      gap: 5%;
-      
-  }
-  .brand-logo{
-      text-decoration: none;
-      display: flex;
-      /* border-radius: 100%;
-      background-color: rgb(151, 151, 151); */
-      align-items: center;
-      color: rgb(43, 43, 110);
-  }
-  .brand-logo:hover{
-      color: rgb(99, 99, 119);
-  }
-  .navbar-brand{
-      color: rgb(4, 4, 41);
-      text-decoration: none;
-  }
-  .navbar-brand:hover{
-      color: grey;
-  }
-  .nav-item{
-      background-color: rgb(30, 76, 141);
-      border-radius: 20px; 
-      border: solid black;
-      
-      border-width: 2px;
-  }
-  
-  /* 
+
   .btn btn-outline-success {
       background-color: white;
       color: white;
@@ -51,22 +16,13 @@ body {
       background-color: none;
   }
   
-  #customControl {
-      position: absolute;
-      top: 10px;
-     
-      z-index: 1000;
-     
-      border: none;
-      border-radius: 5px;
-  }
-  
+
   .logo-brand-div {
       display: flex;
       align-items: center;
       justify-content: space-between;
   }
-  
+/*   
   .navbar {
       display: flex;
       justify-content: space-around;
@@ -107,7 +63,7 @@ body {
   .navbar-brand:hover {
       color: rgb(127, 179, 246);
   }
-  
+   */
   .button-container {
       position: absolute;
       display: flex;
