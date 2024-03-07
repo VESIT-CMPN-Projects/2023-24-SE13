@@ -188,20 +188,21 @@ function fetchGovDataForCity(city) {
       <div class="vertical-line"></div>
       <div class="aqi-pollutants2">
       <ul class="button-list" id="pollutantButtons">
-      <li><button class="button" data-pollutant="PM10">PM10</button></li>
-      <li><button class="button" data-pollutant="CO">CO</button></li>
-      <li><button class="button" data-pollutant="PM2.5">PM2.5</button></li>
-      <li><button class="button" data-pollutant="OZONE">Ozone</button></li>
-      <li><button class="button" data-pollutant="NO2">NO2</button></li>
-      <li><button class="button" data-pollutant="SO2">SO2</button></li>
-      <li><button class="button" data-pollutant="NH3">NH3</button></li>
+      <li><button style="background-color:rgba(128, 0, 128, 0.5)" class="button" data-pollutant="PM10">PM10</button></li>
+      <li><button style="background-color:rgba(0, 0, 255, 0.5)" class="button" data-pollutant="CO">CO</button></li>
+      <li><button style="background-color:rgba(0, 0, 0, 0.5)" class="button" data-pollutant="PM2.5">PM2.5</button></li>
+      <li><button style="background-color:rgba(255, 165, 0, 0.5)" class="button" data-pollutant="OZONE">Ozone</button></li>
+      <li><button style="background-color:rgba(255, 0, 0, 0.5)" class="button" data-pollutant="NO2">NO2</button></li>
+      <li><button style="background-color:rgba(255, 255, 0, 0.7)" class="button" data-pollutant="SO2">SO2</button></li>
+      <li><button style="background-color:rgba(0, 128, 0, 0.5)" class="button" data-pollutant="NH3">NH3</button></li>
     </ul>
     <div id="pollutant-info">
-    <div id="sci-img"><img src="ImagesOfSite/sci-diag.jpeg" width="150px"></div>
+    <div id="sci-img"><img src="ImagesOfSite/none" alt="pm10 / pm2.5 are dust particles" width="150px"></div>
     <div id="avgminmax">
-      <p id="avg">24H avg:</p>
-      <p id="min">24 Min:</p>
-      <p id="max">24H Max:</p>
+      <p id="amm-title">Particulate matter 10</p>
+      <p id="avg">24H avg: ${firstmatch.properties.pollutants.PM10.pollutant_avg}</p>
+      <p id="min">24 Min:${firstmatch.properties.pollutants.PM10.pollutant_min}</p>
+      <p id="max">24H Max:${firstmatch.properties.pollutants.PM10.pollutant_max}</p>
     </div>
   </div>
     </div>
@@ -272,8 +273,12 @@ function fetchGovDataForCity(city) {
     govDataModal.style.display = 'block';
 
 
-    function updatePollutantInfo(avgValue, minValue, maxValue, imgUrl) {
+    function updatePollutantInfo(ammtitle,avgValue, minValue, maxValue, imgUrl) {
       // Update values inside <p> tags
+
+
+      document.getElementById('amm-title').textContent = ammtitle;
+
       document.getElementById('avg').textContent = '24H avg: ' + avgValue;
       document.getElementById('min').textContent = '24 Min: ' + minValue;
       document.getElementById('max').textContent = '24H Max: ' + maxValue;
@@ -291,7 +296,7 @@ function fetchGovDataForCity(city) {
       
       
         // Example of calling the function with new values
-        updatePollutantInfo(firstmatch.properties.pollutants[pollutant].pollutant_avg,
+        updatePollutantInfo(pollutant,firstmatch.properties.pollutants[pollutant].pollutant_avg,
            firstmatch.properties.pollutants[pollutant].pollutant_min,
             firstmatch.properties.pollutants[pollutant].pollutant_max, `ImagesOfSite/${pollutant}.png`);
         // You can do more with the pollutant value here
