@@ -217,9 +217,9 @@ function fetchGovDataForCity(city) {
     <h4 class="pie-head">Distribution of Pollutants</h4>
     <canvas id="mypollutantsChart" width="250px"></canvas>
    <div class="high-pollutant">
-    <p>Highest Pollutant: ${maxPollutant}</p>
-    <p>Highest Pollutant Value: ${maxPollutantValue} ug/m<sup>3</sup></p>
-    <p>What can be done to reduce  ${maxPollutant} in the air?</p>
+    <p><b>Highest Pollutant:</b> ${maxPollutant}</p>
+    <p><b>Highest Pollutant Value:</b> ${maxPollutantValue} ug/m<sup>3</sup></p>
+    <p><b>What can be done to reduce  ${maxPollutant} in the air?</b></p>
     <p>${measuresToReducePollutant}</p>
     </div>
     <div class="protection-section">
@@ -294,50 +294,75 @@ function fetchGovDataForCity(city) {
 var prevSelectedButton = null;
 
 buttons.forEach(function(button) {
-    button.addEventListener('click', function() {
-        var pollutant = button.getAttribute('data-pollutant');
-        
-        // Get the background color of the button
-        var computedStyle = window.getComputedStyle(button);
-        var backgroundColor = computedStyle.getPropertyValue('background-color');
-  
-        // Update the background color of the pollutant-info div
-        document.getElementById('pollutant-info').style.backgroundColor = backgroundColor;
+  button.addEventListener('click', function() {
+      var pollutant = button.getAttribute('data-pollutant');
+      
+      // Get the background color of the button
+      var computedStyle = window.getComputedStyle(button);
+      var backgroundColor = computedStyle.getPropertyValue('background-color');
 
-        // Get the position of the button
-        var buttonRect = button.getBoundingClientRect();
-        var buttonRight = buttonRect.right;
-        
-        // Get the position of the pollutant-info div
-        var pollutantInfoRect = document.getElementById('pollutant-info').getBoundingClientRect();
-        var pollutantInfoLeft = pollutantInfoRect.left;
-        
-        // Calculate the distance to move the button
-        var distance = pollutantInfoLeft - buttonRight;
-        
-        // Move the previously selected button back to its original position
-        if (prevSelectedButton !== null) {
-            var originalPosition = parseFloat(window.getComputedStyle(prevSelectedButton).marginLeft);
-            prevSelectedButton.style.transition = 'transform 0.3s ease';
-            prevSelectedButton.style.transform = `translateX(${originalPosition}px)`;
-        }
-        button.style.transition = 'transform 0.3s ease'; 
-        // Move the button towards the right by translating it
-        button.style.transform = `translateX(${distance}px)`;
+      // Update the background color of the pollutant-info div
+      document.getElementById('pollutant-info').style.backgroundColor = backgroundColor;
+
+      // Get the position of the button
+      var buttonRect = button.getBoundingClientRect();
+      var buttonRight = buttonRect.right;
       
-        // Update prevSelectedButton to the current button
-        prevSelectedButton = button;
+      // Get the position of the pollutant-info div
+      var pollutantInfoRect = document.getElementById('pollutant-info').getBoundingClientRect();
+      var pollutantInfoLeft = pollutantInfoRect.left;
       
-        // Example of calling the function with new values
-        updatePollutantInfo(
-            pollutant,
-            firstmatch.properties.pollutants[pollutant].pollutant_avg,
-            firstmatch.properties.pollutants[pollutant].pollutant_min,
-            firstmatch.properties.pollutants[pollutant].pollutant_max,
-            `ImagesOfSite/${pollutant}.png`
-        );
-    });
+      // Calculate the distance to move the button
+      var distance = pollutantInfoLeft - buttonRight + 1;
+      
+      // Move the previously selected button back to its original position
+      if (prevSelectedButton !== null) {
+          var originalPosition = parseFloat(window.getComputedStyle(prevSelectedButton).marginLeft);
+          prevSelectedButton.style.transition = 'transform 0.3s ease';
+          prevSelectedButton.style.transform = `translateX(${originalPosition}px)`;
+      }
+      button.style.transition = 'transform 0.3s ease'; 
+      // Move the button towards the right by translating it
+      button.style.transform = `translateX(${distance}px)`;
+    
+      // Update prevSelectedButton to the current button
+      prevSelectedButton = button;
+    
+      // Example of calling the function with new values
+      updatePollutantInfo(
+          pollutant,
+          firstmatch.properties.pollutants[pollutant].pollutant_avg,
+          firstmatch.properties.pollutants[pollutant].pollutant_min,
+          firstmatch.properties.pollutants[pollutant].pollutant_max,
+          `ImagesOfSite/${pollutant}.png`
+      );
+       // Update src attribute of the <img> tag
+       var sciImg = document.getElementById('sci-img').querySelector('img');
+       sciImg.src = `ImagesOfSite/${pollutant}.png`;
+
+       // Adjust width for CO and SO2 images
+       if (pollutant === 'CO' || pollutant === 'SO2'  ) {
+           sciImg.style.width = '150px';
+           sciImg.style.height = 'auto'; // Maintain aspect ratio
+       } 
+       else if(pollutant==="OZONE"){
+        sciImg.style.width = '200px';
+           sciImg.style.height = 'auto'; 
+           sciImg.style.marginBottom="-4rem";
+       }
+       else {
+           sciImg.style.width = ''; // Reset width
+           sciImg.style.height = ''; // Reset height
+           sciImg.style.marginBottom = '';
+       }
+  });
+
+  // Programmatically click the first button when the modal opens
+  if (button === buttons[0]) {
+      button.click();
+  }
 });
+
 
 
     const aqidataDiv = document.querySelector(".aqidata");

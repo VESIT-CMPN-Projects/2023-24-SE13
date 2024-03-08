@@ -14,6 +14,7 @@ body {
 }
 
 .button {
+    width: 100px !important;
     display: inline-block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -63,7 +64,8 @@ body {
 
 #pollutant-info p {
     font-size: 1rem;
-    margin-top: 1rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 #pollutant-info.active {
@@ -350,11 +352,18 @@ body {
     padding-bottom: 0;
 }
 #sci-img img {
-    width: 200px; /* Set a fixed width for the images */
+    width: 300px; /* Set a fixed width for the images */
     height: 100px; /* Set a fixed height for the images */
     object-fit: cover; /* Ensure the entire image fits inside the specified dimensions */
 }
-
+#avgminmax{
+    width: 200px;
+    border: 20px black;
+}
+#amm-title{
+    font-weight: bolder;
+    align-self: center;
+}
 #mostHarmful,
 #safestPlaces {
     width: 52%;
