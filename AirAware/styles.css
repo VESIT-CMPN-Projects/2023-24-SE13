@@ -356,6 +356,9 @@ body {
     height: 100px; /* Set a fixed height for the images */
     object-fit: cover; /* Ensure the entire image fits inside the specified dimensions */
 }
+#safeTable{
+
+}
 #avgminmax{
     width: 200px;
     border: 20px black;
@@ -395,9 +398,13 @@ td {
     padding: 10px;
     text-align: left;
 }
+#safestPlaces thead{
+    background-color:green;
+    color: white;
+}
 
-thead {
-    background-color: rgb(30, 76, 141);
+#mostHarmful thead {
+    background-color: rgb(158, 6, 6);
     color: white;
 }
 
@@ -411,8 +418,12 @@ th {
     width: 3%;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #76afda4a;
+#mostHarmful tbody tr:nth-child(even) {
+    background-color: #fb56474a;
+    /* Alternate row background color */
+}
+#safestPlaces tbody tr:nth-child(even) {
+    background-color: #72ca604a;
     /* Alternate row background color */
 }
 
